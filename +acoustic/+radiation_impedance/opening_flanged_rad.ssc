@@ -1,0 +1,52 @@
+component opening_flanged_rad
+% Radiation Impedance - Circular Flanged Opening
+% The component models the radiation impedance from a flanged circular opening. 
+%
+% Flanged circular opening has similar behavior as the spherical source, 
+% with slight adjustment on the component coefficients Bi and Br.
+% At extreme value: for very low frequency, the component acts like an mass loading. 
+% The mass loading on the sphere is represented as an inductor, the value is given by:
+%
+% M = Bi*ρ*r/A
+%
+% Where ρ is the density of the fluid, r is the radius of the sphere, and A is the surface area of the sphere.
+%
+% For very high frequency, the component acts like a pure resistive damping.
+% The damping part of the radiation is represented as a resistor, the value is given by:
+%
+% R = Bi^2*ρ*c/(Br*A)
+%
+% where c is the sound speed in the presented fluid.
+%
+% For flanged opening Bi = 8/3π, Br = 0.5
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    parameters
+        r = {1, 'm'};   % Opening Radius (r)
+    end
+
+    nodes
+        pa = acoustic.acoustic; % +:left
+        na = acoustic.acoustic; % -:right
+    end
+
+    parameters (Access = private)
+        A = 4*pi*r^2;         % cross sectional area
+        Bi = 8/(3*pi);          % correction coefficient
+        Br = 0.5;               % correction coefficient
+        Mrad = Bi*pa.rho*r/A;               % radiation mass loading
+        Rrad = Bi^2*pa.rho*pa.c/(Br*A);     % radiation damping
+    end
+
+    components (ExternalAccess = observe)
+        M = acoustic.elements.inertance(m = Mrad);
+        R = acoustic.elements.resistor(R_r = Rrad);
+    end
+
+    connections          % connected in parallel
+        connect(pa, M.pp, R.pp);
+        connect(na, M.nn, R.nn);
+    end
+
+end

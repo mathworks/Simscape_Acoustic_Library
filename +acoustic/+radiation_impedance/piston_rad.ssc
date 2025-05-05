@@ -1,0 +1,78 @@
+component piston_rad
+% Radiation Impedance - Circular Piston
+%
+% This component models the radiation impedance from a baffled piston using the Beranek model.
+% It assumes that the piston is mounted on an infinite baffle where the front and rear side do not interfere with each other.
+% The model approximate the complex radiation impedance from the analytical solution which involves the Bessel and Struve functions. 
+% This block also have the option to choice radiation impedance for a spherical cap source.
+%
+% To compute the component values for a spherical cap source, use the "spherical_cap_values.m" script.
+% The script optimizes the component values to match the analytical solution of a spherical cap radiation impedance
+% and returns the values to be used directly.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    nodes
+        pa = acoustic.acoustic; % +:left
+        na = acoustic.acoustic; % -:right
+    end
+
+    parameters
+        radtype = acoustic.enum.radChoice(1)                % Radiation Type
+        Sd      = {1,           'm^2'};                     % Piston Area (Sd)
+        a       = {0.15,        '1'};                       % Cap Opening Radius (a, in meters)
+        r       = {0.27,        '1'};                       % Sphere Radius (r, in meters)
+        theta   = {0.507,       '1'};                       % Cap Angle (theta, in radiance)
+    end
+
+    if radtype == acoustic.enum.radChoice(1)
+        annotations
+            [a, r, theta] : ExternalAccess = none;
+        end
+
+        parameters(Access=private)
+            a0  = sqrt(Sd/pi);
+            Ma1 = 8*pa.rho/(3*pi^2*a0);
+            Ca1 = 5.94*a0*a0*a0/pa.rho/pa.c/pa.c;
+            Ra1 = 0.1404*pa.rho*pa.c/a0^2;
+            Ra2 = pa.rho*pa.c/(pi*a0^2);
+        end
+
+        components(ExternalAccess=observe)
+            MM = acoustic.elements.inertance(m=Ma1);
+            CC = acoustic.elements.compliance(c=Ca1);
+            RR1 = acoustic.elements.resistor(R_r=Ra1);
+            RR2 = acoustic.elements.resistor(R_r=Ra2);
+        end
+    else                % for spherical cap
+        annotations
+            Sd : ExternalAccess = none;
+        end
+
+        parameters(Access=private)
+            rho = 1.21;         % air density, unitless for calculation
+            c = 343;            % sound speed in air, unitless for calculation
+            % compute component values for spherical cap radiation impedance, unsing piston radiation impedance model
+            % all computed values are unitless
+            [Ma, Ca, Ra1, Ra2] = acoustic.SphericalCapRadVal(rho, c, a, r, theta);
+            % give numerical results units
+            M   = {Ma,          'Pa*s^2/m^3'};
+            C   = {Ca,          'm^3/Pa'};
+            R1  = {Ra1,         'Pa*s/m^3'};
+            R2  = {Ra2,         'Pa*s/m^3'};
+        end
+
+        components(ExternalAccess=observe)                  % directly uses the computed values
+            MM = acoustic.elements.inertance(m=M);
+            CC = acoustic.elements.compliance(c=C);
+            RR1 = acoustic.elements.resistor(R_r=R1);
+            RR2 = acoustic.elements.resistor(R_r=R2);
+        end
+    end
+
+    connections
+        connect(pa, MM.pp, CC.pp, RR1.pp);
+        connect(CC.nn, RR1.nn, RR2.pp);
+        connect(MM.nn, RR2.nn, na);
+    end
+end

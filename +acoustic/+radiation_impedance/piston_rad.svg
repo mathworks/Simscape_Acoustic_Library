@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:">
+		<g id="group">
+			<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="129" y="0" width="27" height="126.83" rx="0" ry="0"/>
+			<rect id="rect_1" class="rect" d:options="ClosedShapeFill:On;" x="129" y="273.17" width="27" height="126.83" rx="0" ry="0"/>
+			<path id="path" class="path" d=" M 156,126.83 Q 172,163.41 172,200 Q 172,236.59 156,273.17"/>
+			<path id="path_2" class="path" d=" M 129,126.83 Q 145,163.41 145,200 Q 145,236.59 129,273.17"/>
+			<path id="path_3" class="path" d=" M 194,158.33 Q 199,179.16 199,200 Q 199,220.84 194,241.67"/>
+			<path id="path_3_4" class="path" d=" M 212,148.33 Q 219,174.16 219,200 Q 219,225.84 212,251.67"/>
+			<path id="path_3_4_5" class="path" d=" M 234,140.83 Q 244,170.41 244,200 Q 244,229.59 234,259.17"/>
+			<path id="path_3_4_5_6" class="path" d=" M 257,133.83 Q 271,166.91 271,200 Q 271,233.09 257,266.17"/>
+		</g>
+	</g>
+</svg>

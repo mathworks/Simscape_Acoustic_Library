@@ -1,0 +1,44 @@
+component spherical_rad
+% Radiation Impedance - Spherical Source
+% The component models the radiation impedance from a spherical pulsating source.
+% At extreme value: for very low frequency, the component acts like an mass loading. 
+% The mass loading on the sphere is represented as an inductor, the value is given by:
+%
+% M = ρ*r/A
+%
+% Where ρ is the density of the fluid, r is the radius of the sphere, and A is the surface area of the sphere.
+%
+% For very high frequency, the component acts like a pure resistive damping.
+% The damping part of the radiation is represented as a resistor, the value is given by:
+%
+% R = ρ*c/A
+%
+% where c is the sound speed in the presented fluid.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    parameters
+        r = {1, 'm'};   % Source Radius (r)
+    end
+
+    nodes
+        pa = acoustic.acoustic; % +:left
+        na = acoustic.acoustic; % -:right
+    end
+
+    parameters (Access = private)
+        Mrad = pa.rho/(4*pi*r);        % radiation mass loading
+        Rrad = pa.rho*pa.c/(4*pi*r^2);     % radiation damping
+    end
+
+    components(ExternalAccess = observe)
+        M = acoustic.elements.inertance(m = Mrad);
+        R = acoustic.elements.resistor(R_r = Rrad);
+    end
+
+    connections          % connected in parallel
+        connect(pa, M.pp, R.pp);
+        connect(na, M.nn, R.nn);
+    end
+
+end

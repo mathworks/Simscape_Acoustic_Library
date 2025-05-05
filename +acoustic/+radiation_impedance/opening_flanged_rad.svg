@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:">
+		<g id="Cylinder">
+			<path id="part_1" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,321.6900024414,400)" d:options="ClosedShapeFill:On;" d=" M 39,283 L 262.36,283 C 274.55,283 282.69,241.5 282.69,200 C 282.69,158.5 274.55,117 262.36,117 L 39,117 C 50.22,117 59.3,154.15 59.3,200 C 59.3,245.87 50.22,283 39,283 Z"/>
+			<ellipse id="part_2" class="ellipse" transform="matrix(-1,0,0,-1,565.3900146484,400)" d:options="ClosedShapeFill:On;" cx="282.69" cy="200" rx="20.3" ry="83"/>
+		</g>
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="269" y="0" width="13.69" height="117" rx="0" ry="0"/>
+		<rect id="rect_1" class="rect" d:options="ClosedShapeFill:On;" x="269.01" y="283" width="13.69" height="117" rx="0" ry="0"/>
+		<path id="path" class="path" d=" M 321,160.83 Q 333,180.5 333,200 Q 333,219.5 321,238.83"/>
+		<path id="path_120" class="path" d=" M 345,145.83 Q 358,172.25 358,200 Q 358,227.75 345,256.83"/>
+		<path id="path_165" class="path" d=" M 369,129.83 Q 382,164.75 382,200 Q 382,235.25 369,270.83"/>
+	</g>
+</svg>
