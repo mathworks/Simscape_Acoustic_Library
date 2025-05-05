@@ -1,0 +1,99 @@
+
+
+component speaker_Z2
+% speaker_Z2
+% Simple model of a moving coil loudspeaker with second inductor 
+% to better model eddy currents
+
+% Copyright 2022-2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+  parameters
+    L0 = {.00124, 'H'}; %Coil Inductance L0
+    L2 = {.00084, 'H'}; %Inductance L2
+    mass = {.0048, 'kg'}; %Mechanical Moving Mass
+    Sd = {.00304, 'm^2'}; %Cone Area
+    R = {7.8, 'Ohm'}; %DC Electrical Resistance
+    R2 = {3.52, 'Ohm'}; %Resistance R2
+    D = {0.1, 'N*s/m'}; %Mechanical Resistance
+    BL = {5.63, 's*V/m'}; %Gyration Constant BL
+    spr_rate = {952.3809523809524, 'N/m'}; %Mechanical Spring Stiffness
+    MechPort = acoustical.enum.WithMechanicalPort.noPort; % Include Mechanical force port?
+  end
+  outputs
+    Disp = {0, 'm'}; % Disp:top
+  end
+  nodes
+    Elec0 = foundation.electrical.electrical; % elec+
+    Aco1 = acoustic.acoustic; % cone_back
+    Aco0 = acoustic.acoustic; % cone_front
+    Elec1 = foundation.electrical.electrical; % elec-
+    M  = foundation.mechanical.translational.translational; % Mech
+  end
+  annotations
+      M:    Side=bottom;
+      Elec0: Side=left;
+      Elec1: Side=left;
+      Aco0: Side=right;
+      Aco1: Side=bottom;
+      Disp: Side=top;
+  end
+
+  equations
+     assert(0, "This block is deprecated. Use 'Moving Coil Speaker' from acoustic library instead.", Action = simscape.enum.assert.action.warn)
+  end
+
+  if MechPort == acoustical.enum.WithMechanicalPort.noPort
+      annotations
+          [M] : ExternalAccess=none;
+      end
+  end
+  components(ExternalAccess = observe)
+    Translational_Spring = foundation.mechanical.translational.spring(spr_rate = spr_rate);
+    Translational_Electromechanical_Converter = foundation.electrical.elements.translational_converter(K = BL);
+    Translational_Damper = foundation.mechanical.translational.damper(D = D);
+    Resistor1 = foundation.electrical.elements.resistor(R = R2);
+    Resistor = foundation.electrical.elements.resistor(R = R);
+    PS_Terminator = foundation.signal.sinks.terminator;
+    Mechanical_Translational_Reference = foundation.mechanical.translational.reference;
+    Mech_Acoust_Converter_area_transformer = acoustical.elements.mechanical_converter(Sd = Sd);
+    Mass = foundation.mechanical.translational.mass(num_ports = int32(1), mass = mass);
+    Inductor1 = foundation.electrical.elements.inductor(r = {0, 'Ohm'}, g = {1e-09, '1/Ohm'}, l = L2);
+    Inductor = foundation.electrical.elements.inductor(r = {0, 'Ohm'}, g = {1e-09, '1/Ohm'}, l = L0);
+    Ideal_Translational_Motion_Sensor = foundation.mechanical.sensors.velocity(offset = {0, 'm'});
+  end
+  connections
+    connect(Ideal_Translational_Motion_Sensor.V,PS_Terminator.I);
+    connect(Ideal_Translational_Motion_Sensor.P,Disp);
+    connect(Elec1,Translational_Electromechanical_Converter.n);
+    connect(Aco0,Mech_Acoust_Converter_area_transformer.pp);
+    connect(Aco1,Mech_Acoust_Converter_area_transformer.nn);
+    connect(Elec0,Resistor.p);
+    connect(Inductor1.n,Resistor1.n);
+    connect(Inductor1.n,Translational_Electromechanical_Converter.p);
+    connect(Inductor.p,Resistor.n);
+    connect(Ideal_Translational_Motion_Sensor.R,Mass.M);
+    connect(Ideal_Translational_Motion_Sensor.R,Mech_Acoust_Converter_area_transformer.C);
+    connect(Ideal_Translational_Motion_Sensor.R,Translational_Damper.R);
+    connect(Ideal_Translational_Motion_Sensor.R,Translational_Electromechanical_Converter.R);
+    connect(Ideal_Translational_Motion_Sensor.R,Translational_Spring.R);
+    connect(Inductor.n,Inductor1.p);
+    connect(Inductor.n,Resistor1.p);
+    connect(Ideal_Translational_Motion_Sensor.C,Mech_Acoust_Converter_area_transformer.R);
+    connect(Ideal_Translational_Motion_Sensor.C,Mechanical_Translational_Reference.V);
+    connect(Ideal_Translational_Motion_Sensor.C,Translational_Damper.C);
+    connect(Ideal_Translational_Motion_Sensor.C,Translational_Electromechanical_Converter.C);
+    connect(Ideal_Translational_Motion_Sensor.C,Translational_Spring.C);
+    connect(M,Mech_Acoust_Converter_area_transformer.C);
+    connect(M,Translational_Damper.C);
+    connect(M,Translational_Electromechanical_Converter.C);
+    connect(M,Translational_Spring.C);
+    connect(M,Ideal_Translational_Motion_Sensor.C);
+  end
+  if MechPort == acoustical.enum.WithMechanicalPort.noPort;
+     connections
+         connect(M,*);
+     end
+  end 
+end

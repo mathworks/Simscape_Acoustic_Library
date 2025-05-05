@@ -1,0 +1,70 @@
+component BL_of_x
+% Loudspeaker converter with variable BL
+% Provides an interface between the electrical and mechanical
+% translational domains. If the current and voltage through and across the
+% electrical ports are I and V, and the force and speed through and across
+% the mechanical ports are F and U, then
+%
+%   F = BL*I
+%
+%   V = BL*U
+%
+% where parameter BL is the Constant of proportionality with equivalent
+% units of N/A or V/(m/s). Both the force and back emf equations
+% having the same value of BL represents a lossless electromechanical
+% energy conversion.
+%
+% If the current I from the electrical + to - ports is positive, then
+% the resulting force is positive acting from the mechanical C to R ports.
+% This direction can be altered by using a negative value for BL.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+% This code is modified from the MathWorks translational converter component
+
+nodes
+    p = foundation.electrical.electrical; % +:left
+    n = foundation.electrical.electrical; % -:left
+    R = foundation.mechanical.translational.translational; % R:right
+    C = foundation.mechanical.translational.translational; % C:right
+end
+
+outputs
+    BL = {0, 'V/(m/s)' }; % BL
+    X  = {0, 'm' };     % X
+end
+
+annotations
+    [X, BL] : Side=bottom;
+end
+
+parameters
+    Bl0 = { 5.3400000,    'N/A'};      % N/A constant part in force factor 
+    Bl1 = { 0.0106041e3,  'N/A/m'};   % N/Amm 1st order coefficient in force factor expansion 
+    Bl2 = {-0.0300119e6,  'N/A/m^2'}; % N/Amm2 2nd order coefficient in force factor expansion 
+    Bl3 = {-0.0013884e9,  'N/A/m^3'}; % N/Amm3 3rd order coefficient in force factor expansion 
+    Bl4 = {-0.0014903e12, 'N/A/m^4'}; % N/Amm4 4th order coefficient in force factor expansion 
+end
+
+variables
+    i = { 0, 'A' };   % Current
+    v = { 0, 'V' };   % Voltage
+    f = { 0, 'N' };   % Force
+    u = { 0, 'm/s' }; % Velocity
+end
+
+branches
+    i : p.i -> n.i;
+    f : R.f -> C.f;
+end
+
+equations
+    BL == Bl0 + Bl1.*X + Bl2.*X.^2 + Bl3.*X.^3 + Bl4.*X.^4;
+    u  == X.der;
+    v == p.v - n.v;
+    u == R.v - C.v;
+    v == BL*u;
+    f == -BL*i;
+end
+
+end

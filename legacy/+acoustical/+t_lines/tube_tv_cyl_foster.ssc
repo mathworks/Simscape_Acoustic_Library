@@ -1,0 +1,66 @@
+component (Propagation = blocks) tube_tv_cyl_foster  
+% tube_tv_cyl_foster - cylindrical tube with tv losses using foster network
+% This component implements a segmented cylindrical tube as described
+% in *****
+
+% Copyright 2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+    parameters
+      Ndl = 20;   % Number of differential tube lengths
+      order = 4;  % order of TV approx
+      length = {0.35, 'm'}; % tube length
+      a =  {0.0075, 'm'}; % tube radius
+    end
+    parameters (Access = private)
+        ele_dl = length/Ndl; 
+        R0 = pi*p1.rho*p1.nu*ele_dl/(pi*a^2)^2;
+        L0 = p1.rho * ele_dl/(pi*a^2);
+        C0 = pi*a^2*ele_dl/p1.rho/p1.c^2;
+        G0 = pi*ele_dl*p1.kappa*(p1.gamma-1)/p1.rho^2/p1.c^2/p1.Cp
+    end
+    nodes
+        p1 = acoustic.acoustic;
+        p2 = acoustic.acoustic;
+        p3 = acoustic.acoustic;
+    end
+    annotations
+        p1: Side = left;
+        p2: Side = right;
+        p3: Side = bottom;
+    end
+    equations
+        assert(1<=order && order<=16,'from tube_tv_cyl_folter: must have 1>= order >=16');
+    end
+  for ii=1:2
+      components (ExternalAccess = none)
+      dl_Zend(ii) = acoustical.hidden.Zdl_tv_cyl_foster(N=order, L0 = L0/2, R0 = R0/2);
+    end
+  end
+  for ii=1:Ndl-1
+    components(ExternalAccess = none)
+      dl_Z(ii) = acoustical.hidden.Zdl_tv_cyl_foster(N=order, L0 = L0, R0 = R0);
+    end
+  end
+  for ii=1:Ndl
+    components (ExternalAccess = none)
+      dl_Y(ii) = acoustical.hidden.Ydl_tv_cyl_foster(N=order, C0 = C0, G0 = G0);
+    end
+  end
+  connections
+      connect(p1, dl_Zend(1).p1);
+      connect(dl_Zend(1).p2, dl_Z(1).p1, dl_Y(1).p1);
+      connect(dl_Y(1).p2, p3);
+
+      connect(p2, dl_Zend(2).p2);
+      connect(dl_Zend(2).p1, dl_Z(Ndl-1).p2, dl_Y(Ndl).p1);
+      connect(dl_Y(Ndl).p2, p3);
+  end
+  for ii=2:Ndl-1
+      connections
+          connect(dl_Z(ii-1).p2, dl_Z(ii).p1, dl_Y(ii).p1);
+          connect(dl_Y(ii).p2, p3);
+      end
+  end
+end

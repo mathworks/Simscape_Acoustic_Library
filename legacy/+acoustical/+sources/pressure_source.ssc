@@ -1,0 +1,35 @@
+component pressure_source < acoustic.source
+% General Pressure Source
+% The ideal generalized pressure source maintains the sinusoidal pressure
+% across its output terminals, independent of the volume velocity flowing
+%  through the source. The output pressure is defined by  
+%       P = P0 + P1 * sin(2*pi*f*t + phi),
+% where P0 is the static pressure, P1 is the peak amplitude of the dynamic
+% pressure, f is the frequency in Hz, and phi is the phase shift in radians.
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+parameters
+    static    = { 0, 'Pa'};    % Static pressure
+    amp       = { 1,  'Pa' };  % Peak amplitude of dynamic pressure
+    phi       = { 0,  'rad' }; % Phase shift
+    frequency = { 60, 'Hz' };  % Frequency
+end
+  
+parameters(Hidden=true)
+    omega = { 0, 'rad/s' }; % Angular frequency
+end
+  
+function setup
+    omega = {2*pi,'rad'}*frequency;
+end
+  
+equations
+    assert(frequency>0);
+    assert(amp>=0);
+    p == static + amp*sin(omega*time + phi);
+end
+
+end

@@ -1,0 +1,65 @@
+component speaker_simple 
+% Simple Loudspeaker
+
+% Copyright 2022-2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+nodes
+    pa = acoustical.acoustical; % cone front:right
+    na = acoustical.acoustical; % cone back:right
+    pe = foundation.electrical.electrical; % elec +:left
+    ne = foundation.electrical.electrical; % elec -:left
+end
+
+parameters
+    Re = {7.8, 'Ohm'};   % DC Electcial resistance
+    Le = {1.24 'mH'};    % Coil inductance
+    Bl = {5.63 'T*m'};   % Gyration constant BL
+    Mm = {4.8, 'g'};     % Mechanical moving mass
+    Km = { 995, 'N/m'};  % Mechanical spring stiffness
+    Rm = { 0.1, 'N*s/m'};% Mechanical resistance
+    Sd = { 30.4, 'cm^2'};% Cone area
+end
+outputs
+    Disp = {0, 'm'}; % X
+end
+
+annotations
+    pe: Side=left;
+    ne: Side=left;
+    pa: Side=right;
+    na: Side=bottom;
+    Disp: Side=top;
+end
+
+components(ExternalAccess=observe)
+    elec_r = foundation.electrical.elements.resistor(R = Re);
+    elec_l = foundation.electrical.elements.inductor(l = Le);
+    gyr    = foundation.electrical.elements.translational_converter(K=Bl);
+    mass   = foundation.mechanical.translational.mass(mass = Mm);
+    spring = foundation.mechanical.translational.spring(spr_rate = Km);
+    damper = foundation.mechanical.translational.damper(D = Rm);
+    fixed  = foundation.mechanical.translational.reference;
+    trans  = acoustical.elements.mechanical_converter(Sd=Sd);
+    Ideal_Translational_Motion_Sensor = foundation.mechanical.sensors.velocity(offset = {0, 'm'});
+    PS_Terminator = foundation.signal.sinks.terminator;
+end
+
+connections
+    connect(Ideal_Translational_Motion_Sensor.V,PS_Terminator.I);
+    connect(Ideal_Translational_Motion_Sensor.P,Disp);    
+    connect(pe,       elec_r.p);
+    connect(elec_r.n, elec_l.p);
+    connect(elec_l.n, gyr.p);
+    connect(gyr.n,    ne);
+    
+    connect(gyr.C, fixed.V, spring.C, damper.C, trans.C,Ideal_Translational_Motion_Sensor.C);
+    connect(gyr.R, mass.M, spring.R, damper.R, trans.R, Ideal_Translational_Motion_Sensor.R);
+    
+    connect(trans.pp, pa);
+    connect(trans.nn, na);
+    
+end
+
+end

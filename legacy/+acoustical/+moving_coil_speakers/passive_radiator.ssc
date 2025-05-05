@@ -1,0 +1,60 @@
+component passive_radiator
+% Passive Radiator
+
+% Copyright 2022-2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+nodes
+    pa = acoustic.acoustic; % cone front
+    na = acoustic.acoustic; % cone back
+    M  = foundation.mechanical.translational.translational; % Mech
+end
+
+parameters
+    Mm = {8.1, 'g'};     % Mechanical moving mass
+    Km = { 991, 'N/m'};  % Mechanical spring stiffness
+    Rm = { 0.1, 'N*s/m'};% Mechanical resistance
+    Sd = { 31.2, 'cm^2'};% Cone area
+    MechPort = acoustical.enum.WithMechanicalPort.noPort; % Include Mechanical force port?
+end
+
+annotations
+   [pa] : Side = right;
+   [na] : Side = bottom;
+   [M]  : Side = bottom;
+end
+if MechPort == acoustical.enum.WithMechanicalPort.noPort
+    annotations
+        [M] : ExternalAccess=none;
+    end
+end
+
+components(ExternalAccess=observe)
+    mass   = foundation.mechanical.translational.mass(mass = Mm);
+    spring = foundation.mechanical.translational.spring(spr_rate = Km);
+    damper = foundation.mechanical.translational.damper(D = Rm);
+    fixed  = foundation.mechanical.translational.reference;
+    trans  = acoustical.elements.mechanical_converter(Sd=Sd);
+end
+
+
+connections    
+    connect(fixed.V, spring.C, damper.C, trans.C);
+    connect(mass.M, spring.R, damper.R, trans.R);
+    
+    connect(trans.pp, pa);
+    connect(trans.nn, na);
+
+    connect(M,trans.C);
+    connect(M,damper.C);
+    connect(M,spring.C);
+    
+end
+if MechPort == acoustical.enum.WithMechanicalPort.noPort;
+   connections
+       connect(M,*);
+   end
+end 
+
+end

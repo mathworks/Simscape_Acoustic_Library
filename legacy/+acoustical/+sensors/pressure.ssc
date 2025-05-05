@@ -1,0 +1,40 @@
+component pressure
+% Pressure Sensor
+% The block represents an ideal pressure sensor, that is, a device that 
+% converts pressure measured between any acoustical connections into a 
+% physical signal proportional to the pressure.
+% 
+% Connections + and - are conserving pressure ports through which the 
+% sensor is connected to the circuit.  Connection P is a physical signal
+% port that outputs pressure value.
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+
+outputs
+    p = { 0.0, 'Pa' }; % P:bottom
+end
+
+nodes
+    pp = acoustic.acoustic; % +:top
+    nn = acoustic.acoustic; % -:bottom
+end
+
+variables(Access=private)
+    p1 = { 0, 'Pa' };    % Pressure
+    u1 = { 0, 'm^3/s' }; % Volume velocity
+end
+
+branches
+    u1 : pp.u -> nn.u;
+end
+
+equations
+    p1 == pp.p - nn.p;
+    u1 == 0;
+    p == p1;
+end
+
+end

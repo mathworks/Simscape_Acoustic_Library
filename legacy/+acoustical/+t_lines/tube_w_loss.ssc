@@ -1,0 +1,72 @@
+component (Propagation = blocks) tube_w_loss 
+% tube_w_loss - lossy cylindrical tube with N segments 
+% This component implements a segmented tube transmission line in the 
+% acoustical domain. The values of the reactive components in
+% the line are calculated assuming a cylindrical tube. The tube radius 
+% and length are entered as parameters. The values of the resistive 
+% components are entered as parameters. 
+% Note that the minimum damping ratio is included to provide sufficient 
+% resistive damping to reduce the artifacts that would otherwise be 
+% present in the linearized frequency response. The default value for this 
+% parameter has been sufficient in some practical cases.
+
+% Copyright 2022-23 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+  parameters
+    Ndl = 40; % Number of differential tube lengths
+    length = {0.35, 'm'};  % tube length
+    a =  {0.0075, 'm'};    % tube radius
+    min_damping_ratio = {1e-9, '1'};  % minimum damping ratio
+    R = {0, 'Pa/(m^3/s)'} % series resistance
+    G = {0, '(m^3/s)/Pa'} % parallel conductance
+  end
+  parameters (Access = private)
+    ele_dl = length/Ndl; 
+    C0 = pi*a^2*ele_dl/p1.rho/p1.c^2;
+    M0 = p1.rho * ele_dl/(pi*a^2);
+    Rmin = 2*min_damping_ratio*sqrt(M0/C0/2);
+    RP = 1/G % max(1/G, Rmin);
+    RS = R;  % max(R, Rmin);
+  end
+  nodes
+    p1 = acoustic.acoustic;
+    p2 = acoustic.acoustic;
+    p3 = acoustic.acoustic;
+  end
+  annotations
+    p1: Side = left;
+    p2: Side = right;
+    p3: Side = bottom;
+  end
+  for ii=1:2
+      components (ExternalAccess = none)
+      dl_Zend_M(ii) = acoustical.elements.inertance(m = M0/2, r_m = RS/2, g_m = {1e-9, '(m^3/s)/Pa'});
+    end
+  end
+  for ii=1:Ndl-1
+    components(ExternalAccess = none)
+      dl_Z_M(ii) = acoustical.elements.inertance(m = M0, r_m = RS, g_m = {1e-9, '(m^3/s)/Pa'} );
+    end
+  end
+  for ii=1:Ndl
+    components (ExternalAccess = none)
+      dl_Y_C(ii) = acoustical.elements.compliance(c = C0, g_c = 1/RP, r_c = {1e-9, 'Pa/(m^3/s)'});
+    end
+  end
+  connections
+    connect(p1, dl_Zend_M(1).pp);
+    connect(p2, dl_Zend_M(2).nn);
+    connect(dl_Z_M(Ndl-1).nn, dl_Zend_M(2).pp, dl_Y_C(Ndl).pp);
+    connect(dl_Y_C(Ndl).nn, p3);    
+    connect(dl_Zend_M(1).nn, dl_Z_M(1).pp, dl_Y_C(1).pp);
+    connect(dl_Y_C(1).nn, p3);
+  end
+  for ii=2:Ndl-1
+      connections
+          connect(dl_Z_M(ii-1).nn, dl_Z_M(ii).pp, dl_Y_C(ii).pp);
+          connect(dl_Y_C(ii).nn, p3);
+      end
+  end
+end

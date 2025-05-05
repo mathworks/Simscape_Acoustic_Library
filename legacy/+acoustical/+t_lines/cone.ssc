@@ -1,0 +1,61 @@
+component (Propagation = blocks) cone
+% cone
+% cone.ssc - models acoustical propagation in a cone
+% Uses the model provided in 'Equivalent circuits for conical 
+% waveguides,' by A. H. Benade, The Journal of the Acoustical 
+% Society of America 83, 1764 (1988); doi: 10.1121/1.396510
+%
+% The Benade model is a cylindrical tube with a shunt inertance 
+% at each end. Benade shows that this model is an exact model for
+% propagation in the cone. In this code, the cylindrical tube model 
+% is approximated by a segmented lumped parameter tube model.
+
+% Copyright 2022-23 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+
+    parameters
+        Ndl = {20, '1'}; % Number of segments
+        L = {1, 'm'};     % Axial length
+        a_1 = {0.1, 'm'}; % left (small) radius
+        a_2 = {0.2, 'm'}; % right (large) radius
+        min_damping_ratio = {1e-9, '1'}; ; % damping ratio for tube compliance
+    end
+    parameters(Access=private)
+        x_0 = a_1 * L/ (a_2 - a_1);
+        theta = asin(a_1/x_0);
+        F = 2*(1-cos(theta))/(a_1/x_0)^2;
+        ratio = a_2 / a_1;
+        m_1 = p1.rho * x_0 / (pi * a_1^2 * F );
+        m_2 =-p1.rho * (x_0 + L) / (pi * a_2^2 * F );
+    end
+    nodes
+      p1 = acoustic.acoustic;
+      n1 = acoustic.acoustic;
+      p2 = acoustic.acoustic;
+    end
+    annotations
+        [p1]: Side=left;
+        [n1]: Side=bottom;
+        [p2]: Side=right;
+    end
+    components(ExternalAccess = observe)
+        tube_loss = acoustical.t_lines.tube_w_loss(Ndl = Ndl, min_damping_ratio = min_damping_ratio, length = L, a = a_1);
+        Inertance_l = acoustical.elements.inertance(m = m_1, r_m = {1e-9, 's*Pa/m^3'}, g_m = {1e-9, 'm^3/(s*Pa)'});
+        Inertance_r = acoustical.elements.inertance(m = m_2, r_m = {1e-9, 's*Pa/m^3'}, g_m = {1e-9, 'm^3/(s*Pa)'});
+        Acoustical_transformer = acoustical.elements.acoustical_transformer(ratio = a_1/a_2);
+    end
+    connections
+      connect(p1,Inertance_l.pp);
+      connect(n1,Inertance_l.nn);
+      connect(p1,tube_loss.p1);
+      connect(n1,tube_loss.p3);
+      connect(Acoustical_transformer.pp1,tube_loss.p2);
+      connect(n1,Acoustical_transformer.nn1);
+      connect(p2,Acoustical_transformer.pp2);
+      connect(n1,Acoustical_transformer.nn2);
+      connect(p2,Inertance_r.pp);
+      connect(n1,Inertance_r.nn);
+    end
+end
