@@ -1,0 +1,27 @@
+component(Hidden=true) branch
+% Acoustical Branch
+% Defines an acoustical branch (2 port component) with positive 
+% and negative external nodes. Also defines associated through 
+% and across variables for the branch.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+nodes
+    pp = acoustic.acoustic; % +:left
+    nn = acoustic.acoustic; % -:right
+end
+
+variables
+    u = { 0, 'm^3/s'}; % Volume Velocity
+    p = { 0, 'Pa'}; % Pressure
+end
+
+branches
+    u : pp.u -> nn.u;
+end
+
+equations
+    p == pp.p - nn.p;
+end
+
+end

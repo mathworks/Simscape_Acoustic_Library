@@ -1,0 +1,39 @@
+domain acoustic
+% Acoustical Domain
+% Domain definition for a linear acoustical domain that uses 
+% acoustical pressure (Pa) as the Across variable and volume
+% velocity (m^3/s) as the Through variable. These variables are
+% those conventionally used in acoustical system modeling
+% as analog electrical circuit models. As a consequence, the 
+% code that implements this acoustical domain is very similar to 
+% the code that implements the electrical domain in the 
+% MathWorks Foundation Library.
+%
+% Information about domain creation can be found at 
+% https://www.mathworks.com/help/physmod/simscape/lang/when-to-define-a-new-physical-domain.html
+
+%   Copyright 2025 The MathWorks, Inc.
+
+  parameters
+    rho       = { 1.21,   'kg/m^3' }; % density of acoustic
+                                      % medium
+    c         = { 343.,   'm/s' };    % sound speed in medium
+    P_ambient = { 101325.,'Pa'};      % Ambient barometric
+                                      % pressure
+    Cp        = {1.01e3, 'kJ/kg/K'};  % Specific heat at
+                                      % constant pressure
+    gamma     = {1.4,     '1'};       % Ratio of specific heats  
+    nu        = {15.68e-6, 'm^2/s'};  % viscosity
+    kappa     = {0.0257, 'W/m/K'};    % thermal conductivity
+    x         = acoustic.audioutil;
+  end
+
+  variables
+    p = { 0 , 'Pa' }; % Pressure
+  end
+
+  variables(Balancing = true)
+    u = { 0 , 'm^3/s'}; % Volume Velocity
+  end
+
+end

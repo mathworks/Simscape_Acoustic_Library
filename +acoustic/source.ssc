@@ -1,0 +1,27 @@
+component(Hidden=true) source
+% Acoustical Source
+% Defines an acoustic source with positive and negative
+% external nodes. Also defines associated through and across 
+% variables.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+nodes
+    pp = acoustic.acoustic; % :top
+    nn = acoustic.acoustic; % :bottom
+end
+
+variables(Access=protected)
+    u = { 0, 'm^3/s' }; % Volume velocity
+    p = { 0, 'Pa' };    % Pressure
+end
+
+branches
+    u : pp.u -> nn.u;
+end
+
+equations
+    p == pp.p - nn.p;
+end
+
+end
