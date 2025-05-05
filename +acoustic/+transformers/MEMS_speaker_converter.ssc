@@ -1,0 +1,52 @@
+component MEMS_speaker_converter
+% MEMS Speaker Electromechanical Converter
+%
+% This component couples the electrical and mechanical domain in a piezoelectric actuator.
+% It converts the voltage across the electrical terminals and the current flowing through into force and velocity respectively.
+% Given the piezoelectric transduction factor "phi", the coupling between the electrical and mechanical domain is:
+%
+% f = -phi*v
+%
+% u = i/phi
+%
+% Where v is the voltage across the terminals, i is the current flowing through, u is the velocity, f is the force. 
+%
+% References:
+%
+% https://doi.org/10.1121/10.0024939
+%
+% https://doi.org/10.1016/j.microrel.2022.114555
+
+%   Copyright 2025 The MathWorks, Inc.
+
+nodes
+    p = foundation.electrical.electrical; % +:left
+    n = foundation.electrical.electrical; % -:left
+    R = foundation.mechanical.translational.translational; % R:right
+    C = foundation.mechanical.translational.translational; % C:right
+end
+
+parameters
+    phi = {1, 'N/V' } % Piezoelectric Transduction Factor (phi)
+end
+
+variables
+    i = { 0, 'A' };   % Current
+    v = { 0, 'V' };   % Voltage
+    f = { 0, 'N' };   % Force
+    u = { 0, 'm/s' }; % Velocity
+end
+
+branches
+    i : p.i -> n.i;
+    f : R.f -> C.f;
+end
+
+equations
+    v == p.v - n.v;
+    u == R.v - C.v;
+    u == i/phi;
+    f == -phi*v;
+end
+
+end

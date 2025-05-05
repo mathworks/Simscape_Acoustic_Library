@@ -1,0 +1,37 @@
+component volume_velocity
+% Volume Velocity Sensor
+% The block represents an ideal volume velocity sensor, that is, a device
+% that converts volume velocity measured in any acoustical branch into
+% a physical signal proportional to the volume velocity.
+%
+% Connections + and - are conserving acoustical ports through which the
+% sensor is inserted into the circuit. Connection U is a physical
+%  signal port that outputs volume velocity value.
+
+%   Copyright 2025 The MathWorks, Inc.
+    
+outputs
+    u = { 0.0, 'm^3/s' }; % I:right
+end
+
+nodes
+    pp = acoustic.acoustic; % +:left
+    nn = acoustic.acoustic; % -:right
+end
+
+variables(Access=private)
+    u1 = { 0, 'm^3/s' }; % Volume velocity
+    p1 = { 0, 'Pa' }; % Pressure
+end
+
+branches
+    u1 : pp.u -> nn.u;
+end
+
+equations
+    p1 == pp.p - nn.p;
+    p1 == 0;
+    u == u1;
+end
+    
+end

@@ -1,0 +1,33 @@
+component controlled_pressure
+% Controlled Pressure Source
+% The block represents an ideal pressure source that is powerful enough
+% to maintain the specified pressure at its output regardless of the
+% volume velocity passing through it. The output pressure is P = Ps, where
+% Ps is the numerical value presented at the physical signal port.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+inputs
+    pT = { 0, 'Pa' }; % :bottom
+end
+
+nodes
+    pp = acoustic.acoustic; % :top
+    nn = acoustic.acoustic; % :bottom
+end
+
+variables(Access=private)
+    u = { 0, 'm^3/s' };
+    p = { 0, 'Pa' };
+end
+
+branches
+    u : pp.u -> nn.u;
+end
+
+equations
+    p == pp.p - nn.p;
+    p == pT;
+end
+
+end

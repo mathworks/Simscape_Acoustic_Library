@@ -1,0 +1,36 @@
+component acoustical_transformer
+% Acoustical Transformer 
+
+%   Copyright 2025 The MathWorks, Inc.
+
+nodes
+    pp1 = acoustic.acoustic; % 1+:left
+    nn1 = acoustic.acoustic; % 1-:left
+    pp2 = acoustic.acoustic; % 2+:right
+    nn2 = acoustic.acoustic; % 2-:right
+end
+
+parameters
+    ratio = {1, '1' } % pressure ratio
+end
+
+variables
+    u1  = { 0, 'm^3/s' }; % Volume Velocity at port 1
+    pa1 = { 0, 'Pa' };    % Pressure at port 1
+    u2  = { 0, 'm^3/s' }; % Volume Velocity  at port 2
+    pa2 = { 0, 'Pa' };    % Pressure  at port 2
+end
+
+branches
+    u1 : pp1.u -> nn1.u;
+    u2 : pp2.u -> nn2.u;
+end
+
+equations
+    pa1 == pp1.p - nn1.p;
+    pa2 == pp2.p - nn2.p;
+    u1  == -u2*ratio;
+    pa2 == pa1*ratio;
+end
+
+end

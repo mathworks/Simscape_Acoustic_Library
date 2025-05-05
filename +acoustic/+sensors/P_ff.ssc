@@ -1,0 +1,28 @@
+component P_ff < acoustic.branch
+% Far Field Pressure
+%
+% Radiated far field pressure calculated from the volume 
+% velocity and assuming that the source is small compared to 
+% the wavelength. This version assumes radiation from an infinite baffle.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+outputs
+    p_ff = {1, 'Pa'}; % Far Field
+end
+
+parameters
+    dist = {1, 'm'};    % Distance (dist)
+end
+
+annotations
+    [p_ff]: Side=top;
+end
+
+equations
+    p == 0;
+    p_ff == u.der * pp.rho/2/pi/dist;
+end
+
+end
+    

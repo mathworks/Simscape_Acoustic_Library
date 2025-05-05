@@ -1,0 +1,33 @@
+component controlled_volume_velocity
+% Controlled Volume Velocity Source
+% The block represents an ideal volume velocity source that is powerful enough
+% to maintain the specified current through it regardless of the pressure
+% across it. The output volume velocity is U = Us, where Us is the numerical
+% value presented at the physical signal port.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+inputs
+    uT = { 0, 'm^3/s'}; % :bottom
+end
+
+nodes
+    head = acoustic.acoustic; % :top
+    tail = acoustic.acoustic; % :bottom
+end
+
+variables(Access=private)
+    u = { 0, 'm^3/s' };
+    p = { 0, 'Pa' };
+end
+
+branches
+    u : tail.u -> head.u;
+end
+
+equations
+    p == tail.p - head.p;
+    u == uT;
+end
+
+end

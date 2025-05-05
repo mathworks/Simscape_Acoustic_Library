@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="148" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:,right:foundation-mechanical-translational-translational*foundation-mechanical-translational-translational,bottom:">
+		<g id="IdealTransformer">
+			<g id="Left">
+				<path id="path_75" class="path" d=" M 0,100 L 59.2,100 L 59.2,115 Q 40.7,119.25 40.7,136.25 Q 40.7,153.25 59.2,157.5 Q 40.7,161.75 40.7,178.75 Q 40.7,195.75 59.2,200 Q 40.7,204.25 40.7,221.25 Q 40.7,238.25 59.2,242.5 Q 40.7,246.75 40.7,263.75 Q 40.7,280.75 59.2,285 L 59.2,300 L 0,300"/>
+				<ellipse id="ellipse_76" class="ellipse" style="fill: #000000;stroke: #000000;" cx="31.45" cy="112.5" rx="1.85" ry="2.5"/>
+			</g>
+			<g id="Right">
+				<path id="path_26" class="path" d=" M 148,100 L 88.8,100 L 88.8,115 Q 107.3,119.25 107.3,136.25 Q 107.3,153.25 88.8,157.5 Q 107.3,161.75 107.3,178.75 Q 107.3,195.75 88.8,200 Q 107.3,204.25 107.3,221.25 Q 107.3,238.25 88.8,242.5 Q 107.3,246.75 107.3,263.75 Q 107.3,280.75 88.8,285 L 88.8,300 L 148,300"/>
+				<ellipse id="ellipse_56" class="ellipse" style="fill: #000000;stroke: #000000;" cx="116.07" cy="110.6" rx="1.85" ry="2.5"/>
+			</g>
+		</g>
+	</g>
+</svg>

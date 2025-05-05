@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="317" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<defs>
+		<style>
+			.font-size-xl {
+				font-size: 101px; stroke-width: 2.52px;
+			}
+					</style>
+	</defs>
+	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:output,right:acoustical-acoustical,bottom:">
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="0" y="0" width="400" height="317" rx="0" ry="0"/>
+		<ellipse id="ellipse" class="ellipse" d:options="ClosedShapeFill:On;" cx="200" cy="158.5" rx="90" ry="90"/>
+		<text id="text" class="text font-size-xl" style="font-weight:bold;" x="130.83" y="102.17">
+			<tspan dx="0" dy="91.33" x="130.83">Pff</tspan>
+		</text>
+		<line id="line" class="line" x1="0" y1="158.5" x2="110" y2="158.5"/>
+		<line id="line_42" class="line" x1="290" y1="158.5" x2="400" y2="158.5"/>
+	</g>
+</svg>
