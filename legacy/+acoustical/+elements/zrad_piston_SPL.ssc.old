@@ -1,0 +1,72 @@
+component zrad_piston_SPL
+% Zrad - circular piston
+
+% Obsolete - replaced by zrad_piston
+
+% Approximate radiation impedance for a circular piston in an
+% infinite baffle. The approximation is that given by Beranek
+% in his Acoustics text, originally published in 1954. It is
+% also include in the updated version of that book, entitled
+% Acoustics: Sound Fields, Transducers and Vibration by Beranek
+% and Mellow.
+%
+% This component also calculates the far field sound pressure
+% level as a physical signal output. Calculated pressure is in Pa.
+
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+outputs
+    SPL = {1, 'Pa'}; % SPL:right
+end
+
+variables
+   u = { 0, 'm^3/s'}; % Volume Velocity
+   p = { 0, 'Pa'}; % Pressure
+end
+
+branches
+    u : pa.u -> na.u;
+end
+
+nodes
+    pa = acoustical.acoustical; % piston +:left
+    na = acoustical.acoustical; % piston -:right
+end
+
+parameters
+    Sd  = {1, 'm^2'};   % Piston area
+    dist = {1., 'm'};   % Measurement distance for SPL 
+end
+
+parameters(Access=private)
+    a   = sqrt(Sd/pi);
+    Ma1 = 8*pa.rho/(3*pi^2*a);
+    Ca1 = 5.94*a*a*a/pa.rho/pa.c/pa.c;
+    Ra1 = 0.1404*pa.rho*pa.c/a^2;
+    Ra2 = pa.rho*pa.c/(pi*a^2);
+end
+
+components(ExternalAccess=observe)
+    M = acoustical.elements.inertance(m=Ma1);
+    CC = acoustical.elements.compliance(c=Ca1);
+    R1 = acoustical.elements.resistor(R_r=Ra1);
+    R2 = acoustical.elements.resistor(R_r=Ra2);
+end
+
+connections
+    connect(pa, M.pp, CC.pp, R1.pp);
+    connect(CC.nn, R1.nn, R2.pp);
+    connect(M.nn, R2.nn, na);
+end
+
+equations
+   p == M.p;
+   u == R2.u + M.u;
+    SPL == u.der * pa.rho/2/pi/dist;
+end
+
+end
+    

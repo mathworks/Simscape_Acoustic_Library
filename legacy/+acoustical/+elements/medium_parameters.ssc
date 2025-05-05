@@ -1,0 +1,40 @@
+component (Propagation = source ) medium_parameters
+% Medium parameters
+% Default values are for air. If this block is included and
+% connected to the acoustical network, the values in this block
+% will be used.
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+parameters
+    rho       = { 1.21,    'kg/m^3' }; % density of acoustic medium
+    c         = { 343.,    'm/s' };    % sound speed in medium
+    P_ambient = { 101325., 'Pa'};      % Ambient barometric pressure
+    Cp        = {1.01e3,   'J/kg/K'};    % Specific heat at constant pressure
+    gamma     = {1.4,      '1'};       % Ratio of specific heats  
+    nu        = {15.68e-6, 'm^2/s'};  % viscosity
+    kappa     = {0.0257,   'W/m/K'};      % thermal conductivity
+end
+
+nodes
+    a = acoustic.acoustic(rho       = rho,       ...
+                              c         = c,         ...
+                              P_ambient = P_ambient, ...
+                              Cp        = Cp,        ...
+                              gamma     = gamma,     ...
+                              nu        = nu,        ...
+                              kappa     = kappa);
+end
+equations
+    assert(rho>0);
+    assert(c>0);
+    assert(P_ambient>0);
+    assert(Cp>0);
+    assert(gamma>0);
+    assert(nu>0);
+    assert(kappa>0);        
+end
+
+end

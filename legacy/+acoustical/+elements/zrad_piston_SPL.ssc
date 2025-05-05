@@ -1,0 +1,53 @@
+component (Propagation = blocks) zrad_piston_SPL
+% Zrad - circular piston
+
+%   Copyright 2025 The MathWorks, Inc.
+
+% Obsolete - replaced by zrad_piston
+
+% Approximate radiation impedance for a circular piston in an
+% infinite baffle. The approximation is that given by Beranek
+% in his Acoustics text, originally published in 1954. It is
+% also include in the updated version of that book, entitled
+% Acoustics: Sound Fields, Transducers and Vibration by Beranek
+% and Mellow.
+%
+% This component also calculates the far field sound pressure
+% level as a physical signal output. CAlculated pressure is in Pa.
+
+  parameters
+      Sd = {1, 'm^2'}; % Radiating area
+      dist = {1, 'm'}; % Distance for far field "measurement"
+  end
+
+  outputs
+    SPL = {0, 'Pa'}; % P_ff
+  end
+
+  nodes
+    pa = acoustic.acoustic; % a+
+    na = acoustic.acoustic; % a-
+  end
+
+  annotations
+      [pa] : Side = top;
+      [na] : Side = bottom;
+      [SPL] : Side = right;
+  end
+
+  equations
+      assert(0, "This block is deprecated. Use 'Radiation Impedance - Circular Piston' from acoustic library instead.", Action = simscape.enum.assert.action.warn)
+  end
+
+  components(ExternalAccess = observe)
+    Radiation_impedance_circular_piston1 = acoustical.elements.zrad_piston(Sd = Sd);
+    P_ff_far_field_pressure_referenced_to_1m_in_Pa1 = acoustical.elements.P_ff(dist = dist);
+  end
+
+  connections
+    connect(P_ff_far_field_pressure_referenced_to_1m_in_Pa1.p_ff,SPL);
+    connect(na,Radiation_impedance_circular_piston1.na);
+    connect(pa,P_ff_far_field_pressure_referenced_to_1m_in_Pa1.pp);
+    connect(P_ff_far_field_pressure_referenced_to_1m_in_Pa1.nn,Radiation_impedance_circular_piston1.pa);
+  end
+end

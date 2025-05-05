@@ -1,0 +1,44 @@
+component enclosure
+% Acoustical enclosure
+% Deprecated - replaced by encl_simple
+% This component should always be used with the nn port connected to the
+% acoustical reference. Consequently, there is no reason for that port to
+% exist as an external port. The replacement component does this connection
+% internally.
+% All dimensions of the enclosure are assumed to be much less
+% than the acoustic wavelength at any frequency included in the
+% analysis. This component is a simple model that is a pure
+% compliance, neglecting any loss that may exist in the
+% enclosure.
+
+% Copyright 2022-2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+    parameters
+        vol = {1, 'm^3'}; % Volume of enclosure
+    end
+    
+    parameters (Access = private )
+        comp = vol / pp.gamma / pp.P_ambient;
+    end
+
+    nodes
+        pp = acoustic.acoustic; %+:left
+        nn = acoustic.acoustic; %-:right
+    end
+
+    equations
+        assert(0, "This block is deprecated. Use 'Simple Acoustical Enclosure' from acoustic library instead.", Action = simscape.enum.assert.action.warn)
+    end
+    
+    components(ExternalAccess=observe)
+        CC = acoustical.elements.compliance(c=comp);
+    end
+    
+    connections
+        connect(pp, CC.pp);
+        connect(CC.nn, nn);
+    end
+   
+end

@@ -1,0 +1,34 @@
+component encl_simple
+% Simple acoustical enclosure
+% All dimensions of the enclosure are assumed to be much less
+% than the acoustic wavelength at any frequency included in the
+% analysis. This component is a simple model that is a pure
+% compliance, neglecting any loss that may exist in the
+% enclosure.
+
+% Copyright 2022-2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+    parameters
+        vol = {1, 'm^3'}; % Volume of enclosure
+    end
+    
+    parameters (Access = private )
+        comp = vol / pp.gamma / pp.P_ambient;
+    end
+
+    nodes
+        pp = acoustical.acoustical; %+:left
+    end
+    
+    components(ExternalAccess=observe)
+        CC = acoustical.elements.compliance(c=comp);
+    end
+    
+    connections
+        connect(pp, CC.pp);
+        connect(CC.nn, *);
+    end
+   
+end

@@ -1,0 +1,57 @@
+<svg width="234" height="342" xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics">
+ <title>Fig file converted by fig2lat</title>
+ <desc>http://dktools.sourceforge.net/fig2lat.html</desc>
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+.sB {
+fill: none;
+stroke: #000000;
+stroke-width: 0.9;
+}
+.sC {
+fill: none;
+stroke: #000000;
+stroke-width: 0.9;
+stroke-miterlimit: 20;
+}
+.sA {
+fill: none;
+stroke: #000000;
+stroke-width: 0.9;
+stroke-miterlimit: 20;
+}
+.sD {
+fill: none;
+stroke: #FFFFFF;
+stroke-width: 0.9;
+stroke-miterlimit: 20;
+}
+]]>
+  </style>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <rect fill="black" id="svg_15" class="sD" height="324" width="216" y="9" x="9"/>
+  <g d:options="Port:L0" id="svg_16">
+   <polyline id="svg_1" class="sA" points="135.9,84.6 135.9,95.4"/>
+   <polyline id="svg_2" class="sA" points="95.4,90 106.2,90"/>
+   <polyline id="svg_3" class="sA" points="100.8,84.6 100.8,95.4"/>
+   <polyline id="svg_4" class="sA" points="90,90 9,90"/>
+   <polyline id="svg_5" class="sA" points="144,90 225,90"/>
+   <circle id="svg_13" class="sB" r="27" cy="90" cx="117"/>
+  </g>
+  <g d:options="Port:L1" id="svg_17">
+   <polyline id="svg_6" class="sA" points="79.2,252 9,252"/>
+   <polyline id="svg_7" class="sA" points="154.8,252 225,252"/>
+   <polyline id="svg_8" class="sA" points="146.7,252 117,252"/>
+   <polyline id="svg_12" class="sA" points="117,230.4 117,273.6 92.7,252 117,230.4"/>
+   <rect id="svg_14" class="sC" height="81" width="75.6" y="211.5" x="79.2"/>
+  </g>
+  <g d:options="Port:L0" id="svg_18">
+   <polyline id="svg_9" class="sA" points="117,127.8 117,144"/>
+   <polyline id="svg_10" class="sA" points="117,200.7 117,184.5"/>
+   <polyline id="svg_11" class="sA" points="117,157.5 117,173.7"/>
+  </g>
+ </g>
+</svg>

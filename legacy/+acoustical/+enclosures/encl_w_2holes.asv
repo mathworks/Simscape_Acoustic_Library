@@ -1,0 +1,47 @@
+component encl_w_2holes
+% Acoustical enclosure with two holes for speaker mount
+% All dimensions of the enclosure are assumed to be much less
+% than the acoustic wavelength at any frequency included in the
+% analysis. This component is compliance, with a small added series 
+% inertance for the air mass added to the back side of the speaker. It
+% neglects any loss that may exist in the enclosure.
+
+% Copyright 2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+    parameters
+        vol = {1, 'm^3'};    % Volume of enclosure
+        Sd_1  = {30.4, 'cm^2'} % Area of first hole
+        Sd_2  = {30.4, 'cm^2'} % Area of second hole
+    end
+    
+    parameters (Access = private )
+        comp = vol / pp.gamma / pp.P_ambient;
+        rad1 = sqrt(Sd_1/pi);
+        mass1 = pp.rho*0.85*rad/Sd_1;
+        rad2 = sqrt(Sd_2/pi);
+        mass2 = pp.rho*0.85*rad/Sd_2;
+    end
+
+    nodes
+        pp1 = acoustical.acoustical; %1:right
+        pp2 = acoustical.acoustical; %2:right
+        nn  = acoustical.acoustical; %3:right
+    end
+    
+    components(ExternalAccess=observe)
+        CC = acoustical.elements.compliance(c=comp);
+        MM1 = acoustical.elements.inertance(m=mass1);
+        MM2 = acoustical.elements.inertance(m=mass2);
+    end
+    
+    connections
+        connect(pp1, MM1.pp);
+        connect(pp2, MM2.pp);
+        connect(MM1.nn, CC.pp);
+        connect(MM2.nn, CC.pp);
+        connect(nn, CC.nn, *);
+    end
+   
+end

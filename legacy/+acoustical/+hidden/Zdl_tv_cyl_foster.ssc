@@ -1,0 +1,52 @@
+% This calculates part of the analog circuit model for acoustic  
+%   propagation in a cylindrical tube, including thermal and viscous
+%   losses at the walls.
+%   Reference: Alexis Thibeault and Juliette Chabassier, "Dissipative
+%              time-domain one-dimensional model for viscothermal acoustic
+%              propagation in wind instruments," 
+%              https://doi.org/10.1121/10.0005537
+%
+% This component is described in Equation 4 and its relevant text 
+
+
+% Copyright 2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+component (Hidden = true) Zdl_tv_cyl_foster
+    nodes
+      p1 = acoustic.acoustic; % +:left
+      p2 = acoustic.acoustic; % -:right
+    end
+    parameters
+        N = 4; % order of TV approx
+        L0 = {1, 'Pa*s^2/m^3'};
+        R0 = {1, 'Pa*s/m^3'};
+    end
+    parameters(Access=private)
+        [a b] = acoustic.applications.t_lines.tv_foster_coefs(N);
+        % a = [0.210156619430100,0.0407543277058300,0.00814825385852500,0.00196159023284100];
+        % b = [0.0104628585476700,0.000402092479637000,1.62209337496300e-05,5.68860487634300e-07];
+    end
+    components(ExternalAccess=none)
+        LL0 = acoustical.elements.inertance(m = L0, r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
+        RR0 = acoustical.elements.resistor(R_r = 8*R0);
+    end
+    for ii=1:N
+        components(ExternalAccess=none)
+            RR(ii) = acoustical.elements.resistor(R_r = R0*a(ii)/b(ii));
+            LL(ii) = acoustical.elements.inertance(m = L0*a(ii), r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
+        end
+    end
+    connections
+        connect(p1,LL0.pp)
+        connect(LL0.nn, RR0.pp);
+        connect(RR0.nn, LL(1).pp, RR(1).pp);
+        connect(RR(N).nn, LL(N).nn, p2)
+    end
+    for ii=2:N
+        connections
+            connect(RR(ii-1).nn, LL(ii-1).nn, LL(ii).pp, RR(ii).pp);
+        end
+    end
+end

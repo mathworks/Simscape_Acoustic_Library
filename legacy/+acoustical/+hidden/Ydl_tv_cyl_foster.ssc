@@ -1,0 +1,52 @@
+% This calculates part of the analog circuit model for acoustic  
+%   propagation in a cylindrical tube, including thermal and viscous
+%   losses at the walls.
+%   Reference: Alexis Thibeault and Juliette Chabassier, "Dissipative
+%              time-domain one-dimensional model for viscothermal acoustic
+%              propagation in wind instruments," 
+%              https://doi.org/10.1121/10.0005537
+%
+% This component is described in Equation 4 and its relevant text 
+
+
+% Copyright 2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+component (Hidden = true) Ydl_tv_cyl_foster
+    nodes
+      p1 = acoustic.acoustic; % +:left
+      p2 = acoustic.acoustic; % -:right
+    end
+    parameters
+        N = 4;                % number foster pairs
+        C0 = {1, 'm^3/Pa'};   % C0
+        G0 = {1, 'm^3/(Pa*s)'}; % G0
+    end
+    parameters(Access=private)
+        [a b] = acoustical.t_lines.tv_foster_coefs(N);
+        % a = [0.210156619430100,0.0407543277058300,0.00814825385852500,0.00196159023284100];
+        % b = [0.0104628585476700,0.000402092479637000,1.62209337496300e-05,5.68860487634300e-07];
+    end
+    components(ExternalAccess=none)
+        CC0 = acoustical.elements.compliance(c = C0, r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+        GG0 = acoustical.elements.resistor(R_r = 1/(8*G0));
+    end
+    for ii=1:N
+        components(ExternalAccess=none)
+            RR(ii) = acoustical.elements.resistor( R_r = 1/(G0*a(ii)/b(ii)) );
+            CC(ii) = acoustical.elements.compliance(c = C0*(p1.gamma-1)*a(ii), r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+        end
+    end
+    connections
+        connect(p1, CC0.pp, GG0.pp)
+        connect(p2, CC0.nn, GG0.nn);
+    end
+    for ii=1:N
+        connections
+            connect(p1, RR(ii).pp);
+            connect(RR(ii).nn, CC(ii).pp);
+            connect(CC(ii).nn, p2);
+        end
+    end
+end

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg version="1.2" baseProfile="tiny" width="137.16mm" height="165.1mm" viewBox="0 0 13716 16510" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+ <g visibility="visible" id="MasterSlide_1_Default">
+  <desc>Master slide
+  </desc>
+  <rect fill="none" stroke="none" x="0" y="0" width="13716" height="16510"/>
+ </g>
+ <g visibility="visible" id="Slide_1_page1">
+  <g>
+   <path fill="rgb(207,231,245)" stroke="none" d="M 156,11171 L 156,2661 2823,-6 10825,-6 10825,8503 8157,11171 156,11171 Z"/>
+   <path fill="none" stroke="rgb(128,128,128)" id="Drawing_1_0" stroke-linejoin="round" d="M 156,11171 L 156,2661 2823,-6 10825,-6 10825,8503 8157,11171 156,11171 Z"/>
+   <path fill="rgb(216,236,247)" stroke="none" d="M 156,2661 L 2823,-6 10825,-6 8157,2661 156,2661 Z"/>
+   <path fill="none" stroke="rgb(128,128,128)" id="Drawing_1_1" stroke-linejoin="round" d="M 156,2661 L 2823,-6 10825,-6 8157,2661 156,2661 Z"/>
+   <path fill="rgb(166,185,196)" stroke="none" d="M 8157,11171 L 8157,2661 10825,-6 10825,8503 8157,11171 Z"/>
+   <path fill="none" stroke="rgb(128,128,128)" id="Drawing_1_2" stroke-linejoin="round" d="M 8157,11171 L 8157,2661 10825,-6 10825,8503 8157,11171 Z"/>
+   <rect fill="none" stroke="none" x="156" y="-6" width="10669" height="11177"/>
+  </g>
+  <g>
+   <path fill="rgb(207,231,245)" stroke="none" d="M 9682,3284 C 10186,3313 10509,4396 10430,5785 10350,7174 9905,8213 9402,8184 8898,8155 8575,7072 8654,5683 8734,4294 9179,3255 9682,3284 Z"/>
+   <path fill="none" stroke="rgb(128,128,128)" id="Drawing_2_0" stroke-linejoin="round" d="M 9682,3284 C 10186,3313 10509,4396 10430,5785 10350,7174 9905,8213 9402,8184 8898,8155 8575,7072 8654,5683 8734,4294 9179,3255 9682,3284 Z"/>
+   <rect fill="none" stroke="none" x="8514" y="3233" width="2058" height="5003"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_3_0" stroke-width="102" stroke-linejoin="round" d="M 8692,5509 L 12446,5461"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_4_0" stroke-width="102" stroke-linejoin="round" d="M 4982,11170 L 4953,13716"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_5_0" stroke-width="102" stroke-linejoin="round" d="M 3312,13840 L 6614,13840"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_6_0" stroke-width="102" stroke-linejoin="round" d="M 4147,14348 L 5925,14348"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_7_0" stroke-width="102" stroke-linejoin="round" d="M 4501,14910 L 5517,14910"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_8_0" stroke-width="102" stroke-linejoin="round" d="M 4655,15491 L 5263,15491"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_9_0" stroke-width="102" stroke-linejoin="round" d="M 4953,12717 L 13518,12688"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_10_0" stroke-width="102" stroke-linejoin="round" d="M 12446,4318 L 13462,4318"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_11_0" stroke-width="102" stroke-linejoin="round" d="M 12475,4318 L 12446,5461"/>
+  </g>
+ </g>
+</svg>

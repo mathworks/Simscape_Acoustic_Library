@@ -1,0 +1,37 @@
+component zrad_sphere
+% Radiation impedance - pulsing sphere
+
+% Copyright 2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+nodes
+    pa = acoustic.acoustic; % piston +:left
+    na = acoustic.acoustic; % piston -:right
+end
+
+parameters
+    a  = {1, 'm'};           % Sphere radius
+
+end
+
+parameters(Access=private)
+    Ma1 = pa.rho/(4*pi*a);
+    Ra1 = pa.rho*pa.c/(4*pi*a^2);
+end
+
+components(ExternalAccess=observe)
+    M = acoustical.elements.inertance(m=Ma1);
+    R = acoustical.elements.resistor(R_r=Ra1);
+end
+
+connections
+    connect(pa, M.pp, R.pp);
+    connect(M.nn, R.nn, na);
+end
+
+
+
+end
+
+    

@@ -1,0 +1,60 @@
+component zrad_piston
+% Radiation impedance - circular piston
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+outputs
+%    SPL = {1, 'Pa'}; % Sound Pressure Level:right
+end
+
+nodes
+    pa = acoustic.acoustic; % piston +:left
+    na = acoustic.acoustic; % piston -:right
+end
+
+% variables
+%     u = { 0, 'm^3/s'}; % Volume Velocity
+%     p = { 0, 'Pa'}; % Pressure
+% end
+
+% branches
+%     u : pa.u -> na.u;
+% end
+
+
+parameters
+    Sd  = {1, 'm^2'};           % Piston area
+
+end
+
+parameters(Access=private)
+    a   = sqrt(Sd/pi);
+    Ma1 = 8*pa.rho/(3*pi^2*a);
+    Ca1 = 5.94*a*a*a/pa.rho/pa.c/pa.c;
+    Ra1 = 0.1404*pa.rho*pa.c/a^2;
+    Ra2 = pa.rho*pa.c/(pi*a^2);
+end
+
+components(ExternalAccess=observe)
+    M = acoustical.elements.inertance(m=Ma1);
+    CC = acoustical.elements.compliance(c=Ca1);
+    R1 = acoustical.elements.resistor(R_r=Ra1);
+    R2 = acoustical.elements.resistor(R_r=Ra2);
+end
+
+connections
+    connect(pa, M.pp, CC.pp, R1.pp);
+    connect(CC.nn, R1.nn, R2.pp);
+    connect(M.nn, R2.nn, na);
+end
+
+% equations
+%     p == pa.p - na.p;
+%     u == R2.u + M.u;
+% end
+
+
+end
+
+    

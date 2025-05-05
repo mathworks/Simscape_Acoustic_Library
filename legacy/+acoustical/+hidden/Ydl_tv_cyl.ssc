@@ -1,0 +1,48 @@
+% This calculates part of the analog circuit model for acoustic  
+%   propagation in a cylindrical tube, including thermal and viscous
+%   losses at the walls.
+%   Reference: Stephen C. Thompson, Thomas B. Gabrielson and Daniel M.
+%              Warren, "Analog model for thermoviscous propagation in a 
+%              cylindrical tube, http://dx.doi.org/10.1121/1.4861237
+%
+% This component is the circuit of Figure 6 of the reference. 
+
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+component (Hidden = true) Ydl_tv_cyl
+    nodes
+      p1 = acoustic.acoustic; % +:left
+      p2 = acoustic.acoustic; % -:right
+    end
+    parameters
+        CR_branches = 10; % number of CR branches
+        C0 = {1, 'm^3/Pa'}; % C0
+        R0 = {1, 'Pa*s/m^3'}; % R0
+    end
+    parameters (Access = private)
+        C1 = C0 * (p1.gamma-1); % C0 * (gamma - 1);
+    end
+    components(ExternalAccess=none)
+        CC0 = acoustical.elements.compliance(c = C0, r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+    end
+    for ii=1:CR_branches
+        components(ExternalAccess=none)
+            RR(ii) = acoustical.elements.resistor(R_r = ii*R0);
+            CC(ii) = acoustical.elements.compliance(c = C1/(2*ii-1), r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+        end
+    end
+    connections
+        connect(p1, CC0.pp, CC(1).pp)
+        connect(CC(CR_branches).nn, RR(CR_branches).pp);
+        connect(p2, CC0.nn, RR(CR_branches).nn);
+    end
+    for ii=1:CR_branches-1
+        connections
+            connect(CC(ii).nn, RR(ii).pp, CC(ii+1).pp);
+            connect(RR(ii).nn,p2);
+        end
+    end
+end

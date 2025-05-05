@@ -1,0 +1,64 @@
+component zrad_ele_on_sphere_array
+% Radiation impedance - element in array on pulsing sphere
+% The calculation is for an array of identical elements whose total area
+% is the area of the sphere. Th eimpedance on this element is 1/N times
+% the radiation impedance on the total sphere.
+
+
+% Copyright 2024 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+nodes
+    pa = acoustic.acoustic; % piston +:left
+    na = acoustic.acoustic; % piston -:right
+end
+
+parameters
+    rad_or_area = acoustical.enum.rad_area_Choice.radius;
+    rad  = {1, 'm'};           % radius of sphere
+    A    = {4*pi*1^2, 'm^2'};  % area of sphere
+    N    = {1, '1'};          % Number of elements
+end
+
+annotations
+    UILayout = [ UIGroup('Parameters',rad_or_area, N,rad,A)];% ...
+end
+
+% The impedance calculations are done using either the sphere area or
+% sphere radius, whichever has been specified in the dialog box.
+
+if rad_or_area == acoustical.enum.rad_area_Choice.radius
+    annotations
+        [A] : ExternalAccess=none;
+    end
+    parameters(Access=private)
+        Ma1 = pa.rho/(4*pi*rad)/N;
+        Ra1 = pa.rho*pa.c/(4*pi*rad^2)/N;
+    end
+else
+    annotations
+        [rad] : ExternalAccess=none;
+    end
+    parameters(Access=private)
+        radius = sqrt(A/4/pi);
+        Ma1 = pa.rho/(4*pi*radius)/N;
+        Ra1 = pa.rho*pa.c/(4*pi*radius^2)/N;
+    end
+end
+
+components(ExternalAccess=observe)
+    M = acoustical.elements.inertance(m=Ma1);
+    R = acoustical.elements.resistor(R_r=Ra1);
+end
+
+connections
+    connect(pa, M.pp, R.pp);
+    connect(M.nn, R.nn, na);
+end
+
+
+
+end
+
+    

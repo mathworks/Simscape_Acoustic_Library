@@ -1,0 +1,50 @@
+component mechanical_converter
+% Mechanical to Acoustical Converter (area transformer).
+% Provides an interface between the mechanical translational and
+% acoustical domains. If the volume velocity and pressure
+% through and across the acoustical ports are u and p, and the
+% force and speed through and across the mechanical ports are F
+% and v, then
+%
+%   F = Sd*p
+%
+%   u = Sd*v
+%
+% where parameter Sd is the Constant of proportionality with
+% equivalent units of area (m^2). 
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+nodes
+    pp = acoustic.acoustic; % +:left
+    nn = acoustic.acoustic; % -:right
+    R = foundation.mechanical.translational.translational; % R:left
+    C = foundation.mechanical.translational.translational; % C:right
+end
+
+parameters
+    Sd = {0.1, 'm^2' } % Area of rigid piston coupling the domains
+end
+
+variables
+    u = { 0, 'm^3/s' }; % Volume Velocity
+    p = { 0, 'Pa' };    % Pressure
+    f = { 0, 'N' };     % Force
+    v = { 0, 'm/s' };   % Velocity
+end
+
+branches
+    u : pp.u -> nn.u;
+    f : R.f -> C.f;
+end
+
+equations
+    p == pp.p - nn.p;
+    v == R.v - C.v;
+    u == v*Sd;
+    f == -p*Sd;
+end
+
+end

@@ -1,0 +1,20 @@
+component reference
+% Acoustical Reference
+% Acoustical reference port. A model with acoustical components
+% must contain at least one acoustical reference port where the
+% dynamic pressure is zero and the absolute pressure is the 
+% ambient pressure that is defined for the domain.
+
+% Copyright 2022 Stephen C. Thompson
+% Distributed under the 3-Clause BSD License
+% See LicenseInfo.pdf file in this distribution
+
+nodes
+    pp = acoustic.acoustic; % :top
+end
+
+connections
+    connect(pp, *);
+end
+
+end
