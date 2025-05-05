@@ -1,0 +1,37 @@
+component compliance < acoustic.branch
+% Compliance
+% Models an acoustic compliance whose value is a parameter, c.
+% The relationship between pressure P and volume velocity U
+% is U=C*dP/dt.
+%
+% The Series resistance and Parallel conductance represent small
+% mechanical losses that may be present. Simulation of some
+% circuits may require the presence of the small series 
+% resistance. If sufficient damping is present in other model
+% components, it is allowable to enter zero for both r_c and 
+% g_c.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+parameters
+    c    = { 1e-6, 'm^3/Pa' };      % Compliance (c)
+    r_c  = { 0, 'Pa*s/m^3' };       % Series resistance (r_c)
+    g_c  = { 0, 'm^3/(Pa*s)' };     % Parallel conductance (g_c)
+end
+
+
+variables
+    Pc = {value = { 0, 'Pa' }, priority = priority.high}; % Compliance pressure
+end
+
+equations
+    assert(c~=0)     % Negative compliance is allowed
+%    assert(g_c>=0)
+%    assert(isfinite(g_c))
+%    assert(r_c>=0)
+%    assert(isfinite(r_c))
+    p == u*r_c + Pc;
+    u == c*Pc.der + g_c*Pc;
+end
+
+end

@@ -1,0 +1,35 @@
+component inertance < acoustic.branch
+% Inertance
+% Models a linear inertance (acoustic mass). The relationship
+% between pressure P and flow U is P=m*dU/dt where m is the
+% inertance in Pa*s^2/m^3. 
+%
+% The Series resistance and Parallel conductance represent small
+% parasitic effects. A small parallel conductance may be
+% required for the simulation of some circuit topologies. If
+% sufficient damping is present at other parts of the system, it
+% is permissible for r_m=0 and/or g_m=0.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+parameters
+    m    = { 1e-6, 'Pa*s^2/m^3' };      % Inertance (m)
+    r_m  = { 1e-9, 'Pa*s/m^3' };        % Series resistance (r_m)
+    g_m  = { 1e-9, 'm^3/Pa/s' };        % Parallel conductance (g_m)
+end
+
+variables
+    U_m = {value = { 0, 'm^3/s' }, priority = priority.high}; % Inertance current
+end
+
+equations
+    assert(m~=0)
+    assert(g_m>=0)
+    assert(isfinite(g_m))
+    assert(r_m>=0)
+    assert(isfinite(r_m))
+    p == U_m*r_m + m*U_m.der;
+    u == p*g_m + U_m;
+end
+
+end

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<defs>
+		<style>
+			.font-size-s {
+				font-size: 56px; stroke-width: 1.4px;
+			}
+					</style>
+	</defs>
+	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:,bottom:">
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="0" y="0" width="405" height="400" rx="0" ry="0"/>
+		<text id="text" class="text font-size-s" style="font-weight:bold;" x="47.45" y="136.46">
+			<tspan dx="0" dy="50.67" x="47.45">Medium</tspan>
+			<tspan dx="0" dy="1.15em" x="47.45">Parameters</tspan>
+		</text>
+	</g>
+</svg>
