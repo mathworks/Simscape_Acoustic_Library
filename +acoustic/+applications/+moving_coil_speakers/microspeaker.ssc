@@ -1,0 +1,135 @@
+component microspeaker
+% Microspeaker
+% This component models a general microspeaker used in conventional headphones or earbuds.
+% Some microspeakers do not come with a front cover, thus the acoustic elements related to the front cover are optional.
+% Once a front cover is included in the model, an acoustic compliance, mass, and resistance will be added.
+% Note that the radiation impedance from the diaphragm or the vents are not included.
+% If multiple sizes of front or rear vents are presented in the model microspeaker, connect the additional vent elements externally
+% at the "front" and "rear" nodes respectively. See "Tubes and Horns" sub-library for more options
+% 
+% Reference of the full model: 
+%
+% https://doi.org/10.1063/1.2837112
+%
+% https://doi.org/10.1063/1.3021098
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    nodes
+        pa = acoustic.acoustic; % front
+        na = acoustic.acoustic; % rear
+        ca = acoustic.acoustic; % comm
+
+        pe = foundation.electrical.electrical; % e+
+        ne = foundation.electrical.electrical; % e-
+    end
+
+    annotations
+        pa: Side = right;
+        na: Side = right;
+        ca: Side = bottom;
+        pe: Side = left;
+        ne: Side = left;
+    end
+
+    parameters
+        
+        Re      = {31.14,             'Ohm'};    % Coil Electrical Resistance (Re)
+        Le      = {14e-5,             'H'};      % Coil Inductance (Le)
+        Bl      = {0.719,             'N/A'};    % Force Factor (Bl)
+        Mm      = {23e-6,             'kg'};     % Moving Mass (Mm)
+        Km      = {1/(25.12e-3),      'N/m'};    % Stiffness (Km)
+        Rm      = {3e-3,              'kg/s'};   % Mechanical Damping (Rm)
+        Sd      = {0.0001271,         'm^2'};    % Diaphragm Effective Area (Sd)
+        Vb      = {1.01646e-7,        'm^3'};    % Rear Cavity Volume (Vb)
+        thikv   = {0.0005,            'm'};      % Rear Vent Thickness (thikv)
+        rv      = {0.00041,           'm'};      % Rear Vent Radius (rv)
+        Nv      = {8,                 '1'};      % Number of Rear Vents (Nv)
+        tmesh   = {2.43e-14,          'm'};      % Thickness of Mesh on Rear Vent (tmesh)
+        rmesh   = {9.6755e-7,         'm'};      % Radius of Mesh on Rear Vent (rmesh)
+
+        frontCov = acoustic.enum.MicroSPK_FrontCov.include_front_cover        % Include Front Cover?
+        Vf      = {1.02453e-7,        'm^3'};    % Front Cavity Volume (Vf)
+        thikf   = {0.0003,            'm'};      % Front Cover Holes Thickness (thikf)
+        rf      = {0.0005,            'm'};      % Front Cover Holes Radius (rf)
+        Nf      = {36,                '1'};      % Number of Front Cover Holes (Nf)
+
+    end
+
+    if frontCov == acoustic.enum.MicroSPK_FrontCov.without_front_cover
+        annotations
+            [Vf, rf, thikf, Nf] : ExternalAccess=none;
+        end
+    end
+
+    parameters(Access=private)
+        av = pi*rv^2;           % opening hole area of the rear vent
+        Amesh = rmesh^2*pi;     % mesh area
+        Vmesh = Amesh*tmesh;    % mesh air volume
+        Ma2 = 4*pa.rho*thikv/(3*av)/Nv;             % air mass in rear vent
+        Ca2 = Vb/pa.rho/pa.c/pa.c;                  % air compliance of rear cavity
+        Ra2 = 8*pa.rho*pa.nu*thikv/(pi*rv^4)/Nv;    % air resistance in rear vent
+        Ma3 = 4*pa.rho*tmesh/(3*Amesh);             % air mass in mesh
+        Ra3 = 8*pa.rho*pa.nu*tmesh/(pi*rmesh^4);    % air resistance of the mesh
+    end
+
+    if frontCov == acoustic.enum.MicroSPK_FrontCov.include_front_cover
+        parameters(Access=private)
+            af = pi*rf^2;           % opening hole area on front cover
+            Ma1 = 4*pa.rho*thikf/(3*af)/Nf;             % air mass from the holes on front cover
+            Ca1 = Vf/pa.rho/pa.c/pa.c;                  % air compliance between the front cover and diaphragm
+            Ra1 = 8*pa.rho*pa.nu*thikf/(pi*rf^4)/Nf;    % air resistance from the holes on front cover
+        end
+
+        components(ExternalAccess=observe)
+            Caf = acoustic.elements.compliance(c=Ca1);        % air compliance between the front cover and diaphragm
+            Maf = acoustic.elements.inertance(m=Ma1);         % air mass from the holes on front cover
+            Raf = acoustic.elements.resistor(R_r=Ra1);        % air resistance from the holes on front cover
+        end
+    end
+
+    components(ExternalAccess=observe)
+        elec_r = foundation.electrical.elements.resistor(R = Re);           % coil resistance
+        elec_l = foundation.electrical.elements.inductor(l = Le);           % coil inductance
+        gyr    = foundation.electrical.elements.translational_converter(K=Bl);      % force factor
+        mass   = foundation.mechanical.translational.mass(mass = Mm);           % diaphragm mass
+        spring = foundation.mechanical.translational.spring(spr_rate = Km);     % diaphragm stiffness
+        damper = foundation.mechanical.translational.damper(D = Rm);        % diaphragm mechanical damping
+        fixed  = foundation.mechanical.translational.reference;
+        trans  = acoustic.transformers.mechanical_converter(Sd=Sd);       % mechanical to acoustic area transformer
+        Car    = acoustic.elements.compliance(c=Ca2);         % air compliance of rear cavity
+        Mar    = acoustic.elements.inertance(m=Ma2);          % air mass in rear vent
+        Rar    = acoustic.elements.resistor(R_r=Ra2);         % air resistance in rear vent
+        Map    = acoustic.elements.inertance(m=Ma3);          % air mass in mesh
+        Rap    = acoustic.elements.resistor(R_r=Ra3);         % air resistance of the mesh
+    end
+
+    connections
+        connect(pe,       elec_r.p);
+        connect(elec_r.n, elec_l.p);
+        connect(elec_l.n, gyr.p);
+        connect(gyr.n,    ne);
+        connect(gyr.C, fixed.V, spring.C, damper.C, trans.C);
+        connect(gyr.R, mass.M, spring.R, damper.R, trans.R);
+        connect(trans.nn, Car.pp, Mar.pp);
+        connect(Mar.nn, Rar.pp);
+        connect(Rar.nn, Map.pp);
+        connect(Map.nn, Rap.pp);
+        connect(Rap.nn, na);        
+    end
+
+    if frontCov == acoustic.enum.MicroSPK_FrontCov.include_front_cover        % if front cover included
+        connections
+            connect(trans.pp, Caf.pp, Maf.pp);      % connect front cavity compliance and air mass of the holes
+            connect(Maf.nn, Raf.pp);            % connect air mass and air resistance of the holes
+            connect(Raf.nn, pa);            % connect to acoustic front output
+            connect(Caf.nn, Car.nn, ca);    % connect to acoustic common
+        end
+    else                % if front cover not included
+        connections
+            connect(trans.pp, pa);          % connect the front of the diaphragm straight to the acoustic front output
+            connect(Car.nn, ca)         % rear cavity compliance to acoustic common
+        end
+    end
+
+end

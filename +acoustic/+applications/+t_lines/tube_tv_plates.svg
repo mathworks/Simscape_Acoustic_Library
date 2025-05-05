@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:acoustical-acoustical">
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="16" y="240.83" width="297" height="31" rx="0" ry="0"/>
+		<line id="line" class="line" x1="313" y1="240.83" x2="376" y2="160.83"/>
+		<line id="line_5" class="line" x1="313" y1="271.83" x2="376" y2="191.83"/>
+		<line id="line_22" class="line" x1="376" y1="160.83" x2="376" y2="191.83"/>
+		<line id="line_23" class="line" x1="16" y1="240.83" x2="79" y2="160.83"/>
+		<line id="line_64" class="line" x1="79" y1="160.83" x2="376" y2="160.83"/>
+		<line id="line_129" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="87" y1="176.33" x2="152" y2="176.33"/>
+		<line id="line_129_130" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="169.5" y1="176.33" x2="234.5" y2="176.33"/>
+		<line id="line_129_131" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="256" y1="176.33" x2="321" y2="176.33"/>
+		<line id="line_129_132" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="59" y1="230.33" x2="124" y2="230.33"/>
+		<line id="line_129_130_133" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="141.5" y1="230.33" x2="206.5" y2="230.33"/>
+		<line id="line_129_131_134" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="228" y1="230.33" x2="293" y2="230.33"/>
+		<line id="line_129_135" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="152" y1="186.33" x2="79" y2="186.33"/>
+		<line id="line_129_135_136" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="238.5" y1="186.33" x2="165.5" y2="186.33"/>
+		<line id="line_129_135_136_137" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="325" y1="186.33" x2="252" y2="186.33"/>
+		<line id="line_129_135_138" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="120" y1="249.33" x2="47" y2="249.33"/>
+		<line id="line_129_135_136_139" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="206.5" y1="249.33" x2="133.5" y2="249.33"/>
+		<line id="line_129_135_136_137_140" class="line ie-marker" data-start-params="scale:0.5x0.5;flipped:on" style="marker-start: url(#arrowHeadFilledv3_c2NhbGU6MC41eDAuNTtmbGlwcGVkOm9uOw==);" x1="293" y1="249.33" x2="220" y2="249.33"/>
+	</g>
+</svg>

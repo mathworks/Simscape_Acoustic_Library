@@ -1,0 +1,135 @@
+component encl_spk_mount
+    % Speaker Enclosure
+    % Speaker mounting holes can be chosen from one to three. Optional port
+    % can also be selected. If ported option is selected, an addition node
+    % will appear to connect to external port elements.
+    %
+    % For better model accuracy, additional air mass loading is added to the rear side of the speaker diaphragm (inside the box).
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    nodes
+        pp1 = acoustic.acoustic;  %1
+        pp2 = acoustic.acoustic;  %2
+        pp3 = acoustic.acoustic;  %3
+        pt  = acoustic.acoustic;  %Port
+        nn  = acoustic.acoustic;  %Comm
+    end
+
+    annotations
+        [pp1, pp2, pp3, pt]: Side = right;
+        nn: Side = bottom;
+    end
+
+    nodes (ExternalAccess = none)       % internal node
+        n1 = acoustic.acoustic;
+    end
+
+    parameters
+        vol = {1, 'm^3'};    % Volume of Enclosure (vol)
+        port = acoustic.enum.SpkPortChoice.withoutport    % Ported?
+        Nmount = acoustic.enum.Nmount.one;      % Number of Speaker Mounts
+
+        Sd_1  = {30.4, 'cm^2'} % Area of 1st Hole (Sd_1)
+        Sd_2  = {30.4, 'cm^2'} % Area of 2nd Hole (Sd_2)
+        Sd_3  = {30.4, 'cm^2'} % Area of 3rd Hole (Sd_3)
+    end
+
+    parameters (Access = private)
+        comp = vol / pp1.gamma / pp1.P_ambient;
+    end
+
+    components(ExternalAccess = observe)
+        CC = acoustic.elements.compliance(c = comp);
+    end
+
+    connections
+        connect(n1, CC.pp);
+        connect(nn, CC.nn, *);
+    end
+
+    if port == acoustic.enum.SpkPortChoice.withoutport
+        annotations
+            pt : ExternalAccess = none;
+        end
+    else            % port included
+        connections
+            connect(pt, n1);
+        end
+    end
+
+
+    if Nmount == acoustic.enum.Nmount.one                     % one speaker mounted 
+        annotations
+            [pp2, pp3, Sd_2, Sd_3] : ExternalAccess = none;
+        end
+
+        parameters (Access = private)
+            rad1 = sqrt(Sd_1/pi);
+            mass1 = pp1.rho*0.85*rad1/Sd_1;                 % air mass loading on the rear side of the speaker diaphragm (inside the box)
+        end
+
+        components(ExternalAccess = observe)
+            MM1 = acoustic.elements.inertance(m = mass1);
+        end
+
+        connections
+            connect(pp1, MM1.pp);
+            connect(MM1.nn, n1);
+        end
+
+    else if Nmount == acoustic.enum.Nmount.two            % two speaker mounted 
+            annotations
+                [pp3, Sd_3] : ExternalAccess = none;
+                Icon = 'encl_spk_mount_2.svg';
+            end
+
+            parameters (Access = private)
+                rad1 = sqrt(Sd_1/pi);
+                mass1 = pp1.rho*0.85*rad1/Sd_1;             % air mass loading on the rear side of the speaker1 diaphragm (inside the box)
+                rad2 = sqrt(Sd_2/pi);
+                mass2 = pp2.rho*0.85*rad2/Sd_2;             % air mass loading on the rear side of the speaker2 diaphragm (inside the box)
+            end
+
+            components(ExternalAccess = observe)
+                MM1 = acoustic.elements.inertance(m = mass1);
+                MM2 = acoustic.elements.inertance(m = mass2);
+            end
+
+            connections
+                connect(pp1, MM1.pp);
+                connect(pp2, MM2.pp);
+                connect(MM1.nn, n1);
+                connect(MM2.nn, n1);
+            end
+    else            % if three speakers mounting 
+
+            annotations
+                Icon = 'encl_spk_mount_3.svg';
+            end
+
+            parameters (Access = private)
+                rad1 = sqrt(Sd_1/pi);
+                mass1 = pp1.rho*0.85*rad1/Sd_1;             % air mass loading on the rear side of the speaker1 diaphragm (inside the box)
+                rad2 = sqrt(Sd_2/pi);
+                mass2 = pp2.rho*0.85*rad2/Sd_2;             % air mass loading on the rear side of the speaker2 diaphragm (inside the box)
+                rad3 = sqrt(Sd_3/pi);
+                mass3 = pp3.rho*0.85*rad3/Sd_3;             % air mass loading on the rear side of the speaker3 diaphragm (inside the box)
+            end
+
+            components(ExternalAccess = observe)
+                MM1 = acoustic.elements.inertance(m = mass1);
+                MM2 = acoustic.elements.inertance(m = mass2);
+                MM3 = acoustic.elements.inertance(m = mass3);
+            end
+            connections
+                connect(pp1, MM1.pp);
+                connect(pp2, MM2.pp);
+                connect(pp3, MM3.pp);
+                connect(MM1.nn, n1);
+                connect(MM2.nn, n1);
+                connect(MM3.nn, n1);
+            end
+        end
+    end
+end

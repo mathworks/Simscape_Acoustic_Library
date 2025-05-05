@@ -1,0 +1,58 @@
+component (Hidden = true) L_of_x < foundation.electrical.branch
+% Nonlinear Inductor
+% Models a nonlinear inductor. The relationship between voltage V and
+% current I is V=L*dI/dt where L is the inductance in henries (H).
+%
+% The Series resistance and Parallel conductance represent small
+% parasitic effects. The series resistance can be used to represent the DC
+% winding resistance and/or the resistance due to the skin effect. A small
+% parallel conductance may be required for the simulation of some circuit
+% topologies. Consult the documentation for further details.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+ 
+
+outputs
+   L = { 0, 'H' };  % L 
+end
+inputs
+   X = { 0, 'm'}; % x
+end
+
+annotations
+    [X, L] : Side=bottom;
+end
+
+parameters
+    %l  = { 1e-6, 'H' };     % Inductance
+    r  = { 0, 'Ohm' };      % Series resistance
+    g  = { 1e-9, '1/Ohm' }; % Parallel conductance
+    
+   L0 = {0.274, 'H'};  % 
+   L1 = {0.01165, 'H/m'};  % 
+   L2 = {0.00325e3, 'H/m^2'};  % 
+   L3 = {-4.49e1, 'H/m^3'};  % 
+   L4 = {-6.06e3, 'H/m^4'};  %     
+end
+
+variables
+    i_L = {value = { 0, 'A' }, priority = priority.high}; % Inductor current
+%    XX = { 0 , 'm'};
+    %L.der = {0, 'H/s'};
+end
+
+equations
+    assert(L>0)
+    assert(g>=0)
+    assert(isfinite(g))
+    assert(r>=0)
+    assert(isfinite(r))
+%    XX == X ;
+    L == (L0 + L1*X + L2*X^2 + L3*X^3 + L4*X^4)/1 ;
+    %L.der == der(L); %
+    v == i_L*r + L*i_L.der + i_L * der(L);  % L.der = %dL/dx dx/dt
+    i == v*g + i_L;
+end
+
+end

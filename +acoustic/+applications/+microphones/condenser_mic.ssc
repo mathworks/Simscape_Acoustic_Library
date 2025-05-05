@@ -1,0 +1,104 @@
+component condenser_mic
+    % Condenser Microphone
+    % The component models a conventional condenser microphone with a back plate behind the diaphragm separated by a gap distance.
+    % When the microphone is powered, an electric field is form between the back plate and the diaphragm 
+    % as a certain amount of charges is distributed on the surface. The capacitance between the back plate and diaphragm 
+    % will depend on the effective charging area and the separation distance. The voltage between the gap is the sum of 
+    % the supplied voltage and the varying voltage due to the external pressure.  As the microphone is being charged, 
+    % an electrical attraction force will be applied on the diaphragm. The attraction force is depended on the gap voltage
+    % and the gap distance between the diaphragm and the back plate. 
+    % It is a dynamic coupling between the mechanical force, displacement, and the output voltage.
+    % Note that the acoustic elements of the air gap are neglected in this model. The compliance in the air gap is negligible compared to
+    % the compliance of the rear cavity. The air mass can be modeled as multiple "air cells" from the holes on the back plate.
+    % The air resistance depends on the boundary conditions around the air gap cavity and the velocity profile of the diaphragm.
+    % The boundary is in between a closed and open condition. The velocity profile of the diaphragm is not a perfect piston motion
+    % as it is fixed around the edge and more curvature towards the center. For simplicity, the model assumes the diaphragm is a piston motion.
+    %
+    % Reference:
+    %
+    % https://doi.org/10.1121/1.5006905
+    %
+    % https://doi.org/10.1121/1.382112
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    parameters
+        a           = {0.00445,         'm'};           % Diaphragm Radius (a)
+        rbp         = {0.00361,         'm'};           % Back Plate Radius (rbp)
+        Mm          = {9.22e-7,         'kg'};          % Diaphragm Moving Mass (Mm)
+        Km          = {1.75e4,          'N/m'};         % Diaphragm Stiffness (Km)
+        Rm          = {0.4,             'N*s/m'};       % Diaphragm Mechanical Damping (Rm)
+        Vb          = {1.264e-7,        'm^3'};         % Rear Cavity (Vb)
+        hgap        = {2.077e-5,        'm'};           % Air Gap Height Between Diaphragm & Back Plate (hgap)
+        rhole       = {0.000508,        'm'};           % Back Plate Holes Radius (rhole)
+        hhole       = {0.000843,        'm'};           % Back Plate Holes Length/Thickness (hhole)
+        Nhole       = {6,               '1'};           % Number of Back Plate Holes (Nhole)
+        Ventype     = acoustic.enum.ventChoice.rect;  % Rear Vent Type
+        hvent       = {0.0015,          'm'};           % Vent Length/Thickness (hvent)
+        rvent       = {1.1e-5,          'm'};           % Vent Radius (rvent)
+        lvent       = {0.00034,         'm'};           % Vent Width (lvent)
+        wvent       = {1.1e-5,          'm'};           % Vent Height (wvent)
+        Nvent       = {6,               '1'};           % Number of Vents (Nvent)
+    end
+
+    parameters (Access = private)
+        Adiap = pi*a^2;         % diaphragm area
+        A_bp = pi*rbp^2;        % back plate area
+        Ca1 = Vb/pa.rho/pa.c/pa.c;
+    end
+
+    nodes
+        pa = acoustic.acoustic;     % Front
+        ca = acoustic. acoustic;    % Comm
+        pe = foundation.electrical.electrical; % e+
+        ne = foundation.electrical.electrical; % e-
+    end
+
+    annotations
+        pa: Side = left;
+        ca: Side = bottom;
+        [pe, ne]: Side = right;
+    end
+
+    if Ventype == acoustic.enum.ventChoice.rect           % if rear vent is rectangular slot
+        annotations
+            rvent : ExternalAccess = none;
+        end 
+
+        components
+            zvent = acoustic.applications.t_lines.slot(l = hvent, w = lvent, h = wvent, N = Nvent);       % impedance from the rear vent
+        end
+    else                % if rear vent geometry is cylindrical
+        annotations
+            [lvent, wvent] : ExternalAccess = none;
+        end
+
+       components
+            zvent = acoustic.applications.t_lines.cyl_orifice(l = hvent, r = rvent, N = Nvent);       % impedance from the rear vent
+        end
+    end
+
+    components (ExternalAccess = observe)
+        zrad    = acoustic.radiation_impedance.spherical_rad(r = a);              % radiation loading on diaphragm
+        trans   = acoustic.transformers.mechanical_converter(Sd = Adiap);         % acoustic to mechanical area transformer
+        zhole   = acoustic.applications.t_lines.cyl_orifice(l = hhole, r = rhole, N = Nhole);           % impedance from the back plate holes
+        Cb      = acoustic.elements.compliance(c=Ca1);                            % air compliance from rear cavity
+        mass    = foundation.mechanical.translational.mass(mass = Mm);              % diaphragm moving mass
+        spring  = foundation.mechanical.translational.spring(spr_rate = Km);        % diaphragm stiffness
+        damp    = foundation.mechanical.translational.damper(D = Rm);               % diaphragm mechanical damping
+        fix     = foundation.mechanical.translational.reference;                    % translational motion reference
+        coup    = ee.passive.variable_gap_capacitor(A = A_bp, ModelElasticDielectric = logical(0), d = hgap);          % mechanical to electrical microphone coupler
+    end
+
+    connections
+        connect(pa, zrad.pa, zvent.na);
+        connect(zrad.na, trans.pp);
+        connect(trans.nn, zhole.pa);
+        connect(zhole.na, Cb.pp, zvent.pa);
+        connect(Cb.nn, ca, *);
+        connect(trans.R, mass.M, spring.R, damp.R, coup.R);
+        connect(trans.C, spring.C, damp.C, coup.C, fix.V);
+        connect(coup.p, pe);
+        connect(coup.n, ne);
+    end
+end

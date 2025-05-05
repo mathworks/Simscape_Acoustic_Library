@@ -1,0 +1,54 @@
+% This calculates the simple transmission line impedance of a cylindrical tube. 
+% The components are configured in the T-shape network.
+% Called in the "Cylindrical Tube With Thermoviscous Losses" block when the enumeration "Simple Model" was selected.
+% This simple model neglect the LR and CR branches and does not differentiate the total length.
+% Simple model is suitable for tubes with small dimensions compared to the wavelength.
+
+%   Copyright 2025 The MathWorks, Inc.
+component (Hidden = true) Simple_Tube_Model
+
+        parameters
+            a           = {0.0075,  'm'};                    % Tube Radius (a)
+            l           = {0.35,    'm'};                    % Tube Length (l)
+        end
+
+        nodes
+            p1 = acoustic.acoustic;          % +
+            p2 = acoustic.acoustic;          % -
+            p3 = acoustic.acoustic;          % comm
+        end
+
+        annotations
+            p1: Side = left;
+            p2: Side = right;
+            p3: Side = bottom;
+        end
+
+        parameters (Access = private)
+            L0 = p1.rho * l / (pi * a^2);
+            Rv = 8 * pi * p1.rho * p1.nu * l / (pi * a^2)^2;
+            C0 = pi * a^2 * l / p1.rho / p1.c^2;
+            CC = C0 * (p1.gamma - 1);
+            Rp = p1.rho^2 * p1.c^2 * p1.Cp / (8 * pi * p1.kappa * (p1.gamma - 1) * l);
+        end
+
+        components(ExternalAccess = observe)
+            Rv1 = acoustic.elements.resistor(R_r = Rv/2);
+            Rv2 = acoustic.elements.resistor(R_r = Rv/2);
+            Rt = acoustic.elements.resistor(R_r = Rp);
+            L01 = acoustic.elements.inertance(m = L0/2, g_m = {1e-09, 'm^3/(Pa*s)'}, r_m = {1e-09, 'Pa*s/m^3'});
+            L02 = acoustic.elements.inertance(m = L0/2, g_m = {1e-09, 'm^3/(Pa*s)'}, r_m = {1e-09, 'Pa*s/m^3'});
+            C1 = acoustic.elements.compliance(c = CC, g_c = {0, 'm^3/(Pa*s)'}, r_c = {0, 'Pa*s/m^3'});
+            C = acoustic.elements.compliance(c = C0, g_c = {0, 'm^3/(Pa*s)'}, r_c = {0, 'Pa*s/m^3'});
+        end
+
+        connections
+            connect(p1,Rv1.pp);
+            connect(L01.pp,Rv1.nn);
+            connect(p2,L02.nn);
+            connect(L02.pp,Rv2.nn);
+            connect(C.pp,C1.pp, Rv2.pp, L01.nn);
+            connect(p3,C.nn, Rt.nn);
+            connect(C1.nn,Rt.pp);
+        end
+end

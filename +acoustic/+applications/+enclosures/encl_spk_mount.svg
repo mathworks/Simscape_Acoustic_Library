@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="256" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:,top:,right:acoustical-acoustical*acoustical-acoustical*acoustical-acoustical*acoustical-acoustical,bottom:acoustical-acoustical">
+		<line id="line" class="line" x1="81" y1="0" x2="0" y2="38.83"/>
+		<line id="line_72" class="line" x1="240" y1="0" x2="161" y2="38.83"/>
+		<line id="line_95" class="line" x1="81" y1="0" x2="240" y2="0"/>
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="0" y="38.83" width="160.5" height="361.17" rx="0" ry="0"/>
+		<line id="line_125" class="line" x1="160.5" y1="400" x2="240" y2="360"/>
+		<line id="line_178" class="line" x1="240" y1="0" x2="240" y2="360"/>
+		<ellipse id="ellipse" class="ellipse" d:options="ClosedShapeFill:On;" cx="204" cy="204.83" rx="23" ry="119"/>
+	</g>
+</svg>

@@ -1,0 +1,252 @@
+component earbud
+    % Earbud
+    % This component models a conventional earbud. Speaker driver is not included.
+    %
+    % The front cavity consists the sound tube and the ear tip cushion, which are both optional as for some earbuds are not inserted format. 
+    % Note that the inserted ear tip cannot exist without the presence of the sound tube. The ear tip cushion is also modeled as a cylindrical tube. 
+    % 
+    % The front and rear vent which both can be optional depending on the actual structure of the modeling earbud. 
+    % If multiple sizes of vents exist in the model, connect more vent elements externally to the "front +" and "rear +" nodes in parallel.
+    % See "Tubes and Horns" sub-library for options.
+    %
+    % The front-to-rear vent connects the front cavity and the rear cavity through a small size opening or tube. 
+    % The purpose is to release the front cavity pressure but without giving up too much of low frequency response. 
+    %
+    % Note that the radiation impedance from the vents and mesh impedance are not included in the model 
+    % to accommodate other elements that could be connected after the vents.
+    % 
+    % Leakage consideration can be included in the model for more realistic results due to imperfect fitting between the tip and human ear.
+    %
+    % References:
+    %
+    % https://doi.org/10.1109/TUFFC.2011.1823
+    %
+    % https://doi.org/10.1016/j.apacoust.2011.10.007
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    nodes
+        pf = acoustic.acoustic; % front +
+        pb = acoustic.acoustic; % rear +
+        nf = acoustic.acoustic; % front -
+        nb = acoustic.acoustic; % rear -
+        ca = acoustic.acoustic; % comm 
+    end
+
+    nodes (ExternalAccess = none)       % declare internal nodes within the block
+        n1 = acoustic.acoustic;     % invisible node between the sound tube and ear tip
+    end
+
+    annotations
+        pf:   Side = left;
+        pb:   Side = left;
+        ca:         Side = bottom;
+        nf:         Side = right;
+        nb:         Side = right;
+        UILayout         = [UIGroup("Sound Tube & Ear Tip", tube_earbud, tube_l, tube_r, ...
+                            tip_earbud, tip_l, tip_r)...
+                            UIGroup("Front Vent", fvent_earbud, fvent_l, fvent_r, Nfv_bud) ...
+                            UIGroup("Rear Vent", rvent_earbud, rvent_l, rvent_r, Nrv_bud)...
+                            UIGroup("Front-to-Rear Vent", frvent_earbud, frvent_l, frvent_r, Nfr_bud)...
+                            UIGroup("Leakage", leakage, leak_l, leak_r)...
+                            UIGroup("Rear Cavity", bud_Vb)];
+    end
+
+    parameters
+        tube_earbud = acoustic.enum.Bud_Tube.include_tube;                % Include Earbud Sound Tube?
+        tube_l = {0.0053,               'm'};                               % Sound Tube Length (tube_l)
+        tube_r = {0.002,                'm'};                               % Sound Tube Radius (tube_r)
+        
+        tip_earbud = acoustic.enum.Bud_Tip.without_tip;                   % Include Eartip?
+        tip_l = {0.005,                 'm'};                               % Eartip Length (tip_l)
+        tip_r = {0.0025,                'm'};                               % Eartip Radius (tip_r)
+        
+        fvent_earbud = acoustic.enum.Bud_FrontVent.include_front_vent;    % Include Earbud Front Vent?
+        fvent_l = {0.001,               'm'};                               % Earbud Front Vent Length (fvent_l)
+        fvent_r = {9.7721e-04,          'm'};                               % Earbud Front Vent Radius (fvent_r)
+        Nfv_bud = {1,                   '1'};                               % Number of Earbud Front Vents (Nfv_bud)
+
+        rvent_earbud = acoustic.enum.Bud_RearVent.include_rear_vent;      % Include Earbud Rear Vent?
+        rvent_l = {0.0008,              'm'};                               % Earbud Rear Vent Length (rvent_l)
+        rvent_r = {0.0005,              'm'};                               % Earbud Rear Vent Radius (rvent_r)
+        Nrv_bud = {4,                   '1'};                               % Number of Earbud Rear Vents (Nrv_bud)
+
+        frvent_earbud = acoustic.enum.Bud_FRVent.without_front_to_rear;   % Include Front-to-Rear Vent?
+        frvent_l = {0.001,              'm'};                               % Vent Length (frvent_l)
+        frvent_r = {9.7721e-04,         'm'};                               % Vent Radius (frvent_r)
+        Nfr_bud = {1,                   '1'};                               % Number Vents (Nfr_bud)
+        
+        leakage = acoustic.enum.Bud_Leak.include_leak;                    % Include Leakage?
+        leak_l = {0.001,                'm'};                               % Leakage Length (leak_l)
+        leak_r = {9.7721e-04,           'm'};                               % Leakage Radius (leak_r)
+
+        bud_Vb = {5.004e-7,             'm^3'};                             % Earbud Rear Cavity Volume (bud_Vb)
+
+    end
+
+    parameters (Access = private)
+        mdl = acoustic.enum.Tubemdl(1);        % Select simple tube model for earbud tip and sound tube
+    end
+
+    if fvent_earbud == acoustic.enum.Bud_FrontVent.include_front_vent     % if the model contains front vent
+        parameters(Access=private)
+            fvent_A = pi*fvent_r^2;      % earbud front vent area
+            % acoustic mass and resistance in the front vent tube 
+            Ma1 = 4*pf.rho*fvent_l/(3*fvent_A)/Nfv_bud;
+            Ra1 = 8*pf.rho*pf.nu*fvent_l/(pi*fvent_r^4)/Nfv_bud;
+        end 
+
+        components(ExternalAccess = observe)
+            % acoustic mass and resistance in the front vent tube
+            Ma_fv    = acoustic.elements.inertance(m=Ma1);                   
+            Ra_fv    = acoustic.elements.resistor(R_r=Ra1);         
+        end
+
+        connections                 % the front vent block is connected in parallel
+            connect(pf, Ma_fv.pp);                   % connect the front vent to the input and the invisible node n1
+            connect(Ma_fv.nn, Ra_fv.pp);             % connect air mass and air resistance of the front vent
+            connect(Ra_fv.nn, ca);                   % connect to common
+        end
+    else                            % if model does not contain front vent
+        annotations
+            [fvent_l, fvent_r, Nfv_bud] : ExternalAccess=none;
+        end
+    end
+
+    if frvent_earbud == acoustic.enum.Bud_FRVent.include_front_to_rear    % if the model contains front-to-rear vent
+        parameters(Access=private)
+            frvent_A = pi*frvent_r^2;      % earbud front-to-rear vent area
+            % acoustic mass and resistance in the vent tube 
+            Ma4 = 4*pf.rho*frvent_l/(3*frvent_A)/Nfr_bud;
+            Ra4 = 8*pf.rho*pf.nu*frvent_l/(pi*frvent_r^4)/Nfr_bud;
+        end 
+
+        components(ExternalAccess = observe)
+            % acoustic mass and resistance in the front vent tube
+            Ma_fr    = acoustic.elements.inertance(m=Ma4);                   
+            Ra_fr    = acoustic.elements.resistor(R_r=Ra4);         
+        end
+
+         connections                 % connect between the input of the front cavity and the input of the rear cavity
+            connect(pf, Ma_fr.pp);
+            connect(Ma_fr.nn, Ra_fr.pp);          
+            connect(Ra_fr.nn, pb);
+         end
+    else                % if the model does not contain front-to-rear vent
+        annotations
+            [frvent_l, frvent_r, Nfr_bud] : ExternalAccess=none;
+        end
+    end
+
+    if tube_earbud == acoustic.enum.Bud_Tube.include_tube             % if model contains sound tube
+        components(ExternalAccess = observe)
+            tube = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                                                                length = tube_l, ...
+                                                                a = tube_r);             % sound tube
+        end
+
+        connections
+            connect(tube.p1, pf);
+            connect(tube.p2, n1);
+            connect(tube.p3, ca);
+        end
+    else                            % if model does not contain sound tube
+        annotations
+            [tip_earbud, tube_l, tube_r] : ExternalAccess=none;             % ear tip can only be included when sound tube included
+        end
+
+        connections
+            connect(pf, nf);        % disconnect the tube block and straight to output
+        end
+    end
+
+    if tip_earbud == acoustic.enum.Bud_Tip.include_tip                % if model contains ear tip
+        components(ExternalAccess = observe)
+            tip = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                                                                length = tip_l, ...
+                                                                a = tip_r);             % eartip
+        end
+
+        connections
+            connect(tip.p1, n1);
+            connect(tip.p2, nf);
+            connect(tip.p3, ca);
+        end
+    else                            % if model does not contain ear tip
+        annotations
+            [tip_l, tip_r] : ExternalAccess=none;
+        end
+
+        connections                 % disconnect the tip block and connect n1 straight through
+            connect(n1, nf);
+        end
+    end
+
+    if leakage == acoustic.enum.Bud_Leak.include_leak                 % if model consider leakage
+        parameters(Access=private)
+            leak_A = pi*leak_r^2;      % earbud front leakage area
+            % acoustic mass and resistance in the leakage, modeled as a tube
+            Ma2 = 4*pf.rho*leak_l/(3*leak_A);
+            Ra2 = 8*pf.rho*pf.nu*leak_l/(pi*leak_r^4);
+        end
+
+        components(ExternalAccess = observe)
+            % leakage due to imperfect fit
+            Ma_leak = acoustic.elements.inertance(m=Ma2);
+            Ra_leak = acoustic.elements.resistor(R_r=Ra2);
+        end
+
+        connections         % leakage block is connected in parallel    
+            connect(nf, Ma_leak.pp);                % connect leakage block to n3 and the output of the front cavity
+            connect(Ma_leak.nn, Ra_leak.pp);        % connect air mass and air resistance
+            connect(Ra_leak.nn, ca);                % connect to common
+        end
+    else                    % if model does not consider leakage
+        annotations
+            [leak_l, leak_r] : ExternalAccess=none;
+        end
+    end
+    
+    if rvent_earbud == acoustic.enum.Bud_RearVent.include_rear_vent       % if model contains rear vent
+        parameters(Access=private)
+            rvent_A = pi*rvent_r^2;     % earbud rear vent area
+            % acoustic mass and resistance in the rear vent tube
+            Ma3 = 4*pf.rho*rvent_l/(3*rvent_A)/Nrv_bud;
+            Ra3 = 8*pf.rho*pf.nu*rvent_l/(pi*rvent_r^4)/Nrv_bud;
+        end
+
+        components(ExternalAccess = observe)
+            % earbud rear vent
+            Ma_rv    = acoustic.elements.inertance(m=Ma3);                   
+            Ra_rv    = acoustic.elements.resistor(R_r=Ra3);
+        end
+
+        connections
+            connect(pb, Ma_rv.pp);      % connect rear vent to the input of the rear cavity
+            connect(Ma_rv.nn, Ra_rv.pp);        % connect air mass and air resistance
+            connect(Ra_rv.nn, nb);              % connect radiation impedance from the vent opening
+        end
+    else                % if rear vent is not included
+        annotations
+            [rvent_l, rvent_r, Nrv_bud] : ExternalAccess=none;
+        end
+
+        connections
+            connect(pb, nb);        % connect to the output of rear cavity 
+        end
+    end
+
+    parameters(Access=private)
+        Ca1 = bud_Vb/pf.rho/(pf.c)^2;   % acoustic compliance from earbud rear cavity
+    end
+
+    components(ExternalAccess = observe)
+        % earbud rear cavity
+        Ca_r     = acoustic.elements.compliance(c=Ca1);
+    end
+
+    connections         % rear cavity compliance is connected in parallel
+        connect(pb, Ca_r.pp);
+        connect(Ca_r.nn, ca);
+    end
+end

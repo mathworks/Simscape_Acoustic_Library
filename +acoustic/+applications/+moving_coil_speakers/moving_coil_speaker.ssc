@@ -1,0 +1,274 @@
+component moving_coil_speaker
+% Moving Coil Speaker 
+%   Model for a moving coil speaker including
+%     Electrical resistance and inductance, electromechanical (BL) converter,
+%     mechanical mass, stiffness, damping, and mechanoacoustic conversion (area transformer) to acoustic domain
+%     
+%     Optional:
+%     Electrical R2 and L2 to partially model eddy current effects
+%     Nonlinear Electromechanical (BL) converter
+%     Nonlinear stiffness 
+%     Nonlinear damping
+%     Thermal port
+%     Mechanical port
+%
+%    All nonlinearities can be individually activated or inactivated
+%    by selection in drop-down lists
+%    
+
+%   Copyright 2025 The MathWorks, Inc.
+
+ parameters
+    Sd = {30.4,                 'cm^2'};                % Cone Area (Sd)
+    Bl0 = {5.34,                'N/A'};                 % Force Factor (Bl0)
+    Bl1 = {10.6041,             'N/(A*m)'};             % 1st Order Coefficient (Bl1)
+    Bl2 = {-30011.9,            'N/(A*m^2)'};           % 2nd Order Coefficient (Bl2)
+    Bl3 = {-1388400,            'N/(A*m^3)'};           % 3rd Order Coefficient (Bl3)
+    Bl4 = {-1490300000,         'N/(A*m^4)'};           % 4th Order Coefficient (Bl4)
+    mass = {4.8,                'g'};                   % Moving Mass (mass)
+    L0 = {1.24,                 'mH'};                  % Coil Inductance (L0)
+    D0 = {0.1,                  'N*s/m'};               % Mechanical Damping (D0)
+    D1 = {0,                    'N*s^2/m^2'};           % 1st Order Coefficient (D1)
+    D2 = {0,                    'N*s^3/m^3'};           % 2nd Order Coefficient (D2)
+    D3 = {0,                    'N*s^4/m^4'};           % 3rd Order Coefficient (D3)
+    D4 = {0,                    'N*s^5/m^5'};           % 4th Order Coefficient (D4)
+    K0 = {1877.6387,            'N/m'};                 % Mechanical Stiffness (K0)
+    K1 = {7362,                 'N/m^2'};               % 1st Order Coefficient (K1)
+    K2 = {-3500,                'N/m^3'};               % 2nd Order Coefficient (K2)
+    K3 = {-570800000,           'N/m^4'};               % 3rd Order Coefficient (K3)
+    K4 = {-6.6e+09,             'N/m^5'};               % 4th Order Coefficient (K4)
+    R  = {7.8,                  'Ohm'};                 % Coil Resistance (R)
+    R2 = {3.52,                 'Ohm'};                 % Resistance R2
+    L2 = {0.84,                 'mH'};                  % Inductance L2
+    MechPort = acoustic.enum.WithMechanicalPort.noPort;       % Include Mechanical Force Port?
+    BLChoice = acoustic.enum.BLChoice.simple;                 % BL Simple or Nonlinear?
+    KChoice = acoustic.enum.springChoice.simple;              % Mechanical Stiffness Simple or Nonlinear?
+    dampChoice = acoustic.enum.dampChoice.simple;             % Mechanical Damping Simple or Nonlinear?
+    R2L2 = acoustic.enum.R2L2.simple;                         % Include R2 and L2?
+    ThermPort = acoustic.enum.WithThermalPort.noPort;         % Include Thermal Port?
+    Tref      = {293.15,        'K'};                   % Reference Temperature (Tref)
+    Tcap_coil = {1.,            'J/K'};                 % Thermal Capacity of Coil (Tcap_coil)
+    alpha     = {50e-6,         '1/K'};                 % Temperature Coefficient of Coil (alpha)
+    Rt1       = {1.,            'K/W'};                 % First Thermal Resistance (Rt1)
+    Tcap_mag  = {1.,            'J/K'};                 % Thermal Capacity of Magnets (Tcap_mag)
+    Rt2       = {1.,            'K/W'};                 % Second Thermal Resistance (Rt2)
+  end
+  if ThermPort == acoustic.enum.WithThermalPort.noPort
+      annotations
+          [Tref, ...
+           Tcap_coil, ...
+           alpha, ...
+           Rt1, ...
+           Rt2, ...
+           Tcap_mag] : ExternalAccess=none;
+      end
+  end
+  outputs
+    X = {0, 'm'};
+    V = {0, 'm/s'};
+    BL = {0, 'V*s/m'};
+    K = {0, 'N/m'};
+    D = {0, 'N*s/m'};
+    Tcoil = {293.15,'K'}; % Tcoil
+    Tmag =  {293.15,'K'}; % Tmag
+  end
+  if ThermPort == acoustic.enum.WithThermalPort.withPort
+      nodes(ExternalAccess=none)
+        Hcoil  = foundation.thermal.thermal; % Hcoil:left
+        Hmag   = foundation.thermal.thermal; % Hmag:right
+      end
+  end
+
+  nodes
+    a0 = acoustic.acoustic; % front
+    a1 = acoustic.acoustic; % rear
+    e0 = foundation.electrical.electrical; % e+
+    e1 = foundation.electrical.electrical; % e-
+    M  = foundation.mechanical.translational.translational; % Mech
+  end
+  annotations
+    [M]  : Side = bottom;
+    [a0] : Side = right;
+    [a1] : Side = bottom;
+    [e0, e1] : Side = left;
+    [X, V, BL, K, D] :  Side = top;
+    [Tcoil]  : Side = top;
+    [Tmag]   : Side = top;
+    UILayout = [UIGroup("Parameters",R,L0,mass,Sd), ...
+                UIGroup("Inductance",R2,L2) ...
+                UIGroup("Force Factor",Bl1,Bl2,Bl3,Bl4) ...
+                UIGroup("Mounting Stiffness",K1,K2,K3,K4) ...
+                UIGroup("Mechanical Damping",D1,D2,D3,D4) ...
+                UIGroup("Mounting Force Port",MechPort) ...
+                UIGroup("Thermal", Tref, Tcap_coil, alpha, Rt1, Tcap_mag, Rt2) ];
+  end
+  if R2L2 == acoustic.enum.R2L2.simple
+      annotations
+          [R2,L2] : ExternalAccess=none;
+      end
+  end
+  if BLChoice == acoustic.enum.BLChoice.simple;
+      annotations
+          [Bl1,Bl2,Bl3,Bl4] : ExternalAccess=none;
+          [BL] : ExternalAccess=none;
+      end
+  end 
+  if KChoice == acoustic.enum.springChoice.simple;
+      annotations
+          [K1,K2,K3,K4] : ExternalAccess=none;
+          [K] : ExternalAccess=none;
+      end
+  end
+  if dampChoice == acoustic.enum.dampChoice.simple;
+      annotations
+          [D1,D2,D3,D4] : ExternalAccess=none;
+          [D] : ExternalAccess=none;
+      end
+  end
+  if MechPort == acoustic.enum.WithMechanicalPort.noPort
+      annotations
+          [M] : ExternalAccess=none;
+      end
+  end
+  if ThermPort == acoustic.enum.WithThermalPort.noPort
+      annotations
+          [Tcoil,Tmag] : ExternalAccess=none;
+      end
+  end
+
+  components(ExternalAccess = observe)
+    Inductor = foundation.electrical.elements.inductor(g = {1e-09, '1/Ohm'}, r = {0, 'Ohm'}, l = L0);
+    Mass = foundation.mechanical.translational.mass(mass = mass);
+    Area = acoustic.transformers.mechanical_converter(Sd = Sd);
+    Ideal_Translational_Motion_Sensor = foundation.mechanical.sensors.velocity(offset = {0, 'm'});
+  end
+  if BLChoice == acoustic.enum.BLChoice.simple
+      components
+          BL_Term = foundation.signal.sources.constant(constant=0);
+          Translational_Electromechanical_Converter = foundation.electrical.elements.translational_converter(K = Bl0);
+      end
+  else
+      components
+          Translational_Electromechanical_Converter = acoustic.applications.moving_coil_speakers.speaker_nonlinear_blocks.BL_of_x( ...
+              Bl0=Bl0, Bl1=Bl1, Bl2=Bl2, Bl3=Bl3, Bl4=Bl4);
+      end
+  end
+  if KChoice == acoustic.enum.springChoice.simple
+      components
+          K_Term = foundation.signal.sources.constant(constant=0);
+          Translational_Spring = foundation.mechanical.translational.spring(spr_rate=K0);
+      end
+  else
+      components
+          Translational_Spring = acoustic.applications.moving_coil_speakers.speaker_nonlinear_blocks.K_of_x(K0 = K0, K1 = K1, K2 = K2, K3 = K3, K4 = K4);
+      end
+  end
+  if dampChoice == acoustic.enum.dampChoice.simple
+      components
+          D_Term = foundation.signal.sources.constant(constant=0);
+          Translational_Damper = foundation.mechanical.translational.damper(D = D0);
+      end
+  else
+      components
+          Translational_Damper = ...
+              acoustic.applications.moving_coil_speakers.speaker_nonlinear_blocks.R_of_v ...
+              (D0 = D0, D4 = D4, D1 = D1, D2 = D2, D3 = D3);
+      end
+  end
+  if R2L2 == acoustic.enum.R2L2.withR2L2
+      components
+          Resistor1 = foundation.electrical.elements.resistor(R = R2);
+          Inductor1 = foundation.electrical.elements.inductor(r = {0, 'Ohm'}, g = {1e-09, '1/Ohm'}, l = L2);
+      end
+  end
+  if ThermPort == acoustic.enum.WithThermalPort.noPort
+      components
+          Re = foundation.electrical.elements.resistor(R = R);
+      end
+  else
+      components
+          Re        = foundation.electrical.elements.thermal_resistor(R0 = R, tc = {1,'s'}, K_d = Tcap_coil/{1,'s'}, alpha = alpha);
+          ThermRes1 = foundation.thermal.elements.resistance(resistance = Rt1);
+          ThermRes2 = foundation.thermal.elements.resistance(resistance = Rt2);
+          ThermCap  = foundation.thermal.elements.mass(mass = {1,'kg'}, sp_heat = Tcap_mag/{1,'kg'});
+          T_ref     = foundation.thermal.sources.temperature(temperature = Tref);
+      end
+  end
+  connections
+    connect(e0,Re.p);
+    connect(e1,Translational_Electromechanical_Converter.n);
+    connect(a0,Area.pp);
+    connect(a1,Area.nn);
+    connect(Re.n, Inductor.p);
+    connect(Area.R,Translational_Electromechanical_Converter.R);
+    connect(Area.R,Mass.M);
+    connect(Area.R,Translational_Damper.R);
+    connect(Area.R,Translational_Spring.R);
+    connect(Area.C,Translational_Electromechanical_Converter.C);
+    connect(Area.C,M);
+    connect(Area.C,Translational_Damper.C);
+    connect(Area.C,Translational_Spring.C);
+    connect(Ideal_Translational_Motion_Sensor.V, V);
+    connect(Ideal_Translational_Motion_Sensor.P,X);
+    connect(Ideal_Translational_Motion_Sensor.R,Mass.M);
+    connect(Ideal_Translational_Motion_Sensor.C,M);
+  end
+  if R2L2 == acoustic.enum.R2L2.simple
+      connections
+        connect(Inductor.n,Translational_Electromechanical_Converter.p);
+      end
+  else
+      connections
+        connect(Inductor.n, Resistor1.p, Inductor1.p);
+        connect(Resistor1.n,Inductor1.n,Translational_Electromechanical_Converter.p);
+      end
+   end
+  if MechPort == acoustic.enum.WithMechanicalPort.noPort;
+      connections
+          connect(M,*);
+      end
+  end
+  if BLChoice == acoustic.enum.BLChoice.nonlin
+      connections
+          connect(Translational_Electromechanical_Converter.BL,BL);
+      end
+  else
+      connections
+          connect(BL_Term.O,BL);
+      end
+  end
+  if KChoice == acoustic.enum.springChoice.nonlin
+      connections
+          connect(Translational_Spring.K,K);
+      end
+  else
+      connections
+          connect(K_Term.O,K);
+      end
+  end
+  if dampChoice == acoustic.enum.dampChoice.nonlin
+      connections
+          connect(Translational_Damper.D,D);
+      end
+  else
+      connections
+          connect(D_Term.O,D);
+      end
+  end
+   if ThermPort == acoustic.enum.WithThermalPort.withPort
+       connections
+           connect(Re.H, Hcoil, ThermRes1.A);
+           connect(ThermRes1.B, Hmag, ThermCap.M, ThermRes2.A);
+           connect(ThermRes2.B, T_ref.A); 
+       end
+       equations
+           Tcoil == Re.H.T;
+           Tmag  == ThermCap.M.T;
+       end
+   else
+       equations
+         Tcoil == 0;
+         Tmag  == 0;
+       end
+    end
+end

@@ -1,0 +1,167 @@
+component ported_encl
+% Ported Speaker Enclosure
+% This enclosure mounts one speaker and up to three port tubes
+% All dimensions of the enclosure are assumed to be much less
+% than the acoustic wavelength at any frequency included in the
+% analysis. This component is compliance, with a small added series 
+% inertance accounts for the air mass on the back side of the speaker diaphragm(inside the box). 
+% It neglects any loss that may exist in the enclosure.
+% An air mass loading is also added to the inside end of the port.
+% The end correction of the port inside the box is modeled as an unflanged opening.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    parameters
+        vol         = {1,       'm^3'};     % Volume of Enclosure (vol)
+        Sd          = {30.4,    'cm^2'};    % Area of Speaker Diaphragm
+        Npt = acoustic.enum.Nport.one;      % Number of Ports
+        port1_l      = {10,      'cm'};     % 1st Port Length (port1_l)
+        port1_rad    = {1,       'cm'};     % 1st Port Radius (port1_rad)
+        port2_l      = {10,      'cm'};     % 2nd Port Length (port2_l)
+        port2_rad    = {1,       'cm'};     % 2nd Port Radius (port2_rad)
+        port3_l      = {10,      'cm'};     % 3rd Port Length (port3_l)
+        port3_rad    = {1,       'cm'};     % 3rd Port Radius (port3_rad)
+        N_tube       = 3;                   % Number of Tube Segments (N_tube)
+    end
+
+    nodes
+        pp = acoustic.acoustic;     % Speaker
+        pt1 = acoustic.acoustic;    % Port1
+        pt2 = acoustic.acoustic;    % Port2
+        pt3 = acoustic.acoustic;    % Port3
+        nn = acoustic.acoustic;     % Comm
+    end
+
+    annotations
+        [pp, pt1, pt2, pt3]: Side = right;
+        nn: Side = bottom;
+    end
+
+    nodes (ExternalAccess = none)       % internal node
+        n1 = acoustic.acoustic;
+    end
+    
+    parameters (Access = private )
+        mdl     = acoustic.enum.Tubemdl(2);        % select tube model
+        comp    = vol / pp.gamma / pp.P_ambient;
+        rad     = sqrt(Sd/pi);                       % speaker diaphragm radius
+        mass    = 0.85*pp.rho*rad/Sd;                % air mass loading on the rear side of the speaker diaphragm (inside the box)
+     end
+    
+    components(ExternalAccess=observe)
+        CC = acoustic.elements.compliance(c=comp);
+        MM = acoustic.elements.inertance(m=mass);             % air mass loading on the rear side of the speaker diaphragm (inside the box)    
+    end
+
+    connections
+        connect(pp, MM.pp);
+        connect(MM.nn, CC.pp, n1);
+        connect(CC.nn, nn, *);
+    end
+
+    if Npt == acoustic.enum.Nport.one
+        annotations
+            [pt2, pt3, port2_l, port3_l, port2_rad, port3_rad] : ExternalAccess = none;
+        end
+
+        parameters (Access = private)
+            pt1_mass = pp.rho*(0.61*port1_rad)/(pi*port1_rad^2);        % air mass loading at the inside end of the 1st port (unflanged end correction)
+        end
+
+        components(ExternalAccess = observe)
+            tube1 = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                Ndl = N_tube, ...
+                LR_branches = 16, ...
+                CR_branches = 16, ...
+                length = port1_l, ...
+                a = port1_rad);
+            MM_pt1 = acoustic.elements.inertance(m=pt1_mass);       % air mass loading at the inside end of the 1st port (unflanged end correction)
+        end
+        
+        connections
+            connect(n1, MM_pt1.pp);
+            connect(MM_pt1.nn, tube1.p1);
+            connect(tube1.p2, pt1);
+            connect(pt2, pt3, tube1.p3, nn, *);
+        end
+
+    else if Npt == acoustic.enum.Nport.two
+        annotations
+            [pt3, port3_l, port3_rad] : ExternalAccess = none;
+        end
+
+        parameters (Access = private)
+            pt1_mass = pp.rho*(0.61*port1_rad)/(pi*port1_rad^2);        % air mass loading at the inside end of the 1st port (unflanged end correction)
+            pt2_mass = pp.rho*(0.61*port2_rad)/(pi*port2_rad^2);        % air mass loading at the inside end of the 2nd port (unflanged end correction)
+        end
+
+        components(ExternalAccess = observe)
+            tube1 = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                Ndl = N_tube, ...
+                LR_branches = 16, ...
+                CR_branches = 16, ...
+                length = port1_l, ...
+                a = port1_rad);
+            tube2 = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                Ndl = N_tube, ...
+                LR_branches = 16, ...
+                CR_branches = 16, ...
+                length = port2_l, ...
+                a = port2_rad);
+            MM_pt1 = acoustic.elements.inertance(m=pt1_mass);       % air mass loading at the inside end of the 1st port (unflanged end correction)
+            MM_pt2 = acoustic.elements.inertance(m=pt2_mass);       % air mass loading at the inside end of the 2nd port (unflanged end correction)
+        end
+
+        connections
+            connect(n1, MM_pt1.pp, MM_pt2.pp);
+            connect(MM_pt1.nn, tube1.p1);
+            connect(MM_pt2.nn, tube2.p1);
+            connect(tube1.p2, pt1);
+            connect(tube2.p2, pt2);
+            connect(pt3, tube1.p3, tube2.p3, nn, *);
+        end
+
+        else                    % if three port
+            parameters (Access = private)
+                pt1_mass = pp.rho*(0.61*port1_rad)/(pi*port1_rad^2);        % air mass loading at the inside end of the 1st port (unflanged end correction)
+                pt2_mass = pp.rho*(0.61*port2_rad)/(pi*port2_rad^2);        % air mass loading at the inside end of the 2nd port (unflanged end correction)
+                pt3_mass = pp.rho*(0.61*port3_rad)/(pi*port3_rad^2);        % air mass loading at the inside end of the 3rd port (unflanged end correction)
+            end
+
+            components(ExternalAccess = observe)
+                tube1 = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                    Ndl = N_tube, ...
+                    LR_branches = 16, ...
+                    CR_branches = 16, ...
+                    length = port1_l, ...
+                    a = port1_rad);
+                tube2 = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                    Ndl = N_tube, ...
+                    LR_branches = 16, ...
+                    CR_branches = 16, ...
+                    length = port2_l, ...
+                    a = port2_rad);
+                tube3 = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+                    Ndl = N_tube, ...
+                    LR_branches = 16, ...
+                    CR_branches = 16, ...
+                    length = port3_l, ...
+                    a = port3_rad);
+                MM_pt1 = acoustic.elements.inertance(m=pt1_mass);       % air mass loading at the inside end of the 1st port (unflanged end correction)
+                MM_pt2 = acoustic.elements.inertance(m=pt2_mass);       % air mass loading at the inside end of the 2nd port (unflanged end correction)
+                MM_pt3 = acoustic.elements.inertance(m=pt3_mass);       % air mass loading at the inside end of the 3rd port (unflanged end correction)
+            end
+
+            connections
+                connect(n1, MM_pt1.pp, MM_pt2.pp, MM_pt3.pp);
+                connect(MM_pt1.nn, tube1.p1);
+                connect(MM_pt2.nn, tube2.p1);
+                connect(MM_pt3.nn, tube3.p1);
+                connect(tube1.p2, pt1);
+                connect(tube2.p2, pt2);
+                connect(tube3.p2, pt3);
+                connect(tube1.p3, tube2.p3, tube3.p3, nn, *);
+            end
+        end 
+    end
+end

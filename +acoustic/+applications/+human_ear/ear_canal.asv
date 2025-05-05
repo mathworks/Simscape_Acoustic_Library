@@ -1,0 +1,128 @@
+component ear_canal
+% Ear Canal with Ear Drum 
+% Simulates the averge human ear canal including the ear drum. 
+% The model consists a tube shape cavity representing the concha (or outter pinna cavity),
+% followed by a another tube shape cavity with thermoviscous losses representing the ear canal,
+% and lastly the ear drum impendace which includes partial canal length. 
+% The concha cavity can be optional depending on the application.
+% The dimensions of the concah
+% The ear drum impedance has three optional dampings to be added in series with L1, L3, and L5.
+
+  outputs
+      % pressure measured at the output, across C5 (measured between na and ca nodes)
+      P = { 0.0, 'Pa' }; % P:right
+      % volume velocity measure at the output, in the branch of C5 (measure in series with C5 at na node)
+      U = { 0.0, 'm^3/s' }; % U:right
+  end
+
+  parameters
+      
+      w_concha      = acoustical.enum.concha.include_concha;        % Include Concha?
+      L_concha      = {.003,                'm'};                   % Concha Length
+      r_concha      = {.005,                'm'};                   % Concha Radius
+      L_canal       = {.0095,               'm'};                   % Canal Length
+      r_canal       = {.0035,               'm'};                   % Cancal Radius
+      Ma1           = {82.9,                'Pa*s^2/m^3'};          % L1
+      Ma2           = {9400,                'Pa*s^2/m^3'};          % L2
+      Ma3           = {130.3,               'Pa*s^2/m^3'};          % L3
+      Ma4           = {983.8,               'Pa*s^2/m^3'};          % L4
+      Ma5           = {133.4,               'Pa*s^2/m^3'};          % L5
+      Ca1           = {0.7e-12,             'm^3/Pa'};              % C1
+      Ca2           = {2.34e-12,            'm^3/Pa'};              % C2
+      Ca3           = {1.5e-12,             'm^3/Pa'};              % C3
+      Ca4           = {2.73e-12,            'm^3/Pa'};              % C4
+      Ca5           = {1.517e-12,           'm^3/Pa'};              % C5
+      Ra1           = {4.22e5,              'Pa*s/m^3'};            % R1
+      Ra2           = {55.66e6,             'Pa*s/m^3'};            % R2
+      Ra3           = {4.22e5,              'Pa*s/m^3'};            % R3
+      Ra4           = {27.99e6,             'Pa*s/m^3'};            % R4
+      Ra5           = {3.22e6,              'Pa*s/m^3'};            % R5
+      damp1         = acoustical.enum.R1.withoutR1;                 % Include R1?
+      damp3         = acoustical.enum.R3.withoutR3;                 % Include R3?
+      damp5         = acoustical.enum.R5.withoutR5;                 % Include R5?
+
+  end
+
+  parameters (Access = private)
+      mdl = acoustical.enum.Tubemdl(1);        % Select simple tube model for concha and ear canal
+  end
+
+  nodes
+
+      % pa as the positive node of the component block
+      % na as the negative node of the component block
+      % ca as the common (reference) that connects to the acoustic reference
+      pa = acoustical.acoustical; % +
+      na = acoustical.acoustical; % -
+      ca = acoustical.acoustical; % comm
+
+  end
+
+  annotations
+
+      pa: Side = left;
+      na: Side = right;
+      ca: Side = bottom;
+      UILayout = [UIGroup("Concha Parameters", w_concha, L_concha, r_concha)...
+                  UIGroup("Canal Parameters", L_canal, r_canal)...
+                  UIGroup("Ear Drum Parameters", Ma1, Ma2, Ma3, Ma4, Ma5, Ca1, Ca2, Ca3, Ca4, Ca5, Ra2, Ra4) ...
+                  UIGroup("Additional Damping", damp1, damp3, damp5, Ra1, Ra3, Ra5)];
+
+  end
+
+  if damp1 == acoustical.enum.R1.withoutR1
+      annotations
+          [Ra1] : ExternalAccess=none;
+      end
+  end
+
+   if damp3 == acoustical.enum.R3.withoutR3
+      annotations
+          [Ra3] : ExternalAccess=none;
+      end
+   end
+
+   if damp5 == acoustical.enum.R5.withoutR5
+      annotations
+          [Ra5] : ExternalAccess=none;
+      end
+   end
+
+   if w_concha == acoustical.enum.concha.without_concha
+       annotations
+           [L_concha, r_concha]: ExternalAccess=none;
+       end
+   end
+
+   components(ExternalAccess = observe)
+       concha = acoustical.applications.t_lines.tube_tv_cyl(mdl = mdl, length = L_concha, a = r_concha);
+       canal = acoustical.applications.t_lines.tube_tv_cyl(mdl = mdl, length = L_canal, a = r_canal);
+       Ear_Drum_Impedance = acoustical.applications.human_ear.ear_drum_simulator(Ca1 = Ca1, Ca2 = Ca2, Ca3 = Ca3, Ca4 = Ca4, Ca5 = Ca5,...
+                                                                    Ma1 = Ma1, Ma2 = Ma2, Ma3 = Ma3, Ma4 = Ma4, Ma5 = Ma5, ...
+                                                                    Ra1 = Ra1, Ra2 = Ra2, Ra3 = Ra3, Ra4 = Ra4, Ra5 = Ra5, ...
+                                                                    damping1 = damp1, damping3 = damp3, damping5 = damp5);
+   end
+
+   connections
+
+     connect(canal.p2, Ear_Drum_Impedance.pa);
+     connect(Ear_Drum_Impedance.P, P);
+     connect(Ear_Drum_Impedance.U, U);
+     connect(Ear_Drum_Impedance.na, na);
+
+   end
+
+   if w_concha == acoustical.enum.concha.include_concha
+       connections
+           connect(pa, concha.p1);
+           connect(concha.p2, canal.p1);
+           connect(ca, concha.p3, canal.p3, Ear_Drum_Impedance.ca);
+       end
+   else
+       connections
+           connect(pa, canal.p1);
+           connect(ca, canal.p3, Ear_Drum_Impedance.ca);
+       end
+   end 
+
+end

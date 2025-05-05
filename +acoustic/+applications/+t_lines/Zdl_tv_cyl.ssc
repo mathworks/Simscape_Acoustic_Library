@@ -1,0 +1,40 @@
+% This calculates part of the analog circuit model for acoustic  
+%   propagation in a cylindrical tube, including thermal and viscous
+%   losses at the walls.
+%   Reference: Stephen C. Thompson, Thomas B. Gabrielson and Daniel M.
+%              Warren, "Analog model for thermoviscous propagation in a 
+%              cylindrical tube, http://dx.doi.org/10.1121/1.4861237
+%
+% This component is the circuit of Figure 3 of the reference. 
+
+
+%   Copyright 2025 The MathWorks, Inc.
+
+component (Hidden = true) Zdl_tv_cyl
+    nodes
+      p1 = acoustic.acoustic; % +:left
+      p2 = acoustic.acoustic; % -:right
+    end
+    parameters
+        LR_branches = 10; % number of LR branches
+        L0 = {1, 'Pa*s^2/m^3'};
+        R0 = {1, 'Pa*s/m^3'};
+    end
+    for ii=1:LR_branches
+        components(ExternalAccess=none)
+            RR(ii) = acoustic.elements.resistor(R_r = ii*R0);
+            LL(ii) = acoustic.elements.inertance(m = L0/(2*ii-1), r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
+        end
+    end
+    connections
+        connect(p1,LL(1).pp)
+        connect(LL(1).nn, RR(1).pp);
+        connect(RR(LR_branches).nn,p2);
+    end
+    for ii=2:LR_branches
+        connections
+            connect(RR(ii-1).nn,LL(ii).pp,RR(ii).pp);
+            connect(LL(ii).nn,p2);
+        end
+    end
+end

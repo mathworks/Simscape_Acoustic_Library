@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<defs>
+		<style>
+			.font-size-default {
+				font-size: 40px; stroke-width: 1px;
+			}
+					</style>
+	</defs>
+	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:acoustical-acoustical">
+		<g id="group">
+			<g id="Cylinder">
+				<path id="part_1" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,461.3099975586,399.6899719238)" d:options="ClosedShapeFill:On;" d=" M 222.39,287.77 L 237.54,287.77 C 238.36,287.77 238.92,243.8 238.92,199.85 C 238.92,155.87 238.36,111.91 237.54,111.91 L 222.39,111.91 C 223.16,111.91 223.77,151.26 223.77,199.85 C 223.77,248.42 223.16,287.77 222.39,287.77 Z"/>
+				<ellipse id="part_2" class="ellipse" transform="matrix(-1,0,0,-1,477.839996338,399.6799926758)" d:options="ClosedShapeFill:On;" cx="238.92" cy="199.84" rx="1.38" ry="87.93"/>
+			</g>
+			<g id="Cylinder_3">
+				<path id="part_1_1" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,430.9299926758,399.6899719238)" d:options="ClosedShapeFill:On;" d=" M 207.2,287.77 L 222.35,287.77 C 223.17,287.77 223.73,243.8 223.73,199.85 C 223.73,155.87 223.17,111.91 222.35,111.91 L 207.2,111.91 C 207.97,111.91 208.58,151.26 208.58,199.85 C 208.58,248.42 207.97,287.77 207.2,287.77 Z"/>
+			</g>
+			<g id="Cylinder_3_5">
+				<path id="part_1_1_4" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,400.2698669434,399.759979248)" d:options="ClosedShapeFill:On;" d=" M 191.87,287.81 L 207.03,287.81 C 207.84,287.81 208.4,243.84 208.4,199.88 C 208.4,155.91 207.84,111.94 207.03,111.94 L 191.87,111.94 C 192.65,111.94 193.27,151.28 193.27,199.88 C 193.27,248.42 192.65,287.81 191.87,287.81 Z"/>
+			</g>
+			<g id="Cylinder_3_7">
+				<path id="part_1_1_6" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,369.729888916,399.6899719238)" d:options="ClosedShapeFill:On;" d=" M 176.6,287.77 L 191.75,287.77 C 192.57,287.77 193.13,243.8 193.13,199.85 C 193.13,155.87 192.57,111.91 191.75,111.91 L 176.6,111.91 C 177.36,111.91 177.97,151.26 177.97,199.85 C 177.97,248.42 177.36,287.77 176.6,287.77 Z"/>
+			</g>
+			<g id="Cylinder_3_5_9">
+				<path id="part_1_1_4_8" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,339.0828857422,399.7399597168)" d:options="ClosedShapeFill:On;" d=" M 161.27,287.81 L 176.43,287.81 C 177.24,287.81 177.8,243.84 177.8,199.88 C 177.8,155.91 177.24,111.94 176.43,111.94 L 161.27,111.94 C 162.05,111.94 162.66,151.28 162.66,199.88 C 162.66,248.42 162.05,287.81 161.27,287.81 Z"/>
+			</g>
+			<g id="Cylinder_12">
+				<path id="part_1_10" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,665.7399902345,400.309967041)" d:options="ClosedShapeFill:On;" d=" M 286.05,288.08 L 371.89,288.08 C 376.57,288.08 379.69,244.12 379.69,200.17 C 379.69,156.19 376.57,112.22 371.89,112.22 L 286.05,112.22 C 290.35,112.22 293.85,151.57 293.85,200.17 C 293.85,248.73 290.35,288.08 286.05,288.08 Z"/>
+				<ellipse id="part_2_11" class="ellipse" transform="matrix(-1,0,0,-1,759.4000244141,400.299987793)" d:options="ClosedShapeFill:On;" cx="379.7" cy="200.15" rx="7.8" ry="87.93"/>
+			</g>
+			<g id="Cylinder_12_15">
+				<path id="part_1_10_13" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,126.650001526,399.6899414062)" d:options="ClosedShapeFill:On;" d=" M 16.5,287.77 L 102.34,287.77 C 107.02,287.77 110.15,243.8 110.15,199.86 C 110.15,155.87 107.02,111.91 102.34,111.91 L 16.5,111.91 C 20.8,111.91 24.31,151.26 24.31,199.86 C 24.31,248.42 20.8,287.77 16.5,287.77 Z"/>
+				<ellipse id="part_2_11_14" class="ellipse" transform="matrix(-1,0,0,-1,220.3099975586,399.6799926758)" d:options="ClosedShapeFill:On;" cx="110.16" cy="199.84" rx="7.8" ry="87.93"/>
+			</g>
+			<text id="text" class="text font-size-default" x="244.9" y="182.97">
+				<tspan dx="0" dy="36" x="244.9">...</tspan>
+			</text>
+			<text id="text_16" class="text font-size-default" x="124.53" y="182.97">
+				<tspan dx="0" dy="36" x="124.53">...</tspan>
+			</text>
+		</g>
+	</g>
+</svg>

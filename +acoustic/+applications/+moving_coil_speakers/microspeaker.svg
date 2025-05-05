@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="330" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:,right:acoustical-acoustical*acoustical-acoustical,bottom:acoustical-acoustical">
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="120" y="82.5" width="44" height="165" rx="0" ry="0"/>
+		<line id="line" class="line" x1="164" y1="82.5" x2="164" y2="17.83"/>
+		<line id="line_140" class="line" x1="164" y1="17.83" x2="200" y2="17.83"/>
+		<line id="line_141" class="line" x1="164" y1="312.17" x2="164" y2="247.5"/>
+		<line id="line_140_142" class="line" x1="164" y1="312.17" x2="200" y2="312.17"/>
+		<line id="line_140_143" class="line" x1="182" y1="82.5" x2="200" y2="82.5"/>
+		<path id="path" class="path" d=" M 200,17.83 Q 215,34 215,50.17 Q 215,66.34 200,82.5"/>
+		<line id="line_140_143_145" class="line" x1="182" y1="247.5" x2="200" y2="247.5"/>
+		<path id="path_176" class="path" d=" M 200,312.17 Q 215,296 215,279.84 Q 215,263.67 200,247.5"/>
+		<path id="path_207" class="path" d=" M 200,82.5 Q 215,123.75 215,165 Q 215,206.25 200,247.5"/>
+	</g>
+</svg>

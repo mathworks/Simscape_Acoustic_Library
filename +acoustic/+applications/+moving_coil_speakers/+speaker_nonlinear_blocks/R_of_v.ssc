@@ -1,0 +1,39 @@
+component (Hidden = true) R_of_v < foundation.mechanical.translational.branch
+% Nonlinear Translational Damper
+% The block represents an ideal mechanical translational viscous damper.
+%
+% Connections R and C are mechanical translational conserving ports. 
+% The block positive direction is from port R to port C. This means that
+% the force is positive if it acts in the direction from R to C.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+
+outputs
+    D = {0, 'N*s/m' }; % D:right
+end
+
+annotations
+    [D] : Side=bottom;
+end
+
+parameters
+    D0 = { 100, 'N*s/m'}      % N*s/mm constant part in stiffness  1.0776387e3
+    D1 = { 0,   'N*s^2/m^2' } % N*s^2/mm2 1st order coefficient in stiffness expansion 
+    D2 = {-0,   'N*s^3/m^3' } % N*s^3/mm3 2nd order coefficient in stiffness expansion 
+    D3 = {-0,   'N*s^4/m^4' } % N*s^4/mm4 3rd order coefficient in stiffness expansion 
+    D4 = {-0,   'N*s^5/m^5' } % N*s^5/mm5 4th order coefficient in stiffness expansion 
+end
+
+variables
+    x = { value = { 0, 'm'}, priority = priority.high };    % Deformation
+end
+
+equations
+%    assert(spr_rate>0)
+    D == D0 + D1.*v + D2.*v.^2 + D3.*v.^3 + D4.*v.^4;
+    v == x.der;
+    f == D * v;
+end
+
+end

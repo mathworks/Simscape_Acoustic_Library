@@ -1,0 +1,50 @@
+component slot
+% Small Rectangular Slot
+% The component models a small rectangular slot with a width of "w", height "h" and thickness or length "l".
+% The slot is modeled as a mass-like component with viscous loss. The mass-like behavior is represented by an inductor
+% and the viscous loss acts like a resistive component. The inductor and resistor are connected in series.
+%
+% The air mass inside the slot is given by:
+%
+% Ma = 1.2*ρ*l/(w*h)
+%
+% Where ρ is the density of the fluid.
+%
+% The viscous loss of the orifice is given by:
+%
+% Ra = 12*ρ*𝜇*l/(w*h^3)
+% Where 𝜇 is the kinematic viscosity of the fluid.
+%
+% If multiple slots with the identical dimension are presented, divide Ma and Ra by the number of slot N.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    parameters
+        l = {1, 'm'};   % Length/Thickness (l)
+        w = {1, 'm'};   % Width (w)
+        h = {1, 'm'};   % Height (h)
+        N = {1, '1'};   % Number of Slots (N)
+    end
+
+    nodes
+        pa = acoustic.acoustic; % +:left
+        na = acoustic.acoustic; % -:right
+    end
+
+    parameters (Access = private)
+        Ma = 1.2*pa.rho*l/(w*h)/N;                  % air mass
+        Ra = 12*pa.rho*pa.nu*l/(w*h^3)/N;           % air resistance
+    end
+
+    components(ExternalAccess = observe)
+        M = acoustic.elements.inertance(m = Ma);
+        R = acoustic.elements.resistor(R_r = Ra);
+    end
+
+    connections                 % air mass and resistance connected in series
+        connect(pa, M.pp);
+        connect(M.nn, R.pp);
+        connect(R.nn, na);
+    end
+
+end

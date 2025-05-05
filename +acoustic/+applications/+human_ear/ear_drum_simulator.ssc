@@ -1,0 +1,156 @@
+component ear_drum_simulator
+% Ear Drum Impedance
+% Simulates the impedance of an average human ear drum and a part of the ear canal 
+% which follows the specs of IEC 60318-4 standard.
+%
+% R1, R3, and R5 can be optional, as they are not included in the conventional schematic.
+% The purpose of these resistors is to provide additional damping to the model for a better fit with actual measurements,
+% particular R5 which significantly reduces the resonance response at 13.5kHz.
+%
+% The values for each individual component can also be different depends on the application.
+% User will have the freedom to adjust accordingly. 
+%
+% Schematic reference:
+%
+% https://doi.org/10.1121/10.0024939
+%
+% https://www.doi.org/10.61782/fa.2023.0485
+
+%   Copyright 2025 The MathWorks, Inc.
+
+nodes
+    % pa as the positive node of the component block
+    % na as the negative node of the component block
+    % ca as the common (reference) that connects to the acoustic reference
+    pa = acoustic.acoustic; % +
+    na = acoustic.acoustic; % -
+    ca = acoustic.acoustic; % comm
+end
+
+outputs
+    % pressure measured at the output, across C5 (measured between na and ca nodes)
+    P = { 0.0, 'Pa' }; % P:right
+    % volume velocity measure at the output, in the branch of C5 (measure in series with C5 at na node)
+    U = { 0.0, 'm^3/s' }; % U:right
+end
+
+parameters
+    
+    Ma1 = {82.9,                'Pa*s^2/m^3'};          % L1 (Ma1)
+    Ma2 = {9400,                'Pa*s^2/m^3'};          % L2 (Ma2)
+    Ma3 = {130.3,               'Pa*s^2/m^3'};          % L3 (Ma3)
+    Ma4 = {983.8,               'Pa*s^2/m^3'};          % L4 (Ma4)
+    Ma5 = {133.4,               'Pa*s^2/m^3'};          % L5 (Ma5)
+    Ca1 = {0.7e-12,             'm^3/Pa'};              % C1 (Ca1)
+    Ca2 = {2.34e-12,            'm^3/Pa'};              % C2 (Ca2)
+    Ca3 = {1.5e-12,             'm^3/Pa'};              % C3 (Ca3)
+    Ca4 = {2.73e-12,            'm^3/Pa'};              % C4 (Ca4)
+    Ca5 = {1.517e-12,           'm^3/Pa'};              % C5 (Ca5)
+    Ra1 = {4.22e5,              'Pa*s/m^3'};            % R1 (Ra1)
+    Ra2 = {55.66e6,             'Pa*s/m^3'};            % R2 (Ra2)
+    Ra3 = {4.22e5,              'Pa*s/m^3'};            % R3 (Ra3)
+    Ra4 = {27.99e6,             'Pa*s/m^3'};            % R4 (Ra4)
+    Ra5 = {3.22e6,              'Pa*s/m^3'};            % R5 (Ra5)
+    damping1 = acoustic.enum.R1.withoutR1;            % Include R1?
+    damping3 = acoustic.enum.R3.withoutR3;            % Include R3?
+    damping5 = acoustic.enum.R5.withoutR5;            % Include R5?
+
+end
+
+annotations
+    pa: Side = left;
+    na: Side = right;
+    ca: Side = bottom;
+    UILayout = [UIGroup("Parameters", Ma1, Ma2, Ma3, Ma4, Ma5, Ca1, Ca2, Ca3, Ca4, Ca5, Ra2, Ra4) ...
+                UIGroup("Additional Damping", damping1, damping3, damping5, Ra1, Ra3, Ra5)];
+end
+
+components(ExternalAccess = observe)
+    L1 = acoustic.elements.inertance(m=Ma1);
+    L2 = acoustic.elements.inertance(m=Ma2);
+    L3 = acoustic.elements.inertance(m=Ma3);
+    L4 = acoustic.elements.inertance(m=Ma4);
+    L5 = acoustic.elements.inertance(m=Ma5);
+    C1 = acoustic.elements.compliance(c=Ca1);
+    C2 = acoustic.elements.compliance(c=Ca2);
+    C3 = acoustic.elements.compliance(c=Ca3);
+    C4 = acoustic.elements.compliance(c=Ca4);
+    C5 = acoustic.elements.compliance(c=Ca5);
+    R2 = acoustic.elements.resistor(R_r=Ra2);
+    R4 = acoustic.elements.resistor(R_r=Ra4);
+    P_Sensor = acoustic.sensors.pressure;
+    U_Sensor = acoustic.sensors.volume_velocity;
+end
+
+connections
+
+    connect(R2.nn, L2.pp);
+    connect(L2.nn, C2.pp);
+    connect(R4.nn, L4.pp);
+    connect(L4.nn, C4.pp);
+    connect(L5.nn, C5.pp, P_Sensor.pp, na);
+    connect(C5.nn, U_Sensor.pp);
+    connect(C1.nn, C2.nn, C3.nn, C4.nn, P_Sensor.nn, U_Sensor.nn, ca);
+    connect(P_Sensor.p, P);
+    connect(U_Sensor.u, U);
+
+end
+
+if damping1 == acoustic.enum.R1.includeR1
+    components
+        R1 = acoustic.elements.resistor(R_r=Ra1);
+    end
+
+    connections
+        connect(pa, R1.pp);
+        connect(R1.nn, L1.pp);
+    end
+else
+    annotations
+        [Ra1] : ExternalAccess=none;
+    end
+
+    connections
+        connect(pa, L1.pp);
+    end
+end
+
+if damping3 == acoustic.enum.R3.includeR3
+    components
+        R3 = acoustic.elements.resistor(R_r=Ra3);
+    end
+
+    connections
+        connect(L1.nn, C1.pp, R2.pp, R3.pp);
+        connect(R3.nn, L3.pp);
+    end
+else
+    annotations
+        [Ra3] : ExternalAccess=none;
+    end
+
+    connections
+        connect(L1.nn, C1.pp, R2.pp, L3.pp);
+    end
+end
+
+if damping5 == acoustic.enum.R5.includeR5
+    components
+        R5 = acoustic.elements.resistor(R_r=Ra5);
+    end
+
+    connections
+        connect(L3.nn, C3.pp, R4.pp, R5.pp);
+        connect(R5.nn, L5.pp);
+    end
+else
+    annotations
+        [Ra5] : ExternalAccess=none;
+    end
+
+    connections
+        connect(L3.nn, C3.pp, R4.pp, L5.pp);
+    end
+end
+
+end

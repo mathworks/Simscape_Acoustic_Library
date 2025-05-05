@@ -1,0 +1,53 @@
+component cyl_orifice
+% Small Cylindrical Orifice or Tube
+% The component models a small orifice with a radius of "r" on a wall or baffle with a thickness "l".
+% This can also represent a short length of tube. 
+%
+% The orifice is modeled as a mass-like component with viscous loss. The mass-like behavior is represented by an inductor
+% and the viscous loss acts like a resistive component. The inductor and resistor are connected in series.
+%
+% The air mass inside the orifice is given by:
+%
+% Ma = (4/3)*ρ*l/A
+%
+% Where ρ is the density of the fluid and A is the orifice area.
+% 4/3 accounts for the second order expansion, which includes 1/3 of the air spring mass, for better accuracy.
+%
+% The viscous loss of the orifice is given by:
+%
+% Ra = 8*π*ρ*𝜇*l/A^2
+% Where 𝜇 is the kinematic viscosity of the fluid.
+%
+% If multiple orifices with the identical dimension are presented, divide Ma and Ra by the number of orifice N.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+    parameters
+        l = {1, 'm'};   % Length (l)
+        r = {1, 'm'};   % Radius (r)
+        N = {1, '1'};   % Number of Holes/Tubes (N)
+    end
+
+    nodes
+        pa = acoustic.acoustic; % +:left
+        na = acoustic.acoustic; % -:right
+    end
+
+    parameters (Access = private)
+        A = pi*r^2;                 % cross sectional area
+        Ma = 4*pa.rho*l/(3*A)/N;                  % air mass
+        Ra = 8*pi*pa.rho*pa.nu*l/A^2/N;           % air resistance
+    end
+
+    components(ExternalAccess = observe)
+        M = acoustic.elements.inertance(m = Ma);
+        R = acoustic.elements.resistor(R_r = Ra);
+    end
+
+    connections                 % air mass and resistance connected in series
+        connect(pa, M.pp);
+        connect(M.nn, R.pp);
+        connect(R.nn, na);
+    end
+
+end

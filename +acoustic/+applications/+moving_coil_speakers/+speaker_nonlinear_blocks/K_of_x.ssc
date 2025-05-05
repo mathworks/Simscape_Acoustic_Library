@@ -1,0 +1,39 @@
+component (Hidden = true) K_of_x < foundation.mechanical.translational.branch
+% Nonlinear Translational Spring
+% The block represents an ideal mechanical linear spring.
+%
+% Connections R and C are mechanical translational conserving ports. 
+% The block positive direction is from port R to port C. This means that
+% the force is positive if it acts in the direction from R to C.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+
+outputs
+    K = {0, 'N/m' }; % K:right
+end
+
+annotations
+    [K] : Side=bottom;
+end
+
+parameters
+    K0 = { 1.8776387e3, 'N/m'}     % N/mm constant part in stiffness  1.0776387e3
+    K1 = { 0.0073620e6, 'N/m^2' }  % N/mm2 1st order coefficient in stiffness expansion 
+    K2 = {-0.0000035e9, 'N/m^3' }  % N/mm3 2nd order coefficient in stiffness expansion 
+    K3 = {-0.0005708e12, 'N/m^4' } % N/mm4 3rd order coefficient in stiffness expansion 
+    K4 = {-0.0000066e15, 'N/m^5' } % N/mm5 4th order coefficient in stiffness expansion 
+end
+
+variables
+    x = { value = { 0, 'm'}, priority = priority.high };    % Deformation
+end
+
+equations
+%    assert(spr_rate>0)
+    K == K0 + K1.*x + K2.*x.^2 + K3.*x.^3 + K4.*x.^4;
+    v == x.der;
+    f == K * x;
+end
+
+end

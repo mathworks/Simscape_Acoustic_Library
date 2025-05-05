@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="337" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:output*output*acoustical-acoustical,bottom:acoustical-acoustical">
+		<g id="group">
+			<g id="Cylinder">
+				<path id="part_1" class="path" style="fill:#ffffff;" d:options="ClosedShapeFill:On;" d=" M 149,249.75 L 308.81,249.75 C 317.53,249.75 323.36,234.81 323.36,219.87 C 323.36,204.92 317.53,189.98 308.81,189.98 L 149,189.98 C 157.02,189.98 163.52,203.35 163.52,219.87 C 163.52,236.37 157.02,249.75 149,249.75 Z"/>
+			</g>
+			<path id="path" class="path" d=" M 149,189.98 Q 152.98,126.65 135.34,102.74 C 110.29,69.83 65.86,81.14 54.08,87.92 C 42.5,94.58 12.65,115.26 13.67,161.26 Q 14.59,195.43 45.1,249.75"/>
+			<path id="path_88" class="path" d=" M 140.12,198.24 Q 124.29,130.3 100.53,109.72 Q 76.77,89.13 45.1,115.91"/>
+			<path id="path_852" class="path" d=" M 64.82,103.84 Q 29.6,129.61 34.94,179.35 C 36.04,189.42 46.1,215.2 58.98,227.06 C 70.21,237.39 84.11,233.66 89.13,244.84 Q 101.39,272.14 86.23,302.78"/>
+			<path id="path_925" class="path" transform="matrix(0.9902680687,0.139173101,-0.139173101,0.9902680687,29.3601518272,-13.2508055247)" d=" M 98.95,159.62 Q 78.45,182.8 87.28,203.02 C 90.59,210.63 97.03,236.68 106.61,243.65 Q 117.65,251.68 134.24,240.44"/>
+			<path id="path_977" class="path" d=" M 45.1,249.75 Q 55.72,319.53 81.68,319.53 C 92.73,319.53 100.91,321.43 116.12,302.78 Q 129.08,286.67 149,249.75"/>
+		</g>
+	</g>
+</svg>
