@@ -27,13 +27,13 @@ component (Hidden = true) Ydl_tv_cyl_foster
         % b = [0.0104628585476700,0.000402092479637000,1.62209337496300e-05,5.68860487634300e-07];
     end
     components(ExternalAccess=none)
-        CC0 = acoustical.elements.compliance(c = C0, r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
-        GG0 = acoustical.elements.resistor(R_r = 1/(8*G0));
+        CC0 = acoustic.elements.compliance(c = C0, r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+        GG0 = acoustic.elements.resistor(R_r = 1/(8*G0));
     end
     for ii=1:N
         components(ExternalAccess=none)
-            RR(ii) = acoustical.elements.resistor( R_r = 1/(G0*a(ii)/b(ii)) );
-            CC(ii) = acoustical.elements.compliance(c = C0*(p1.gamma-1)*a(ii), r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+            RR(ii) = acoustic.elements.resistor( R_r = 1/(G0*a(ii)/b(ii)) );
+            CC(ii) = acoustic.elements.compliance(c = C0*(p1.gamma-1)*a(ii), r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
         end
     end
     connections
