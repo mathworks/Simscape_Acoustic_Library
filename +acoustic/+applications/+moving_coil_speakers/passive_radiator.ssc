@@ -4,8 +4,8 @@ component passive_radiator
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    pa = acoustic.acoustic; % Cone Front
-    na = acoustic.acoustic; % Cone Back
+    pa = acoustic.acoustic; % Front
+    na = acoustic.acoustic; % Back
     M  = foundation.mechanical.translational.translational; % Mech
 end
 
@@ -14,7 +14,7 @@ parameters
     Km = { 991, 'N/m'};         % Mechanical Spring Stiffness (Km)
     Rm = { 0.1, 'N*s/m'};       % Mechanical Resistance (Rm)
     Sd = { 31.2, 'cm^2'};       % Cone area (Sd)
-    MechPort = acoustical.enum.WithMechanicalPort.noPort;       % Include Mechanical force port?
+    MechPort = acoustic.enum.WithMechanicalPort.noPort;       % Include Mechanical force port?
 end
 
 annotations
