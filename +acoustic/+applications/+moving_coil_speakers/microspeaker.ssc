@@ -16,9 +16,9 @@ component microspeaker
 %   Copyright 2025 The MathWorks, Inc.
 
     nodes
-        pa = acoustic.acoustic; % front
-        na = acoustic.acoustic; % rear
-        ca = acoustic.acoustic; % comm
+        pa = acoustic.acoustic; % F
+        na = acoustic.acoustic; % R
+        ca = acoustic.acoustic; %
 
         pe = foundation.electrical.electrical; % e+
         ne = foundation.electrical.electrical; % e-
@@ -123,12 +123,12 @@ component microspeaker
             connect(trans.pp, Caf.pp, Maf.pp);      % connect front cavity compliance and air mass of the holes
             connect(Maf.nn, Raf.pp);            % connect air mass and air resistance of the holes
             connect(Raf.nn, pa);            % connect to acoustic front output
-            connect(Caf.nn, Car.nn, ca);    % connect to acoustic common
+            connect(Caf.nn, Car.nn, ca, *);    % connect to acoustic common
         end
     else                % if front cover not included
         connections
             connect(trans.pp, pa);          % connect the front of the diaphragm straight to the acoustic front output
-            connect(Car.nn, ca)         % rear cavity compliance to acoustic common
+            connect(Car.nn, ca, *)         % rear cavity compliance to acoustic common
         end
     end
 

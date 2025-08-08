@@ -8,7 +8,11 @@ component reference
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    pp = acoustic.acoustic; % :top
+    pp = acoustic.acoustic; %
+end
+
+annotations
+    pp : Side = top;
 end
 
 connections

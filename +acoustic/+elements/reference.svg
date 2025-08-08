@@ -1,48 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Creator: fig2dev Version 3.2 Patchlevel 5d -->
-<!-- CreationDate: Thu Sep 11 14:54:04 2014 -->
-<!-- Magnification: 1.050 -->
-<svg	xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink"
-	width="2.4in" height="2.4in"
-	viewBox="-12 -12 2859 2859">
-<g style="stroke-width:.025in; fill:none">
-<!-- Line: box -->
-<rect x="0" y="0" width="2834" height="2834" rx="0" 
-style="stroke:#ffffff;stroke-width:8;
-stroke-linejoin:miter; stroke-linecap:butt;
-"/>
-<!-- Line -->
-<polyline points="16,1417
-1228,1417
-" style="stroke:#000000;stroke-width:8;
-stroke-linejoin:miter; stroke-linecap:butt;
-"/>
-<!-- Line -->
-<polyline points="2645,1133
-2645,1700
-" style="stroke:#000000;stroke-width:8;
-stroke-linejoin:miter; stroke-linecap:butt;
-"/>
-<!-- Line -->
-<polyline points="2173,755
-2173,2078
-" style="stroke:#000000;stroke-width:8;
-stroke-linejoin:miter; stroke-linecap:butt;
-"/>
-<!-- Line -->
-<polyline points="1700,377
-1700,2456
-" style="stroke:#000000;stroke-width:8;
-stroke-linejoin:miter; stroke-linecap:butt;
-"/>
-<!-- Line -->
-<polyline points="1228,0
-1228,2834
-" style="stroke:#000000;stroke-width:8;
-stroke-linejoin:miter; stroke-linecap:butt;
-"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="2859" height="2859" viewBox="0 0 2859 2859" d:options="Foreground:PortStyled;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;Port:Auto Majority;">
+	<g id="part" title="part_0" ie-ports="left:,top:acoustic-acoustic,right:,bottom:">
+		<g id="group" style="stroke-width:.025in; fill:none">
+			<rect id="rect" style="stroke:#ffffff;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; " transform="matrix(0,1,-1,0,2858,0)" x="12" y="12" width="2834" height="2834" rx="0" ry="0"/>
+			<path id="path" style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; " transform="matrix(0,1,-1,0,2063,-795)" d=" M 823,634 L 2035,634"/>
+			<path id="path_1" style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; " transform="matrix(0,1,-1,0,4086.5,1227.5)" d=" M 1429.5,2373.5 L 1429.5,2940.5"/>
+			<path id="path_2" style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; " transform="matrix(0,1,-1,0,3614.5,755.5)" d=" M 1429.5,1523.5 L 1429.5,2846.5"/>
+			<path id="path_3" style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; " transform="matrix(0,1,-1,0,3141.5,282.5)" d=" M 1429.5,672.5 L 1429.5,2751.5"/>
+			<path id="path_4" style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; " transform="matrix(0,1,-1,0,2669,-189)" d=" M 1429,-177 L 1429,2657"/>
+		</g>
+	</g>
 </svg>

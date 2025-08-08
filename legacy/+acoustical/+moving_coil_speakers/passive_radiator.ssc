@@ -16,7 +16,7 @@ parameters
     Km = { 991, 'N/m'};  % Mechanical spring stiffness
     Rm = { 0.1, 'N*s/m'};% Mechanical resistance
     Sd = { 31.2, 'cm^2'};% Cone area
-    MechPort = acoustical.enum.WithMechanicalPort.noPort; % Include Mechanical force port?
+    MechPort = acoustic.enum.WithMechanicalPort.noPort; % Include Mechanical force port?
 end
 
 annotations
@@ -24,7 +24,7 @@ annotations
    [na] : Side = bottom;
    [M]  : Side = bottom;
 end
-if MechPort == acoustical.enum.WithMechanicalPort.noPort
+if MechPort == acoustic.enum.WithMechanicalPort.noPort
     annotations
         [M] : ExternalAccess=none;
     end
@@ -51,7 +51,7 @@ connections
     connect(M,spring.C);
     
 end
-if MechPort == acoustical.enum.WithMechanicalPort.noPort;
+if MechPort == acoustic.enum.WithMechanicalPort.noPort;
    connections
        connect(M,*);
    end

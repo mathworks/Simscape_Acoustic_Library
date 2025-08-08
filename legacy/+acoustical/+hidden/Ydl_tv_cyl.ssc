@@ -26,12 +26,12 @@ component (Hidden = true) Ydl_tv_cyl
         C1 = C0 * (p1.gamma-1); % C0 * (gamma - 1);
     end
     components(ExternalAccess=none)
-        CC0 = acoustical.elements.compliance(c = C0, r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+        CC0 = acoustic.elements.compliance(c = C0, r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
     end
     for ii=1:CR_branches
         components(ExternalAccess=none)
-            RR(ii) = acoustical.elements.resistor(R_r = ii*R0);
-            CC(ii) = acoustical.elements.compliance(c = C1/(2*ii-1), r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
+            RR(ii) = acoustic.elements.resistor(R_r = ii*R0);
+            CC(ii) = acoustic.elements.compliance(c = C1/(2*ii-1), r_c = {0, 'Pa*s/m^3'}, g_c = {0, 'm^3/(Pa*s)'});
         end
     end
     connections

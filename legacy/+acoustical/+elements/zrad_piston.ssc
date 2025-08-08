@@ -37,10 +37,10 @@ parameters(Access=private)
 end
 
 components(ExternalAccess=observe)
-    M = acoustical.elements.inertance(m=Ma1);
-    CC = acoustical.elements.compliance(c=Ca1);
-    R1 = acoustical.elements.resistor(R_r=Ra1);
-    R2 = acoustical.elements.resistor(R_r=Ra2);
+    M = acoustic.elements.inertance(m=Ma1);
+    CC = acoustic.elements.compliance(c=Ca1);
+    R1 = acoustic.elements.resistor(R_r=Ra1);
+    R2 = acoustic.elements.resistor(R_r=Ra2);
 end
 
 connections

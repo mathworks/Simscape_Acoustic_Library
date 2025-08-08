@@ -2,7 +2,7 @@ component enclosure
 % Acoustical enclosure
 % Deprecated - replaced by encl_simple
 % This component should always be used with the nn port connected to the
-% acoustical reference. Consequently, there is no reason for that port to
+% acoustic reference. Consequently, there is no reason for that port to
 % exist as an external port. The replacement component does this connection
 % internally.
 % All dimensions of the enclosure are assumed to be much less
@@ -29,11 +29,11 @@ component enclosure
     end
 
     equations
-        assert(0, "This block is deprecated. Use 'Simple Acoustical Enclosure' from acoustic library instead.", Action = simscape.enum.assert.action.warn)
+        assert(0, "This block is deprecated. Use 'Simple acoustic Enclosure' from acoustic library instead.", Action = simscape.enum.assert.action.warn)
     end
     
     components(ExternalAccess=observe)
-        CC = acoustical.elements.compliance(c=comp);
+        CC = acoustic.elements.compliance(c=comp);
     end
     
     connections

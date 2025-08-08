@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part_1" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:">
 		<g id="group">
 			<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="129" y="0" width="27" height="126.83" rx="0" ry="0"/>
 			<rect id="rect_1" class="rect" d:options="ClosedShapeFill:On;" x="129" y="273.17" width="27" height="126.83" rx="0" ry="0"/>
@@ -10,5 +10,7 @@
 			<path id="path_3_4_5" class="path" d=" M 234,140.83 Q 244,170.41 244,200 Q 244,229.59 234,259.17"/>
 			<path id="path_3_4_5_6" class="path" d=" M 257,133.83 Q 271,166.91 271,200 Q 271,233.09 257,266.17"/>
 		</g>
+		<path id="path_27" class="path" d=" M 0,200 L 142.5,200"/>
+		<path id="path_76" class="path" d=" M 400,200 L 172,200"/>
 	</g>
 </svg>

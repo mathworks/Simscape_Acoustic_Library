@@ -24,8 +24,8 @@ component (Hidden = true) Zdl_tv_cyl
     end
     for ii=1:LR_branches
         components(ExternalAccess=none)
-            RR(ii) = acoustical.elements.resistor(R_r = ii*R0);
-            LL(ii) = acoustical.elements.inertance(m = L0/(2*ii-1), r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
+            RR(ii) = acoustic.elements.resistor(R_r = ii*R0);
+            LL(ii) = acoustic.elements.inertance(m = L0/(2*ii-1), r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
         end
     end
     connections

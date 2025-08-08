@@ -1,18 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="386" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:output*output*output,right:foundation-electrical-electrical*foundation-electrical-electrical,bottom:acoustical-acoustical">
-		<ellipse id="ellipse" class="ellipse" d:options="ClosedShapeFill:On;" cx="193" cy="200" rx="120" ry="120"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part_1" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:foundation-electrical-electrical*foundation-electrical-electrical,bottom:acoustical-acoustical">
+		<ellipse id="ellipse" class="ellipse" transform="matrix(-0.4694715628,0.8829475929,-0.8829475929,-0.4694715628,472.893763595,115.856760472)" d:options="ClosedShapeFill:On;" cx="201.64" cy="200" rx="120" ry="120"/>
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="59.64" y="64" width="22" height="272" rx="0" ry="0"/>
 		<g id="Capacitor">
 			<g id="Right">
-				<rect id="rect_33" class="rect" style="fill:#000000;" transform="matrix(0,-1,1,0,5.3150024414,380.6950073242)" x="188.9" y="114.69" width="8.21" height="146" rx="0" ry="0"/>
-				<line id="line_45" class="line" transform="matrix(0,-1,1,0,55.9799957275,330.0399932861)" x1="146.48" y1="137.03" x2="239.54" y2="137.03"/>
+				<rect id="rect_33" class="rect" style="fill:#000000;" transform="matrix(0,1,-1,0,411.2599945068,11.2599945068)" x="196.25" y="141.26" width="7.5" height="140" rx="0" ry="0"/>
+				<line id="line_45" class="line" transform="matrix(0,1,-1,0,457.5149993896,57.4850006104)" x1="157.52" y1="257.5" x2="242.51" y2="257.5"/>
 			</g>
 			<g id="Left">
-				<rect id="rect_34" class="rect" style="fill:#000000;" transform="matrix(0,-1,1,0,-19.3249969482,405.3350067139)" x="188.9" y="139.33" width="8.21" height="146" rx="0" ry="0"/>
-				<line id="line_58" class="line" transform="matrix(0,-1,1,0,-69.9499969482,455.9699859619)" x1="239.54" y1="262.96" x2="146.48" y2="262.96"/>
+				<rect id="rect_34" class="rect" style="fill:#000000;" transform="matrix(0,1,-1,0,388.7599945068,-11.2400054932)" x="196.25" y="118.76" width="7.5" height="140" rx="0" ry="0"/>
+				<line id="line_58" class="line" transform="matrix(0,1,-1,0,342.5099945068,-57.5099945068)" x1="242.51" y1="142.5" x2="157.51" y2="142.5"/>
 			</g>
 		</g>
-		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="50" y="64" width="22" height="272" rx="0" ry="0"/>
-		<line id="line" class="line" x1="259.47" y1="100" x2="386" y2="100"/>
-		<line id="line_1" class="line" x1="259.47" y1="300" x2="386" y2="300"/>
+		<g id="ElectricalReference">
+			<path id="path_9" class="path" d=" M 201.64,320 L 201.64,357.42"/>
+			<path id="path_18" class="path" d=" M 165.2,357.42 L 238.08,357.42"/>
+			<path id="path_28" class="path" d=" M 172.49,364.9 L 230.79,364.9"/>
+			<path id="path_42" class="path" d=" M 179.78,372.38 L 223.5,372.38"/>
+			<path id="path_57" class="path" d=" M 187.06,379.87 L 216.21,379.87"/>
+			<path id="path_65" class="path" d=" M 194.35,387.35 L 208.93,387.35"/>
+		</g>
+		<path id="path" class="path" d:options="Port:L0;" d=" M 0,200 L 59.64,200"/>
+		<path id="path_33" class="path" d=" M 400,100 L 286.05,100"/>
+		<path id="path_66" class="path" d=" M 400,300 L 286.04,300"/>
 	</g>
 </svg>

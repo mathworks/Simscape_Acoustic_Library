@@ -1,41 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<svg version="1.2" baseProfile="tiny" width="137.16mm" height="182.88mm" viewBox="0 0 13716 18288" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
- <g visibility="visible" id="MasterSlide_1_Default">
-  <desc>Master slide
-  </desc>
-  <rect fill="none" stroke="none" x="0" y="0" width="13716" height="18288"/>
- </g>
- <g visibility="visible" id="Slide_1_page1">
-  <g>
-   <path fill="rgb(207,231,245)" stroke="none" d="M 1840,10541 L 1840,2631 4316,155 11747,155 11747,8064 9270,10541 1840,10541 Z"/>
-   <path fill="none" stroke="rgb(128,128,128)" id="Drawing_1_0" stroke-linejoin="round" d="M 1840,10541 L 1840,2631 4316,155 11747,155 11747,8064 9270,10541 1840,10541 Z"/>
-   <path fill="rgb(216,236,247)" stroke="none" d="M 1840,2631 L 4316,155 11747,155 9270,2631 1840,2631 Z"/>
-   <path fill="none" stroke="rgb(128,128,128)" id="Drawing_1_1" stroke-linejoin="round" d="M 1840,2631 L 4316,155 11747,155 9270,2631 1840,2631 Z"/>
-   <path fill="rgb(166,185,196)" stroke="none" d="M 9270,10541 L 9270,2631 11747,155 11747,8064 9270,10541 Z"/>
-   <path fill="none" stroke="rgb(128,128,128)" id="Drawing_1_2" stroke-linejoin="round" d="M 9270,10541 L 9270,2631 11747,155 11747,8064 9270,10541 Z"/>
-   <rect fill="none" stroke="none" x="1840" y="156" width="9907" height="10386"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_2_0" stroke-width="102" stroke-linejoin="round" d="M 10795,5080 L 13462,5038"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_3_0" stroke-width="102" stroke-linejoin="round" d="M 6604,10541 L 6604,15240"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_4_0" stroke-width="102" stroke-linejoin="round" d="M 5012,15340 L 8314,15340"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_5_0" stroke-width="102" stroke-linejoin="round" d="M 5847,15848 L 7625,15848"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_6_0" stroke-width="102" stroke-linejoin="round" d="M 6201,16410 L 7217,16410"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_7_0" stroke-width="102" stroke-linejoin="round" d="M 6355,16991 L 6963,16991"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_8_0" stroke-width="102" stroke-linejoin="round" d="M 6604,14097 L 13462,14097"/>
-  </g>
- </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="700" height="700" viewBox="0 0 700 700" d:options="Foreground:PortStyled;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:undefined;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;Port:Auto Majority;" baseProfile="tiny" fill-rule="evenodd" preserveAspectRatio="xMidYMid" stroke-linejoin="round" stroke-width="28.222" xml:space="preserve">
+	<g id="part_1" title="part_0" ie-ports="left:,top:,right:acoustic-acoustic*acoustic-acoustic,bottom:">
+		<rect id="rect" class="rect" x="136.39" y="80.33" width="280.56" height="291.67" rx="0" ry="0"/>
+		<line id="line" class="line" x1="136.39" y1="80.33" x2="240.41" y2="2.41"/>
+		<line id="line_97" class="line" x1="416.95" y1="80.33" x2="520.97" y2="2.41"/>
+		<line id="line_148" class="line" x1="240.41" y1="2.41" x2="520.97" y2="2.41"/>
+		<line id="line_149" class="line" x1="416.95" y1="372" x2="520.97" y2="294.08"/>
+		<line id="line_184" class="line" x1="520.97" y1="2.41" x2="520.97" y2="294.08"/>
+		<g id="ElectricalReference">
+			<path id="path_9" class="path" d=" M 276.67,484.5 L 276.67,596.09"/>
+			<path id="path_18" class="path" d=" M 207.16,596.09 L 346.18,596.09"/>
+			<path id="path_28" class="path" d=" M 221.06,618.4 L 332.28,618.4"/>
+			<path id="path_42" class="path" d=" M 234.96,640.73 L 318.38,640.73"/>
+			<path id="path_57" class="path" d=" M 248.87,663.05 L 304.47,663.05"/>
+			<path id="path_65" class="path" d=" M 262.77,685.36 L 290.57,685.36"/>
+		</g>
+		<line id="line_497" class="line" x1="700" y1="525" x2="276.67" y2="525"/>
+		<line id="line_584" class="line" x1="700" y1="175" x2="468.96" y2="175"/>
+		<line id="line_676" class="line" x1="276.67" y1="484.5" x2="276.67" y2="372"/>
+	</g>
 </svg>

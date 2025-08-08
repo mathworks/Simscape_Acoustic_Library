@@ -1,8 +1,8 @@
 component compliance < acoustic.branch
 % Compliance
 % Models an acoustic compliance whose value is a parameter, c.
-% The relationship between pressure P and volume velocity U
-% is U=C*dP/dt.
+% The relationship between pressure p and volume velocity U
+% is U=C*dp/dt.
 %
 % The Series resistance and Parallel conductance represent small
 % mechanical losses that may be present. Simulation of some

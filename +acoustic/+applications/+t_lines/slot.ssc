@@ -27,9 +27,15 @@ component slot
     end
 
     nodes
-        pa = acoustic.acoustic; % +:left
-        na = acoustic.acoustic; % -:right
+        pa = acoustic.acoustic; % +
+        na = acoustic.acoustic; % -
     end
+
+    annotations
+        [pa] : Side = left;
+        [na] : Side = right;
+    end
+
 
     parameters (Access = private)
         Ma = 1.2*pa.rho*l/(w*h)/N;                  % air mass

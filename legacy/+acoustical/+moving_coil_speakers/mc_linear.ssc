@@ -4,7 +4,7 @@ component mc_linear
 %     Electrical resistance and inductance
 %     Electromechanical (BL) converter
 %     Mechanical mass, stiffness and damping
-%     Mechanoacoustical conversion (area transformer) to acoustical domain
+%     Mechanoacoustic conversion (area transformer) to acoustic domain
 %     Optional
 %       Electrical R2 and L2 to partially model eddy current effects
 
@@ -15,7 +15,7 @@ component mc_linear
 parameters
     Re = {7.8, 'Ohm'}; %Resistance Re
     l = {1.24, 'mH'}; %Inductance Le
-    R2L2 = acoustical.enum.R2L2.simple; % Include R2 and L2?
+    R2L2 = acoustic.enum.R2L2.simple; % Include R2 and L2?
     R2 = {3.52, 'Ohm'}; % Resistance R2
     L2 = {0.84, 'mH'}; % Inductance L2
     mass = {4.8, 'g'}; %Mass
@@ -23,12 +23,12 @@ parameters
     Rm = {0.1, 'N*s/m'}; %Mechanical Resistance
     BL = {5.34, 'N/A'}; %Force Constant BL
     K = {1000, 'N/m'}; %Spring stiffness
-    MechPort = acoustical.enum.WithMechanicalPort.noPort; % Include Mechanical force port?
+    MechPort = acoustic.enum.WithMechanicalPort.noPort; % Include Mechanical force port?
   end
   outputs
     Disp = {0, 'm'}; % Disp
   end
-  if R2L2 == acoustical.enum.R2L2.simple
+  if R2L2 == acoustic.enum.R2L2.simple
       annotations
           [R2,L2] : ExternalAccess=none;
       end
@@ -52,7 +52,7 @@ parameters
       assert(0, "This block is deprecated. Use 'Moving Coil Speaker' from acoustic library instead.", Action = simscape.enum.assert.action.warn)
   end
 
-  if MechPort == acoustical.enum.WithMechanicalPort.noPort
+  if MechPort == acoustic.enum.WithMechanicalPort.noPort
       annotations
           [M] : ExternalAccess=none;
       end
@@ -62,14 +62,14 @@ parameters
     Translational_Electromechanical_Converter = foundation.electrical.elements.translational_converter(K = BL);
     Translational_Damper = foundation.mechanical.translational.damper(D = Rm);
     Resistor = foundation.electrical.elements.resistor(R = Re);
-    Mechanical_to_Acoustical_Converter_area_transformer = acoustical.elements.mechanical_converter(Sd = Sd);
+    Mechanical_to_acoustic_Converter_area_transformer = acoustical.elements.mechanical_converter(Sd = Sd);
     Mechanical_Translational_Reference = foundation.mechanical.translational.reference;
     Mass = foundation.mechanical.translational.mass(mass = mass);
     Inductor = foundation.electrical.elements.inductor(g = {1e-09, '1/Ohm'}, r = {0, 'Ohm'}, l = l);
     Ideal_Translational_Motion_Sensor = foundation.mechanical.sensors.velocity(offset = {0, 'm'});
     PS_Terminator = foundation.signal.sinks.terminator;
   end
-  if R2L2 == acoustical.enum.R2L2.withR2L2
+  if R2L2 == acoustic.enum.R2L2.withR2L2
       components
           Resistor1 = foundation.electrical.elements.resistor(R = R2);
           Inductor1 = foundation.electrical.elements.inductor(r = {0, 'Ohm'}, g = {1e-09, '1/Ohm'}, l = L2);
@@ -80,21 +80,21 @@ parameters
     connect(Ideal_Translational_Motion_Sensor.P,Disp);
     connect(e1,Translational_Electromechanical_Converter.n);
     connect(e0,Resistor.p);
-    connect(a1,Mechanical_to_Acoustical_Converter_area_transformer.nn);
-    connect(Mass.M,Mechanical_to_Acoustical_Converter_area_transformer.R);
+    connect(a1,Mechanical_to_acoustic_Converter_area_transformer.nn);
+    connect(Mass.M,Mechanical_to_acoustic_Converter_area_transformer.R);
     connect(Mass.M,Translational_Damper.R);
     connect(Mass.M,Translational_Electromechanical_Converter.R);
     connect(Mass.M,Translational_Spring.R);
     connect(Ideal_Translational_Motion_Sensor.R,Mass.M);
-    connect(a0,Mechanical_to_Acoustical_Converter_area_transformer.pp);
+    connect(a0,Mechanical_to_acoustic_Converter_area_transformer.pp);
     connect(Inductor.p,Resistor.n);
-    connect(M,Mechanical_to_Acoustical_Converter_area_transformer.C);
+    connect(M,Mechanical_to_acoustic_Converter_area_transformer.C);
     connect(M,Translational_Damper.C);
     connect(M,Translational_Electromechanical_Converter.C);
     connect(M,Translational_Spring.C);
     connect(M,Ideal_Translational_Motion_Sensor.C);
   end
-  if R2L2 == acoustical.enum.R2L2.simple
+  if R2L2 == acoustic.enum.R2L2.simple
       connections
         connect(Inductor.n,Translational_Electromechanical_Converter.p);
       end
@@ -104,7 +104,7 @@ parameters
         connect(Resistor1.n,Inductor1.n,Translational_Electromechanical_Converter.p);
       end
    end
-   if MechPort == acoustical.enum.WithMechanicalPort.noPort;
+   if MechPort == acoustic.enum.WithMechanicalPort.noPort;
       connections
           connect(M,*);
       end

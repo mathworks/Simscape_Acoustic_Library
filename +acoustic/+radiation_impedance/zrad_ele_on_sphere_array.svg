@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="600" height="600" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;Port:Auto Majority;">
+	<g id="part_293" title="part_0" ie-ports="left:acoustic-acoustic,top:,right:acoustic-acoustic,bottom:">
+		<ellipse id="ellipse_286" class="ellipse" d:options="PreserveAspect:On;ClosedShapeFill:On;" cx="307.62" cy="294.44" rx="150" ry="150"/>
+		<path id="path_291" class="path" d=" M 0,300 L 157,300"/>
+		<path id="path_292" class="path" d=" M 600,300 L 457,300"/>
+		<path id="path_357" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 300,145 Q 252.87,161.29 230.04,195 C 210.11,224.42 204.13,271.66 204.13,300 C 204.13,328.15 219.56,367.91 239.21,395 Q 262.09,426.55 300,445"/>
+		<path id="path_358" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 300,145 Q 347.13,161.29 369.96,195 C 389.89,224.42 395.87,271.66 395.87,300 C 395.87,328.15 380.44,367.91 360.79,395 Q 337.91,426.55 300,445"/>
+		<path id="path_399" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 300,145 Q 281.18,174.65 272.3,210.47 C 265.82,236.59 264.42,268.88 264.42,295 C 264.42,321.12 270.4,357.12 276.88,383.24 Q 285.76,419.06 300,445"/>
+		<path id="path_400" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 300,145 Q 318.83,174.65 327.71,210.47 C 334.18,236.59 335.58,268.88 335.58,295 C 335.58,321.12 329.6,357.12 323.13,383.24 Q 314.25,419.06 300,445"/>
+		<path id="path_490" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 157,300 Q 232,335.8 307,335.8 Q 382,335.8 457,300"/>
+		<path id="path_535" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 170.78,233.54 Q 231.79,266.87 300,266.87 Q 368.21,266.87 443.62,233.54"/>
+		<path id="path_536" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 170.58,357 Q 231.59,390.33 299.8,390.33 Q 368.01,390.33 443.42,357"/>
+		<path id="path_768" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 220.27,172.94 Q 257.89,195 301.35,195 Q 344.81,195 394.11,172.94"/>
+		<path id="path_769" class="path" style="stroke-dasharray:1px, 2.5px;" d=" M 220.08,416.94 Q 257.7,439 301.16,439 Q 344.62,439 393.92,416.94"/>
+		<line id="line" class="line" x1="264.78" y1="280.15" x2="277.49" y2="266.09"/>
+		<line id="line_929" class="line" x1="264.42" y1="293.18" x2="287.59" y2="266.87"/>
+		<line id="line_959" class="line" x1="264.65" y1="304.25" x2="300" y2="266.87"/>
+		<line id="line_1010" class="line" x1="265.56" y1="316.76" x2="311.66" y2="266.87"/>
+		<line id="line_1059" class="line" x1="266.78" y1="327.89" x2="324.44" y2="265.73"/>
+		<line id="line_1200" class="line" x1="274.85" y1="333.86" x2="334.9" y2="267.39"/>
+		<line id="line_1201" class="line" x1="287.59" y1="335.33" x2="335.57" y2="283.02"/>
+		<line id="line_1202" class="line" x1="300.11" y1="335.8" x2="335.46" y2="298.42"/>
+		<line id="line_1203" class="line" x1="312.29" y1="335.8" x2="334.91" y2="311.78"/>
+		<line id="line_1204" class="line" x1="322.23" y1="335.8" x2="333.79" y2="323.79"/>
+	</g>
+</svg>

@@ -33,7 +33,7 @@ component condenser_mic
         rhole       = {0.000508,        'm'};           % Back Plate Holes Radius (rhole)
         hhole       = {0.000843,        'm'};           % Back Plate Holes Length/Thickness (hhole)
         Nhole       = {6,               '1'};           % Number of Back Plate Holes (Nhole)
-        Ventype     = acoustic.enum.ventChoice.rect;  % Rear Vent Type
+        Ventype     = acoustic.enum.ventChoice.rect;    % Rear Vent Type
         hvent       = {0.0015,          'm'};           % Vent Length/Thickness (hvent)
         rvent       = {1.1e-5,          'm'};           % Vent Radius (rvent)
         lvent       = {0.00034,         'm'};           % Vent Width (lvent)
@@ -48,8 +48,8 @@ component condenser_mic
     end
 
     nodes
-        pa = acoustic.acoustic;     % Front
-        ca = acoustic. acoustic;    % Comm
+        pa = acoustic.acoustic;    % F
+        ca = acoustic.acoustic;    %
         pe = foundation.electrical.electrical; % e+
         ne = foundation.electrical.electrical; % e-
     end

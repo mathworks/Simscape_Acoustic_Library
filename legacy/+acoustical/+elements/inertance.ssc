@@ -1,6 +1,6 @@
-component inertance < acoustical.branch
+component inertance < acoustic.branch
 % Inertance
-% Models a linear inertance (acoustical mass). The relationship
+% Models a linear inertance (acoustic mass). The relationship
 % between pressure P and flow U is P=m*dU/dt where m is the
 % inertance in Pa*s^2/m^3. 
 %

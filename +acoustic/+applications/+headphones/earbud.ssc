@@ -26,11 +26,11 @@ component earbud
 %   Copyright 2025 The MathWorks, Inc.
 
     nodes
-        pf = acoustic.acoustic; % front +
-        pb = acoustic.acoustic; % rear +
-        nf = acoustic.acoustic; % front -
-        nb = acoustic.acoustic; % rear -
-        ca = acoustic.acoustic; % comm 
+        pf = acoustic.acoustic; % F+
+        pb = acoustic.acoustic; % B+
+        nf = acoustic.acoustic; % F-
+        nb = acoustic.acoustic; % B-
+        ca = acoustic.acoustic; % 
     end
 
     nodes (ExternalAccess = none)       % declare internal nodes within the block
@@ -38,11 +38,11 @@ component earbud
     end
 
     annotations
-        pf:   Side = left;
-        pb:   Side = left;
-        ca:         Side = bottom;
-        nf:         Side = right;
-        nb:         Side = right;
+        [pf]: Side = right;
+        [pb]: Side = left;
+        [ca]: Side = bottom;
+        [nf]: Side = right;
+        [nb]: Side = left;
         UILayout         = [UIGroup("Sound Tube & Ear Tip", tube_earbud, tube_l, tube_r, ...
                             tip_earbud, tip_l, tip_r)...
                             UIGroup("Front Vent", fvent_earbud, fvent_l, fvent_r, Nfv_bud) ...
@@ -105,7 +105,7 @@ component earbud
         connections                 % the front vent block is connected in parallel
             connect(pf, Ma_fv.pp);                   % connect the front vent to the input and the invisible node n1
             connect(Ma_fv.nn, Ra_fv.pp);             % connect air mass and air resistance of the front vent
-            connect(Ra_fv.nn, ca);                   % connect to common
+            connect(Ra_fv.nn, ca, *);                   % connect to common
         end
     else                            % if model does not contain front vent
         annotations
@@ -140,7 +140,7 @@ component earbud
 
     if tube_earbud == acoustic.enum.Bud_Tube.include_tube             % if model contains sound tube
         components(ExternalAccess = observe)
-            tube = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+            tube = acoustic.applications.t_lines.tube_tv_cyl_foster(mdl = mdl, ...
                                                                 length = tube_l, ...
                                                                 a = tube_r);             % sound tube
         end
@@ -148,7 +148,7 @@ component earbud
         connections
             connect(tube.p1, pf);
             connect(tube.p2, n1);
-            connect(tube.p3, ca);
+            connect(tube.p3, ca, *);
         end
     else                            % if model does not contain sound tube
         annotations
@@ -162,7 +162,7 @@ component earbud
 
     if tip_earbud == acoustic.enum.Bud_Tip.include_tip                % if model contains ear tip
         components(ExternalAccess = observe)
-            tip = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, ...
+            tip = acoustic.applications.t_lines.tube_tv_cyl_foster(mdl = mdl, ...
                                                                 length = tip_l, ...
                                                                 a = tip_r);             % eartip
         end
@@ -170,7 +170,7 @@ component earbud
         connections
             connect(tip.p1, n1);
             connect(tip.p2, nf);
-            connect(tip.p3, ca);
+            connect(tip.p3, ca, *);
         end
     else                            % if model does not contain ear tip
         annotations
@@ -199,7 +199,7 @@ component earbud
         connections         % leakage block is connected in parallel    
             connect(nf, Ma_leak.pp);                % connect leakage block to n3 and the output of the front cavity
             connect(Ma_leak.nn, Ra_leak.pp);        % connect air mass and air resistance
-            connect(Ra_leak.nn, ca);                % connect to common
+            connect(Ra_leak.nn, ca, *);                % connect to common
         end
     else                    % if model does not consider leakage
         annotations
@@ -247,6 +247,6 @@ component earbud
 
     connections         % rear cavity compliance is connected in parallel
         connect(pb, Ca_r.pp);
-        connect(Ca_r.nn, ca);
+        connect(Ca_r.nn, ca, *);
     end
 end

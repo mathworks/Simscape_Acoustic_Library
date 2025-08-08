@@ -1,4 +1,4 @@
-component (Hidden = true) R_of_v < foundation.mechanical.translational.branch
+component R_of_v < foundation.mechanical.translational.branch
 % Nonlinear Translational Damper
 % The block represents an ideal mechanical translational viscous damper.
 %

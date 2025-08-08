@@ -4,14 +4,21 @@ component acoustical_transformer
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    pp1 = acoustic.acoustic; % 1+:left
-    nn1 = acoustic.acoustic; % 1-:left
-    pp2 = acoustic.acoustic; % 2+:right
-    nn2 = acoustic.acoustic; % 2-:right
+    pp1 = acoustic.acoustic; % 1+
+    nn1 = acoustic.acoustic; % 1-
+    pp2 = acoustic.acoustic; % 2+
+    nn2 = acoustic.acoustic; % 2-
+end
+
+annotations
+        [pp1] : Side = left;
+        [nn1] : Side = left;
+        [pp2] : Side = right;
+        [nn2] : Side = right;
 end
 
 parameters
-    ratio = {1, '1' } % pressure ratio
+    ratio = {1, '1' } % Pressure Ratio
 end
 
 variables

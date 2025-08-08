@@ -22,8 +22,13 @@ component spherical_rad
     end
 
     nodes
-        pa = acoustic.acoustic; % +:left
-        na = acoustic.acoustic; % -:right
+        pa = acoustic.acoustic; % +
+        na = acoustic.acoustic; % -
+    end
+
+    annotations
+        [pa] : Side = left;
+        [na] : Side = right;
     end
 
     parameters (Access = private)

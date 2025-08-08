@@ -36,17 +36,17 @@ component (Propagation = blocks) tbg_tube_slice
   end
   for ii=1:2
       components (ExternalAccess = none)
-      dl_Zend_M(ii) = acoustical.elements.inertance(m = M0/2, r_m = R0/2);
+      dl_Zend_M(ii) = acoustic.elements.inertance(m = M0/2, r_m = R0/2);
     end
   end
   for ii=1:Ndl-1
     components(ExternalAccess = none)
-      dl_Z_M(ii) = acoustical.elements.inertance(m = M0, r_m = R0);
+      dl_Z_M(ii) = acoustic.elements.inertance(m = M0, r_m = R0);
     end
   end
   for ii=1:Ndl
     components (ExternalAccess = none)
-      dl_Y_C(ii) = acoustical.elements.compliance(c = C0, g_c = G0);
+      dl_Y_C(ii) = acoustic.elements.compliance(c = C0, g_c = G0);
     end
   end
   connections

@@ -20,10 +20,17 @@ component MEMS_speaker_converter
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    p = foundation.electrical.electrical; % +:left
-    n = foundation.electrical.electrical; % -:left
-    R = foundation.mechanical.translational.translational; % R:right
-    C = foundation.mechanical.translational.translational; % C:right
+    p = foundation.electrical.electrical; % +
+    n = foundation.electrical.electrical; % -
+    R = foundation.mechanical.translational.translational; % R
+    C = foundation.mechanical.translational.translational; % C
+end
+
+annotations
+        [p] : Side = left;
+        [n] : Side = left;
+        [R] : Side = right;
+        [C] : Side = right;
 end
 
 parameters

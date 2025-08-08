@@ -29,13 +29,13 @@ component (Hidden = true) Zdl_tv_cyl_foster
         % b = [0.0104628585476700,0.000402092479637000,1.62209337496300e-05,5.68860487634300e-07];
     end
     components(ExternalAccess=none)
-        LL0 = acoustical.elements.inertance(m = L0, r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
-        RR0 = acoustical.elements.resistor(R_r = 8*R0);
+        LL0 = acoustic.elements.inertance(m = L0, r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
+        RR0 = acoustic.elements.resistor(R_r = 8*R0);
     end
     for ii=1:N
         components(ExternalAccess=none)
-            RR(ii) = acoustical.elements.resistor(R_r = R0*a(ii)/b(ii));
-            LL(ii) = acoustical.elements.inertance(m = L0*a(ii), r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
+            RR(ii) = acoustic.elements.resistor(R_r = R0*a(ii)/b(ii));
+            LL(ii) = acoustic.elements.inertance(m = L0*a(ii), r_m = {0, 'Pa*s/m^3'}, g_m = {0, 'm^3/(Pa*s)'});
         end
     end
     connections

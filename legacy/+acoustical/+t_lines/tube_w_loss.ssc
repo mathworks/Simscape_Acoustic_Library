@@ -1,7 +1,7 @@
 component (Propagation = blocks) tube_w_loss 
 % tube_w_loss - lossy cylindrical tube with N segments 
 % This component implements a segmented tube transmission line in the 
-% acoustical domain. The values of the reactive components in
+% acoustic domain. The values of the reactive components in
 % the line are calculated assuming a cylindrical tube. The tube radius 
 % and length are entered as parameters. The values of the resistive 
 % components are entered as parameters. 
@@ -42,17 +42,17 @@ component (Propagation = blocks) tube_w_loss
   end
   for ii=1:2
       components (ExternalAccess = none)
-      dl_Zend_M(ii) = acoustical.elements.inertance(m = M0/2, r_m = RS/2, g_m = {1e-9, '(m^3/s)/Pa'});
+      dl_Zend_M(ii) = acoustic.elements.inertance(m = M0/2, r_m = RS/2, g_m = {1e-9, '(m^3/s)/Pa'});
     end
   end
   for ii=1:Ndl-1
     components(ExternalAccess = none)
-      dl_Z_M(ii) = acoustical.elements.inertance(m = M0, r_m = RS, g_m = {1e-9, '(m^3/s)/Pa'} );
+      dl_Z_M(ii) = acoustic.elements.inertance(m = M0, r_m = RS, g_m = {1e-9, '(m^3/s)/Pa'} );
     end
   end
   for ii=1:Ndl
     components (ExternalAccess = none)
-      dl_Y_C(ii) = acoustical.elements.compliance(c = C0, g_c = 1/RP, r_c = {1e-9, 'Pa/(m^3/s)'});
+      dl_Y_C(ii) = acoustic.elements.compliance(c = C0, g_c = 1/RP, r_c = {1e-9, 'Pa/(m^3/s)'});
     end
   end
   connections

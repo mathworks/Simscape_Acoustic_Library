@@ -25,14 +25,14 @@ component (Propagation = blocks) tube_tv_plates
       R0 = p1.rho*p1.nu*ele_dl/y0^2/area;
   end
   nodes
-    p1 = acoustic.acoustic;
-    p2 = acoustic.acoustic;
-    p3 = acoustic.acoustic;
+    p1 = acoustic.acoustic; % P1
+    p2 = acoustic.acoustic; % P2
+    p3 = acoustic.acoustic; % P3
   end
   annotations
-    p1: Side = left;
-    p2: Side = right;
-    p3: Side = bottom;
+    [p1]: Side = left;
+    [p2]: Side = right;
+    [p3]: Side = bottom;
   end
 
     for ii=1:2

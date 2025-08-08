@@ -1,4 +1,4 @@
-component (Hidden = true) L_of_x < foundation.electrical.branch
+component L_of_x < foundation.electrical.branch
 % Nonlinear Inductor
 % Models a nonlinear inductor. The relationship between voltage V and
 % current I is V=L*dI/dt where L is the inductance in henries (H).

@@ -8,7 +8,7 @@ component P_ff < acoustic.branch
 %   Copyright 2025 The MathWorks, Inc.
 
 outputs
-    p_ff = {1, 'Pa'}; % Far Field
+    p_ff = {1, 'Pa'}; %
 end
 
 parameters

@@ -1,15 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="370" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical*acoustical-acoustical,top:,right:acoustical-acoustical*acoustical-acoustical,bottom:acoustical-acoustical">
-		<path id="ellipse" class="path" style="fill:rgb(255, 255, 255);" d:options="ClosedShapeFill:On;" d=" M 170,92.5 C 231.86,92.5 231.86,277.5 170,277.5 C 108.14,277.5 58,236.09 58,185 C 58,133.91 108.14,92.5 170,92.5 Z"/>
-		<path id="path" class="path" d=" M 216.4,92.5 Q 222.4,138.75 222.4,185 Q 222.4,231.25 216.4,277.5"/>
-		<ellipse id="ellipse_84" class="ellipse" d:options="ClosedShapeFill:On;" cx="296.5" cy="185" rx="7.75" ry="59.5"/>
-		<line id="line" class="line" x1="208" y1="128.5" x2="219.4" y2="128.5"/>
-		<line id="line_221" class="line" x1="205.28" y1="247.49" x2="219.4" y2="247.5"/>
-		<path id="path_398" class="path" d=" M 216.4,92.5 Q 246.25,84.25 266.27,92.5 Q 286.3,100.75 296.5,125.5"/>
-		<path id="path_450" class="path" d=" M 216.4,277.5 Q 242.68,285.75 262.7,277.5 Q 282.73,269.25 296.5,244.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="500" height="500" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part_2" title="part_0" ie-ports="left:acoustical-acoustical*acoustical-acoustical,top:,right:acoustical-acoustical*acoustical-acoustical,bottom:acoustical-acoustical">
+		<path id="ellipse" class="path" style="fill:rgb(255, 255, 255);" d:options="ClosedShapeFill:On;" d=" M 236.38,139.52 C 298.24,139.52 298.24,324.52 236.38,324.52 C 174.52,324.52 124.38,283.11 124.38,232.02 C 124.38,180.93 174.52,139.52 236.38,139.52 Z"/>
+		<path id="path" class="path" d=" M 282.78,139.52 Q 288.78,185.77 288.78,232.02 Q 288.78,278.27 282.78,324.52"/>
+		<ellipse id="ellipse_84" class="ellipse" d:options="ClosedShapeFill:On;" cx="362.88" cy="232.02" rx="7.75" ry="59.5"/>
+		<line id="line" class="line" x1="274.38" y1="175.52" x2="285.78" y2="175.52"/>
+		<line id="line_221" class="line" x1="271.66" y1="294.51" x2="285.78" y2="294.52"/>
+		<path id="path_398" class="path" d=" M 282.78,139.52 Q 312.63,131.27 332.65,139.52 Q 352.68,147.77 362.88,172.52"/>
+		<path id="path_450" class="path" d=" M 282.78,324.52 Q 309.06,332.77 329.08,324.52 Q 349.11,316.27 362.88,291.52"/>
 		<g id="Cylinder">
-			<path id="part_1" class="path" style="fill:#ffffff;" transform="matrix(0,1,-1,0,380.1650161743,176.3249740601)" d=" M 44.46,313.52 L 148.88,313.52 C 155.17,313.52 159.39,295.88 159.39,278.25 C 159.39,260.62 155.17,242.98 148.88,242.98 L 96.88,242.98"/>
-			<path id="path_454" class="path" style="fill:#ffffff;" visibility="hidden" transform="matrix(0,1,-1,0,343.4199829101,139.5600166321)" d=" M 133.64,206.22 L 70.23,206.22 C 76.01,206.22 80.7,222.01 80.7,241.49 C 80.7,260.99 76,276.76 70.22,276.76 L 81.22,276.76"/>
+			<path id="part_1" class="path" style="fill:#ffffff;" transform="matrix(0,1,-1,0,493.5769119262,156.9647140504)" d=" M 110.84,360.54 L 215.26,360.54 C 221.55,360.54 225.77,342.9 225.77,325.27 C 225.77,307.64 221.55,290 215.26,290 L 163.26,290"/>
+			<path id="path_454" class="path" style="fill:#ffffff;" visibility="hidden" transform="matrix(0,1,-1,0,456.8318710327,120.1997337341)" d=" M 200.02,253.24 L 136.61,253.24 C 142.39,253.24 147.08,269.03 147.08,288.51 C 147.08,308.01 142.38,323.78 136.6,323.78 L 147.6,323.78"/>
 		</g>
+		<g id="ElectricalReference">
+			<path id="path_9" class="path" d=" M 250,320.22 L 250,413.55"/>
+			<path id="path_18" class="path" d=" M 197.73,413.55 L 302.28,413.55"/>
+			<path id="path_28" class="path" d=" M 208.18,432.21 L 291.82,432.21"/>
+			<path id="path_42" class="path" d=" M 218.64,450.87 L 281.37,450.87"/>
+			<path id="path_57" class="path" d=" M 229.09,469.55 L 270.91,469.55"/>
+			<path id="path_65" class="path" d=" M 239.55,488.21 L 260.46,488.21"/>
+		</g>
+		<path id="path_122" class="path" d:options="Port:R0;" d=" M 362.88,217.93 L 492.42,217.93 L 492.42,125 L 500,125"/>
+		<path id="path_233" class="path" d:options="Port:R1;" d=" M 362.88,250 L 492.39,250 L 492.39,375 L 500,375"/>
+		<path id="path_261" class="path" d:options="Port:L0;" d=" M 124.38,217.93 L 9.36,217.93 L 9.36,125 L 0,125"/>
+		<path id="path_322" class="path" d:options="Port:L1;" d=" M 124.38,250 L 9.09,248.07 L 9.09,375 L 0,375"/>
 	</g>
 </svg>

@@ -1,25 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:undefined;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:">
-		<ellipse id="ellipse" class="ellipse" d:options="ClosedShapeFill:On;" cx="200" cy="200" rx="100" ry="100"/>
-		<g id="group">
-			<path id="path" class="path" d=" M 240,80 Q 280,80 300,100 Q 320,120 320,160"/>
-			<path id="path_504" class="path" d=" M 260,60 Q 300,60 320,80 Q 340,100 340,140"/>
-			<path id="path_505" class="path" d=" M 280,40 Q 320,40 340,60 Q 360,80 360,120"/>
-		</g>
-		<g id="group_509">
-			<path id="path_506" class="path" transform="matrix(0,1,-1,0,559.9999694824,0.0000305176)" d=" M 240,240 Q 280,240 300,260 Q 320,280 320,320"/>
-			<path id="path_504_507" class="path" transform="matrix(0,1,-1,0,599.9999694824,0.0000305176)" d=" M 260,260 Q 300,260 320,280 Q 340,300 340,340"/>
-			<path id="path_505_508" class="path" transform="matrix(0,1,-1,0,639.9999694824,0.0000305176)" d=" M 280,280 Q 320,280 340,300 Q 360,320 360,360"/>
-		</g>
-		<g id="group_509_513">
-			<path id="path_506_510" class="path" transform="matrix(-0.9998476952,0.0174524064,-0.0174524064,-0.9998476952,244.1635181212,557.1865087842)" d=" M 79.66,239.65 Q 119.66,239.65 139.66,259.65 Q 159.66,279.65 159.66,319.65"/>
-			<path id="path_504_507_511" class="path" transform="matrix(-0.9998476952,0.0174524064,-0.0174524064,-0.9998476952,205.231979158,598.2018573223)" d=" M 60,259.99 Q 100,259.99 120,279.99 Q 140,299.99 140,339.99"/>
-			<path id="path_505_508_512" class="path" transform="matrix(-0.9998476952,0.0174524064,-0.0174524064,-0.9998476952,166.2804379782,639.2174414519)" d=" M 40.35,280.33 Q 80.35,280.33 100.35,300.33 Q 120.35,320.33 120.35,360.33"/>
-		</g>
-		<g id="group_509_513_517">
-			<path id="path_506_510_514" class="path" transform="matrix(-0.0174524064,-0.9998476952,0.9998476952,-0.0174524064,2.8027946947,242.079951014)" d=" M 80.37,79.66 Q 120.37,79.66 140.37,99.66 Q 160.37,119.66 160.37,159.66"/>
-			<path id="path_504_507_511_515" class="path" transform="matrix(-0.0174524064,-0.9998476952,0.9998476952,-0.0174524064,1.7694786918,201.7704190554)" d=" M 60.03,60 Q 100.03,60 120.03,80 Q 140.03,100 140.03,140"/>
-			<path id="path_505_508_512_516" class="path" transform="matrix(-0.0174524064,-0.9998476952,0.9998476952,-0.0174524064,0.7257596856,161.431066457)" d=" M 39.69,40.35 Q 79.69,40.35 99.69,60.35 Q 119.69,80.35 119.69,120.35"/>
-		</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="600" height="600" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:undefined;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part" title="part_1" ie-ports="left:simulink,top:,right:simulink,bottom:">
+		<ellipse id="ellipse_2" class="ellipse" d:options="ClosedShapeFill:On;" cx="307" cy="295" rx="100" ry="100"/>
+		<path id="path_569" class="path" style="stroke-dasharray: 1px, 2.5px;" d=" M 182,295 Q 187.37,237.87 218.62,206.62 Q 249.87,175.37 307,170"/>
+		<path id="path_571" class="path" style="stroke-dasharray: 1px, 2.5px;" d=" M 432,295 Q 426.63,237.87 395.38,206.62 Q 364.13,175.37 307,170"/>
+		<path id="path_572" class="path" style="stroke-dasharray: 1px, 2.5px;" transform="matrix(-1,0,0,-1,738.9828491211,714.9877319336)" d=" M 306.99,419.99 Q 312.36,362.86 343.61,331.61 Q 374.86,300.36 431.99,294.99"/>
+		<path id="path_573" class="path" style="stroke-dasharray: 1px, 2.5px;" transform="matrix(-1,0,0,-1,488.9798583984,714.9603881837)" d=" M 306.99,419.97 Q 301.62,362.84 270.37,331.59 Q 239.12,300.34 181.99,294.97"/>
+		<path id="path_574" class="path" style="stroke-dasharray: 1px, 2.5px;" d=" M 130.99,297.43 Q 138.51,217.45 182.26,173.7 Q 226.01,129.95 305.99,122.43"/>
+		<path id="path_575" class="path" style="stroke-dasharray: 1px, 2.5px;" d=" M 480.99,297.43 Q 473.47,217.45 429.72,173.7 Q 385.97,129.95 305.99,122.43"/>
+		<path id="path_576" class="path" style="stroke-dasharray: 1px, 2.5px;" transform="matrix(-1,0,0,-1,786.9696655272,769.8541870119)" d=" M 305.98,472.43 Q 313.5,392.45 357.25,348.7 Q 401,304.95 480.98,297.43"/>
+		<path id="path_577" class="path" style="stroke-dasharray: 1px, 2.5px;" transform="matrix(-1,0,0,-1,436.9844055176,769.8162231446)" d=" M 305.99,472.4 Q 298.47,392.42 254.72,348.67 Q 210.97,304.92 130.99,297.4"/>
+		<path id="path_578" class="path" style="stroke-dasharray: 1px, 2.5px;" d=" M 157,295 Q 163.45,226.45 200.95,188.95 Q 238.45,151.45 307,145"/>
+		<path id="path_579" class="path" style="stroke-dasharray: 1px, 2.5px;" d=" M 457,295 Q 450.55,226.45 413.05,188.95 Q 375.55,151.45 307,145"/>
+		<path id="path_580" class="path" style="stroke-dasharray: 1px, 2.5px;" transform="matrix(-1,0,0,-1,763.9882202147,740.0530395509)" d=" M 306.99,445.04 Q 313.44,376.49 350.94,338.99 Q 388.44,301.49 456.99,295.04"/>
+		<path id="path_581" class="path" style="stroke-dasharray: 1px, 2.5px;" transform="matrix(-1,0,0,-1,464.0122375489,739.9868774414)" d=" M 307.01,444.99 Q 300.56,376.44 263.06,338.94 Q 225.56,301.44 157.01,294.99"/>
+		<path id="path" class="path" d=" M 0,300 L 207,300"/>
+		<path id="path_611" class="path" d=" M 600,300 L 407,300"/>
 	</g>
 </svg>

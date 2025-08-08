@@ -1,14 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="337" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:output*output*acoustical-acoustical,bottom:acoustical-acoustical">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="450" height="450" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part_2" title="part_0" ie-ports="left:acoustical-acoustical*simulink,top:,right:output*output,bottom:acoustical-acoustical">
 		<g id="group">
 			<g id="Cylinder">
-				<path id="part_1" class="path" style="fill:#ffffff;" d:options="ClosedShapeFill:On;" d=" M 149,249.75 L 308.81,249.75 C 317.53,249.75 323.36,234.81 323.36,219.87 C 323.36,204.92 317.53,189.98 308.81,189.98 L 149,189.98 C 157.02,189.98 163.52,203.35 163.52,219.87 C 163.52,236.37 157.02,249.75 149,249.75 Z"/>
+				<path id="part_1" class="path" style="fill:#ffffff;" d:options="ClosedShapeFill:On;" d=" M 211.71,267.67 L 371.52,267.67 C 380.24,267.67 386.07,252.73 386.07,237.79 C 386.07,222.84 380.24,207.9 371.52,207.9 L 211.71,207.9 C 219.73,207.9 226.23,221.27 226.23,237.79 C 226.23,254.29 219.73,267.67 211.71,267.67 Z"/>
 			</g>
-			<path id="path" class="path" d=" M 149,189.98 Q 152.98,126.65 135.34,102.74 C 110.29,69.83 65.86,81.14 54.08,87.92 C 42.5,94.58 12.65,115.26 13.67,161.26 Q 14.59,195.43 45.1,249.75"/>
-			<path id="path_88" class="path" d=" M 140.12,198.24 Q 124.29,130.3 100.53,109.72 Q 76.77,89.13 45.1,115.91"/>
-			<path id="path_852" class="path" d=" M 64.82,103.84 Q 29.6,129.61 34.94,179.35 C 36.04,189.42 46.1,215.2 58.98,227.06 C 70.21,237.39 84.11,233.66 89.13,244.84 Q 101.39,272.14 86.23,302.78"/>
-			<path id="path_925" class="path" transform="matrix(0.9902680687,0.139173101,-0.139173101,0.9902680687,29.3601518272,-13.2508055247)" d=" M 98.95,159.62 Q 78.45,182.8 87.28,203.02 C 90.59,210.63 97.03,236.68 106.61,243.65 Q 117.65,251.68 134.24,240.44"/>
-			<path id="path_977" class="path" d=" M 45.1,249.75 Q 55.72,319.53 81.68,319.53 C 92.73,319.53 100.91,321.43 116.12,302.78 Q 129.08,286.67 149,249.75"/>
+			<path id="path" class="path" d=" M 211.71,207.9 Q 215.69,144.57 198.05,120.66 C 173,87.75 128.57,99.06 116.79,105.84 C 105.21,112.5 75.36,133.18 76.38,179.18 Q 77.3,213.35 107.81,267.67"/>
+			<path id="path_88" class="path" d=" M 202.83,216.16 Q 187,148.22 163.24,127.64 Q 139.48,107.05 107.81,133.83"/>
+			<path id="path_852" class="path" d=" M 127.53,121.76 Q 92.31,147.53 97.65,197.27 C 98.75,207.34 108.81,233.12 121.69,244.98 C 132.92,255.31 146.82,251.58 151.84,262.76 Q 164.1,290.06 148.94,320.7"/>
+			<path id="path_925" class="path" transform="matrix(0.9902680687,0.139173101,-0.139173101,0.9902680687,32.4645959339,-21.804200485)" d=" M 161.66,177.54 Q 141.16,200.72 149.99,220.94 C 153.3,228.55 159.74,254.6 169.32,261.57 Q 180.36,269.6 196.95,258.36"/>
+			<path id="path_977" class="path" d=" M 107.81,267.67 Q 118.43,337.45 144.39,337.45 C 155.44,337.45 163.62,339.35 178.83,320.7 Q 191.79,304.59 211.71,267.67"/>
 		</g>
+		<g id="ElectricalReference">
+			<path id="path_9" class="path" d=" M 225,325.88 L 225,387.91"/>
+			<path id="path_18" class="path" d=" M 190.32,387.91 L 259.69,387.91"/>
+			<path id="path_28" class="path" d=" M 197.25,400.32 L 252.75,400.32"/>
+			<path id="path_42" class="path" d=" M 204.19,412.73 L 245.82,412.73"/>
+			<path id="path_57" class="path" d=" M 211.13,425.12 L 238.87,425.12"/>
+			<path id="path_65" class="path" d=" M 218.07,437.53 L 231.94,437.53"/>
+		</g>
+		<path id="path_33" class="path" d=" M 225,325.88 L 225,267.94"/>
+		<path id="path_270" class="path" d:options="Port:L0;" d=" M 151.82,225 L 5.67,225 L 5.67,112.5 L 0,112.5"/>
+		<path id="path_409" class="path" d:options="Port:L1;" d=" M 156.18,245.38 L 5.49,245.38 L 5.49,337.5 L 0,337.5"/>
+		<path id="path_532" class="path" d:options="Port:R0;" d=" M 384.64,225 L 445.99,225 L 445.99,112.5 L 450,112.5"/>
+		<path id="path_678" class="path" d:options="Port:R1;" d=" M 385.58,245.38 L 445.83,245.38 L 445.83,337.5 L 450,337.5"/>
 	</g>
 </svg>

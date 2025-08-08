@@ -1,4 +1,4 @@
-component encl_spk_mount
+component (Hidden = true) encl_spk_mount
     % Speaker Enclosure
     % Speaker mounting holes can be chosen from one to three. Optional port
     % can also be selected. If ported option is selected, an addition node

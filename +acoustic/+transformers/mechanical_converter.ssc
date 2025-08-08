@@ -16,10 +16,17 @@ component mechanical_converter
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    pp = acoustic.acoustic; % +:left
-    nn = acoustic.acoustic; % -:right
-    R = foundation.mechanical.translational.translational; % R:left
-    C = foundation.mechanical.translational.translational; % C:right
+    pp = acoustic.acoustic; % +
+    nn = acoustic.acoustic; % -
+    R = foundation.mechanical.translational.translational; % R
+    C = foundation.mechanical.translational.translational; % C
+end
+
+annotations
+        [pp] : Side = left;
+        [nn] : Side = right;
+        [R] : Side = left;
+        [C] : Side = right;
 end
 
 parameters

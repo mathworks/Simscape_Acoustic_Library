@@ -1,11 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="600" height="400" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part_3" title="part_0" ie-ports="left:acoustical-acoustical,top:,right:acoustical-acoustical,bottom:">
 		<g id="Cylinder">
-			<path id="part_1" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,268.7699890137,400)" d:options="ClosedShapeFill:On;" d=" M 19,295 L 230.52,295 C 242.07,295 249.77,247.5 249.77,200 C 249.77,152.5 242.07,105 230.52,105 L 19,105 C 29.63,105 38.23,147.51 38.23,200 C 38.23,252.49 29.63,295 19,295 Z"/>
-			<ellipse id="part_2" class="ellipse" transform="matrix(-1,0,0,-1,499.5400085449,400)" d:options="ClosedShapeFill:On;" cx="249.77" cy="200" rx="19.23" ry="95"/>
+			<path id="part_1" class="path" style="fill:#ffffff;" transform="matrix(-1,0,0,-1,508.7699890138,400)" d:options="ClosedShapeFill:On;" d=" M 139,295 L 350.52,295 C 362.07,295 369.77,247.5 369.77,200 C 369.77,152.5 362.07,105 350.52,105 L 139,105 C 149.63,105 158.23,147.51 158.23,200 C 158.23,252.49 149.63,295 139,295 Z"/>
+			<ellipse id="part_2" class="ellipse" transform="matrix(-1,0,0,-1,739.5399780273,400)" d:options="ClosedShapeFill:On;" cx="369.77" cy="200" rx="19.23" ry="95"/>
 		</g>
-		<path id="path" class="path" d=" M 299,159.83 Q 314,180 314,200 Q 314,220 299,239.83"/>
-		<path id="path_55" class="path" d=" M 329,145.83 Q 342,172.5 342,200 Q 342,227.5 329,255.83"/>
-		<path id="path_102" class="path" d=" M 353,128.83 Q 372,163.5 372,200 Q 372,236.5 353,274.83"/>
+		<path id="path" class="path" d=" M 419,159.83 Q 434,180 434,200 Q 434,220 419,239.83"/>
+		<path id="path_55" class="path" d=" M 449,145.83 Q 462,172.5 462,200 Q 462,227.5 449,255.83"/>
+		<path id="path_102" class="path" d=" M 473,128.83 Q 492,163.5 492,200 Q 492,236.5 473,274.83"/>
+		<path id="path_36" class="path" d=" M 0,200 L 139,200"/>
+		<path id="path_72" class="path" d=" M 600,200 L 369.77,200"/>
 	</g>
 </svg>

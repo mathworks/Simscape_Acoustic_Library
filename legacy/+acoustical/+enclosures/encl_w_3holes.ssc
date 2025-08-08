@@ -35,10 +35,10 @@ component encl_w_3holes
     end
     
     components(ExternalAccess=observe)
-        CC = acoustical.elements.compliance(c=comp);
-        MM1 = acoustical.elements.inertance(m=mass1);
-        MM2 = acoustical.elements.inertance(m=mass2);
-        MM3 = acoustical.elements.inertance(m=mass3);
+        CC = acoustic.elements.compliance(c=comp);
+        MM1 = acoustic.elements.inertance(m=mass1);
+        MM2 = acoustic.elements.inertance(m=mass2);
+        MM3 = acoustic.elements.inertance(m=mass3);
     end
     
     connections

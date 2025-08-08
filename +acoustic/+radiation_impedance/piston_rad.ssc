@@ -13,8 +13,13 @@ component piston_rad
 %   Copyright 2025 The MathWorks, Inc.
 
     nodes
-        pa = acoustic.acoustic; % +:left
-        na = acoustic.acoustic; % -:right
+        pa = acoustic.acoustic; % +
+        na = acoustic.acoustic; % -
+    end
+
+    annotations
+        [pa] : Side = left;
+        [na] : Side = right;
     end
 
     parameters
@@ -54,7 +59,7 @@ component piston_rad
             c = 343;            % sound speed in air, unitless for calculation
             % compute component values for spherical cap radiation impedance, unsing piston radiation impedance model
             % all computed values are unitless
-            [Ma, Ca, Ra1, Ra2] = acoustic.SphericalCapRadVal(rho, c, a, r, theta);
+            [Ma, Ca, Ra1, Ra2] = acoustic.radiation_impedance.SphericalCapRadVal(rho, c, a, r, theta);
             % give numerical results units
             M   = {Ma,          'Pa*s^2/m^3'};
             C   = {Ca,          'm^3/Pa'};

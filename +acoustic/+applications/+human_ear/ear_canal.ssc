@@ -1,4 +1,4 @@
-component ear_canal
+ component ear_canal
 % Ear Canal with Ear Drum 
 % Simulates the average human ear canal including the ear drum. 
 % The model consists a tube shape cavity representing the concha (or outer pinna cavity),
@@ -11,7 +11,7 @@ component ear_canal
 %
 % Schematic reference:
 %
-% https://doi.org/10.1121/10.0024939
+% https://doi.org/10.1121/10.00249 39
 %
 % https://www.doi.org/10.61782/fa.2023.0485
 % 
@@ -31,7 +31,7 @@ component ear_canal
   parameters
       
       w_concha      = acoustic.enum.concha.include_concha;        % Include Concha?
-      L_concha      = {.003,                'm'};                   % Concha Length (L_concha)
+      L_concha      = {.003,                'm'};                    % Concha Length (L_concha)
       r_concha      = {.005,                'm'};                   % Concha Radius (r_concha)
       L_canal       = {.0095,               'm'};                   % Canal Length (L_canal)
       r_canal       = {.0035,               'm'};                   % Canal Radius (r_canal)
@@ -67,14 +67,14 @@ component ear_canal
       % ca as the common (reference) that connects to the acoustic reference
       pa = acoustic.acoustic; % +
       na = acoustic.acoustic; % -
-      ca = acoustic.acoustic; % comm
+      ca = acoustic.acoustic; % 
 
   end
 
   annotations
 
       pa: Side = left;
-      na: Side = right;
+      na: Side = left;
       ca: Side = bottom;
       UILayout = [UIGroup("Concha Parameters", w_concha, L_concha, r_concha)...
                   UIGroup("Canal Parameters", L_canal, r_canal)...
@@ -108,8 +108,8 @@ component ear_canal
    end
 
    components(ExternalAccess = observe)
-       concha = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, length = L_concha, a = r_concha);
-       canal = acoustic.applications.t_lines.tube_tv_cyl(mdl = mdl, length = L_canal, a = r_canal);
+       concha = acoustic.applications.t_lines.tube_tv_cyl_foster(mdl = mdl, length = L_concha, a = r_concha);
+       canal = acoustic.applications.t_lines.tube_tv_cyl_foster(mdl = mdl, length = L_canal, a = r_canal);
        Ear_Drum_Impedance = acoustic.applications.human_ear.ear_drum_simulator(Ca1 = Ca1, Ca2 = Ca2, Ca3 = Ca3, Ca4 = Ca4, Ca5 = Ca5,...
                                                                     Ma1 = Ma1, Ma2 = Ma2, Ma3 = Ma3, Ma4 = Ma4, Ma5 = Ma5, ...
                                                                     Ra1 = Ra1, Ra2 = Ra2, Ra3 = Ra3, Ra4 = Ra4, Ra5 = Ra5, ...
@@ -129,12 +129,12 @@ component ear_canal
        connections
            connect(pa, concha.p1);
            connect(concha.p2, canal.p1);
-           connect(ca, concha.p3, canal.p3, Ear_Drum_Impedance.ca);
+           connect(ca, concha.p3, canal.p3, Ear_Drum_Impedance.ca, *);
        end
    else
        connections
            connect(pa, canal.p1);
-           connect(ca, canal.p3, Ear_Drum_Impedance.ca);
+           connect(ca, canal.p3, Ear_Drum_Impedance.ca, *);
        end
    end 
 

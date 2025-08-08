@@ -6,7 +6,7 @@ component encl_simple
 % compliance, neglecting any loss that may exist in the
 % enclosure. The port of the enclosure is the positive port of the 
 % compliance. The negative port of the compliance is internally connected
-% to the acoustical reference.
+% to the acoustic reference.
 
 % Copyright 2022-2024 Stephen C. Thompson
 % Distributed under the 3-Clause BSD License
@@ -31,7 +31,7 @@ component encl_simple
     end
     
     components(ExternalAccess=observe)
-        CC = acoustical.elements.compliance(c=comp);
+        CC = acoustic.elements.compliance(c=comp);
     end
     
     connections

@@ -1,4 +1,4 @@
-component (Hidden = true) BL_of_x
+component BL_of_x
 % Loudspeaker Converter With Variable BL
 % Provides an interface between the electrical and mechanical
 % translational domains. If the current and voltage through and across the

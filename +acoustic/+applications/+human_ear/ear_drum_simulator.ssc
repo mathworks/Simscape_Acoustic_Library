@@ -24,7 +24,7 @@ nodes
     % ca as the common (reference) that connects to the acoustic reference
     pa = acoustic.acoustic; % +
     na = acoustic.acoustic; % -
-    ca = acoustic.acoustic; % comm
+    ca = acoustic.acoustic; %
 end
 
 outputs
@@ -59,7 +59,7 @@ end
 
 annotations
     pa: Side = left;
-    na: Side = right;
+    na: Side = left;
     ca: Side = bottom;
     UILayout = [UIGroup("Parameters", Ma1, Ma2, Ma3, Ma4, Ma5, Ca1, Ca2, Ca3, Ca4, Ca5, Ra2, Ra4) ...
                 UIGroup("Additional Damping", damping1, damping3, damping5, Ra1, Ra3, Ra5)];
@@ -90,7 +90,7 @@ connections
     connect(L4.nn, C4.pp);
     connect(L5.nn, C5.pp, P_Sensor.pp, na);
     connect(C5.nn, U_Sensor.pp);
-    connect(C1.nn, C2.nn, C3.nn, C4.nn, P_Sensor.nn, U_Sensor.nn, ca);
+    connect(C1.nn, C2.nn, C3.nn, C4.nn, P_Sensor.nn, U_Sensor.nn, ca, *);
     connect(P_Sensor.p, P);
     connect(U_Sensor.u, U);
 

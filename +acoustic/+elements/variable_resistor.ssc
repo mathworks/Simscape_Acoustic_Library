@@ -1,25 +1,25 @@
 component variable_resistor < acoustic.branch
 % Variable Resistor
-% The pressure-volume velocity (P-U) relationship for a linear 
-% resistor is P=U*R, where R is the constant resistance in ohms.
+% The pressure-volume velocity (p-U) relationship for a linear 
+% resistor is p=U*R, where R is the constant resistance in ohms.
 %
 % The positive and negative terminals of the resistor are
-% denoted by the % + and - signs respectively. By convention,
-% the pressure across the % resistor is given by P(+)-P(-), and 
+% denoted by the + and - signs respectively. By convention,
+% the pressure across the resistor is given by p(+) - p(-), and 
 % the sign of the current is positive when flowing through the 
 % device from the positive to the negative terminal. This
 % convention ensures that the power absorbed by a resistor
 % is always positive.
 
-%   Copyright 2025 The MathWorks, Inc.
+% Copyright 2025 The MathWorks, Inc.
 
 
 inputs
-    R_r = { 1, 'Pa*s/m^3' }; % Resistance (R_r)
+    R_r = { 1, 'Pa*s/m^3' }; % R   
 end
 
 annotations
-    [R_r] : Side=top;
+    [R_r] : Side = top;
 end
 
 equations

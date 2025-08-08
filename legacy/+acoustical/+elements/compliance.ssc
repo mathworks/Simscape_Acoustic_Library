@@ -1,6 +1,6 @@
 component compliance < acoustic.branch
 % Compliance
-% Models an acoustical compliance whose value is a parameter, c.
+% Models an acoustic compliance whose value is a parameter, c.
 % The relationship between pressure P and volume velocity U
 % is U=C*dP/dt.
 %

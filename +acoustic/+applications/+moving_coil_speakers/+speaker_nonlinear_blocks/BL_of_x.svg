@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="400" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;Port:Auto Majority;">
+	<g id="part_1" title="part_0" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:,right:foundation-mechanical-translational-translational*foundation-mechanical-translational-translational,bottom:output*output">
+		<path id="path" class="path" d:options="PreserveAspect:On;Port:L1;" d=" M 124,144.25 Q 144.24,145.22 156.14,155 C 168.54,165.2 174,184.21 174,194.41 C 174,204.61 168.54,222.15 156.14,232.35 Q 144.24,242.14 124,244.57"/>
+		<path id="path_1" class="path" d:options="PreserveAspect:On;Port:R1;" d=" M 276,144.25 Q 255.76,145.22 243.86,155 C 231.46,165.2 226,184.21 226,194.41 C 226,204.61 231.46,222.15 243.86,232.35 Q 255.76,242.14 276,244.57"/>
+		<line id="line_130" class="line" d:options="Port:L0;" x1="124" y1="100" x2="124" y2="300"/>
+		<line id="line_216" class="line" d:options="Port:R0;" x1="276.01" y1="100" x2="275.99" y2="300"/>
+		<line id="line" class="line" d:options="Port:L0;" x1="124" y1="100" x2="0" y2="100"/>
+		<line id="line_257" class="line" d:options="Port:L1;" x1="124" y1="300" x2="0" y2="299.99"/>
+		<line id="line_342" class="line" d:options="Port:R0;" x1="276.01" y1="100" x2="399.99" y2="100"/>
+		<line id="line_383" class="line" d:options="Port:R1;" x1="399.99" y1="299.99" x2="275.99" y2="300"/>
+	</g>
+</svg>

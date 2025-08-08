@@ -29,9 +29,9 @@ component (Propagation = blocks) cone
         m_2 =-p1.rho * (x_0 + L) / (pi * a_2^2 * F );
     end
     nodes
-      p1 = acoustic.acoustic;
-      n1 = acoustic.acoustic;
-      p2 = acoustic.acoustic;
+      p1 = acoustic.acoustic; % P1
+      n1 = acoustic.acoustic; % N1
+      p2 = acoustic.acoustic; % P2
     end
     annotations
         [p1]: Side=left;

@@ -1,7 +1,7 @@
 component zrad_ele_on_sphere_array
 % Radiation Impedance - Element In Array On Pulsing Sphere
 % The calculation is for an array of identical elements whose total area
-% is the area of the sphere. Th eimpedance on this element is 1/N times
+% is the area of the sphere. The impedance on this element is 1/N times
 % the radiation impedance on the total sphere.
 
 %   Copyright 2025 The MathWorks, Inc.

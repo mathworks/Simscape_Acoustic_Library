@@ -27,8 +27,8 @@ component encl_w_hole
     end
     
     components(ExternalAccess=observe)
-        CC = acoustical.elements.compliance(c=comp);
-        MM = acoustical.elements.inertance(m=mass);
+        CC = acoustic.elements.compliance(c=comp);
+        MM = acoustic.elements.inertance(m=mass);
     end
     
     connections

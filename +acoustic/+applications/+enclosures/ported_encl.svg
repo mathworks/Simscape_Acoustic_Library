@@ -1,12 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="307" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:,top:,right:acoustic-acoustic*acoustic-acoustic,bottom:acoustic-acoustic">
-		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="0" y="63.5" width="188.5" height="305" rx="0" ry="0"/>
-		<line id="line" class="line" x1="188.5" y1="63.5" x2="307" y2="0"/>
-		<line id="line_177" class="line" x1="0" y1="63.5" x2="118.5" y2="0"/>
-		<line id="line_178" class="line" x1="188.5" y1="368.5" x2="307" y2="305"/>
-		<line id="line_247" class="line" x1="118.5" y1="0" x2="307" y2="0"/>
-		<line id="line_339" class="line" x1="307" y1="0" x2="307" y2="305"/>
-		<ellipse id="ellipse" class="ellipse" d:options="ClosedShapeFill:On;" cx="247.75" cy="132" rx="26.37" ry="81"/>
-		<path id="ellipse_460" class="path" style="fill:rgb(255, 255, 255);" d:options="ClosedShapeFill:On;" d=" M 247.75,243 C 253.89,243 259.12,251.29 261.18,262.96 C 261.79,266.39 262.12,270.11 262.12,274 C 262.12,291.12 255.69,305 247.75,305 C 239.8,305 233.37,291.12 233.37,274 C 233.37,256.88 239.8,243 247.75,243 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="700" height="960" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part_1" title="part_0" ie-base-part="true" ie-ports="left:,top:,right:acoustic-acoustic*acoustic-acoustic,bottom:">
+		<g id="group">
+			<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="63.26" y="287.44" width="302.05" height="453.52" rx="0" ry="0"/>
+			<line id="line" class="line" x1="365.31" y1="287.44" x2="555.19" y2="193.01"/>
+			<line id="line_177" class="line" x1="63.26" y1="287.44" x2="253.15" y2="193.01"/>
+			<line id="line_178" class="line" x1="365.31" y1="740.96" x2="555.19" y2="646.54"/>
+			<line id="line_247" class="line" x1="253.15" y1="193.01" x2="555.19" y2="193.01"/>
+			<line id="line_339" class="line" x1="555.19" y1="193.01" x2="555.19" y2="646.54"/>
+			<ellipse id="ellipse" class="ellipse" d:options="ClosedShapeFill:On;" cx="460.25" cy="389.3" rx="42.26" ry="120.44"/>
+			<path id="ellipse_460" class="path" style="fill:rgb(255, 255, 255);" d:options="ClosedShapeFill:On;" d=" M 460.26,554.35 C 470.09,554.35 478.47,566.67 481.77,584.02 C 482.74,589.12 483.28,594.66 483.28,600.44 C 483.28,625.9 472.98,646.54 460.26,646.54 C 447.51,646.54 437.21,625.9 437.21,600.44 C 437.21,574.99 447.51,554.35 460.26,554.35 Z"/>
+		</g>
+		<g id="ElectricalReference">
+			<path id="path_9" class="path" d=" M 305.45,740.96 L 305.45,852.04"/>
+			<path id="path_18" class="path" d=" M 232.47,852.04 L 378.41,852.04"/>
+			<path id="path_1" class="path" d=" M 247.07,874.27 L 363.83,874.27"/>
+			<path id="path_42" class="path" d=" M 261.66,896.48 L 349.23,896.48"/>
+			<path id="path_57" class="path" d=" M 276.27,918.7 L 334.64,918.7"/>
+			<path id="path_65" class="path" d=" M 290.86,940.96 L 320.04,940.96"/>
+		</g>
+	</g>
+	<g id="OnePort" title="part_1" d:visible="Npt == 'acoustic.enum.Nport.one' || Npt == '1'" ie-ports="left:,top:,right:simulink*simulink,bottom:">
+		<path id="path" class="path" d:options="Port:R0;" d=" M 460.25,389.3 L 700,240"/>
+		<path id="path_966" class="path" d:options="Port:R1;" d=" M 460.24,600.44 L 700,720"/>
+	</g>
+	<g id="TwoPorts" title="part_1" d:visible="Npt == 'acoustic.enum.Nport.two' || Npt == '2'" ie-ports="left:,top:,right:acoustic-acoustic*acoustic-acoustic*simulink,bottom:">
+		<path id="path_1009" class="path" d:options="Port:R0;" d=" M 460.25,389.3 L 700.01,160.34"/>
+		<path id="path_1048" class="path" d:options="Port:R1;" d=" M 460.24,600.44 L 700,480"/>
+		<path id="path_1092" class="path" d:options="Port:R2;" d=" M 460.24,600.44 L 700.01,800.06"/>
+	</g>
+	<g id="ThreePorts" title="part_1" d:visible="Npt == 'acoustic.enum.Nport.three' || Npt == '3'" ie-ports="left:,top:,right:acoustic-acoustic*acoustic-acoustic*simulink*simulink,bottom:">
+		<path id="path_1138" class="path" d:options="Port:R0;" d=" M 460.25,389.3 L 700,119.83"/>
+		<path id="path_1178" class="path" d:options="Port:R1;" d=" M 460.24,600.44 L 700,359.65"/>
+		<path id="path_1262" class="path" d:options="Port:R3;" d=" M 460.24,600.44 L 700,839.94"/>
+		<path id="path_1330" class="path" d:options="Port:R2;" d=" M 460.24,600.44 L 700,600.44"/>
 	</g>
 </svg>

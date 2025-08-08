@@ -36,9 +36,9 @@ component ported_encl_0
     end
     
     components(ExternalAccess=observe)
-        CC = acoustical.elements.compliance(c=comp);
-        MM = acoustical.elements.inertance(m=mass);
-        MM_pt = acoustical.elements.inertance(m=pt_mass);
+        CC = acoustic.elements.compliance(c=comp);
+        MM = acoustic.elements.inertance(m=mass);
+        MM_pt = acoustic.elements.inertance(m=pt_mass);
     end
     
     connections

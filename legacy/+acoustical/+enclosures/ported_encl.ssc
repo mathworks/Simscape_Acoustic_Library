@@ -33,10 +33,10 @@ component ported_encl
     end
     
     components(ExternalAccess=observe)
-        CC = acoustical.elements.compliance(c=comp);
-        MM = acoustical.elements.inertance(m=mass);
+        CC = acoustic.elements.compliance(c=comp);
+        MM = acoustic.elements.inertance(m=mass);
         tube = acoustical.t_lines.tube_tv_cyl(Ndl=N_tube,LR_branches=16,CR_branches=16,length=port_l,a=port_rad);
-        MM_pt = acoustical.elements.inertance(m=pt_mass);
+        MM_pt = acoustic.elements.inertance(m=pt_mass);
     end
     
     connections

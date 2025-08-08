@@ -1,4 +1,4 @@
-component (Hidden = true) K_of_x < foundation.mechanical.translational.branch
+component K_of_x < foundation.mechanical.translational.branch
 % Nonlinear Translational Spring
 % The block represents an ideal mechanical linear spring.
 %
