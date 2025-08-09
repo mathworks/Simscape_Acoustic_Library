@@ -1,0 +1,53 @@
+component controlled_switch
+% Switch
+% The block represents a switch controlled by an external physical
+% signal. If the external physical signal PS is greater than the threshold,
+% then the switch is closed, otherwise the switch is open.
+%
+% The closed resistance is defined by parameter R_closed, and the open
+% conductance is defined by parameter G_open. Both parameters must be
+% greater than zero.
+
+% Copyright 2005-2023 The MathWorks, Inc.
+% Modified by SCT for Acoustical Domain  6/2025
+
+inputs
+    vT = { 0.0, '1' }; % PS:bottom
+end
+
+nodes
+    pa = acoustical.acoustical; % :top
+    na = acoustical.acoustical; % :bottom
+end
+
+parameters
+    R_closed = { 0.01, 'Pa*s/m^3' };   % Closed resistance R_closed
+    R_open   = { 1e8,  'Pa*s/m^3' };   % Open resistance R_open
+    Threshold = { 0.5, '1' };     % Threshold
+end
+
+variables
+    u = { 0, 'm^3/s' }; % Current
+    p = { 0, 'Pa' }; % Voltage
+end
+
+branches
+    u : pa.u -> na.u;
+end
+
+intermediates
+     power_dissipated = p*u; % Dissipated power
+end
+
+equations
+    assert(R_closed>0)
+    assert(R_open>0)
+    p == pa.p - na.p;
+    if vT > Threshold % Switch is closed
+        p == u*R_closed;
+    else              % Switch is open
+        p == u*R_open;
+    end
+end
+
+end
