@@ -7,8 +7,13 @@ component(Hidden=true) source
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    pp = acoustic.acoustic; % :top
-    nn = acoustic.acoustic; % :bottom
+    pp = acoustic.acoustic; %
+    nn = acoustic.acoustic; %
+end
+
+annotations
+    [pp] : Side = top;
+    [nn] : Side = bottom;
 end
 
 variables(Access=protected)

@@ -7,12 +7,12 @@ domain acoustic
 % as analog electrical circuit models. As a consequence, the 
 % code that implements this acoustical domain is very similar to 
 % the code that implements the electrical domain in the 
-% MathWorks Foundation Library.
+% Simscape Foundation Library.
 %
 % Information about domain creation can be found at 
 % https://www.mathworks.com/help/physmod/simscape/lang/when-to-define-a-new-physical-domain.html
 
-%   Copyright 2025 The MathWorks, Inc.
+% Copyright 2025 The MathWorks, Inc.
 
   parameters
     rho       = { 1.21,   'kg/m^3' }; % density of acoustic

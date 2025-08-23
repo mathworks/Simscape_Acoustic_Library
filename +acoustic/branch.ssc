@@ -7,8 +7,13 @@ component(Hidden=true) branch
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    pp = acoustic.acoustic; % +:left
-    nn = acoustic.acoustic; % -:right
+    pp = acoustic.acoustic; % +
+    nn = acoustic.acoustic; % -
+end
+
+annotations
+    [pp] : Side = left;
+    [nn] : Side = right;
 end
 
 variables
