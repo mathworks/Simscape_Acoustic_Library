@@ -2,20 +2,20 @@ component earbud
     % Earbud
     % This component models a conventional earbud. Speaker driver is not included.
     %
-    % The front cavity consists the sound tube and the ear tip cushion, which are both optional as for some earbuds are not inserted format. 
+    % The front cavity consists of the sound tube and the ear tip cushion, which are both optional as some earbuds are not in-ear. 
     % Note that the inserted ear tip cannot exist without the presence of the sound tube. The ear tip cushion is also modeled as a cylindrical tube. 
     % 
-    % The front and rear vent which both can be optional depending on the actual structure of the modeling earbud. 
-    % If multiple sizes of vents exist in the model, connect more vent elements externally to the "front +" and "rear +" nodes in parallel.
+    % The front and rear vent can both be optional, depending on the actual structure of the modeling earbud. 
+    % If multiple sizes of vents exist in the model, more vent elements can be connected externally to the "F+" and "R+" nodes in parallel.
     % See "Tubes and Horns" sub-library for options.
     %
-    % The front-to-rear vent connects the front cavity and the rear cavity through a small size opening or tube. 
-    % The purpose is to release the front cavity pressure but without giving up too much of low frequency response. 
+    % The front-to-rear vent connects the front cavity and the rear cavity through a small-sized opening or tube. 
+    % The purpose is to release the front cavity pressure without giving too much of low frequency response. 
     %
     % Note that the radiation impedance from the vents and mesh impedance are not included in the model 
     % to accommodate other elements that could be connected after the vents.
     % 
-    % Leakage consideration can be included in the model for more realistic results due to imperfect fitting between the tip and human ear.
+    % Leakage consideration can be included in the model for more realistic results modeling imperfect fitting between the tip and human ear.
     %
     % References:
     %
@@ -27,14 +27,14 @@ component earbud
 
     nodes
         pf = acoustic.acoustic; % F+
-        pb = acoustic.acoustic; % B+
+        pb = acoustic.acoustic; % R+
         nf = acoustic.acoustic; % F-
-        nb = acoustic.acoustic; % B-
-        ca = acoustic.acoustic; % 
+        nb = acoustic.acoustic; % R-
     end
 
     nodes (ExternalAccess = none)       % declare internal nodes within the block
         n1 = acoustic.acoustic;     % invisible node between the sound tube and ear tip
+        ca = acoustic.acoustic; %
     end
 
     annotations

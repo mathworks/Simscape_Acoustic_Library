@@ -1,8 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="300" height="400" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:,top:,right:acoustic-acoustic,bottom:acoustic-acoustic">
-		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="48" y="155.83" width="15" height="98" rx="0" ry="0"/>
-		<line id="line" class="line" x1="63" y1="155.83" x2="174" y2="21.83"/>
-		<line id="line_90" class="line" x1="63" y1="253.83" x2="174" y2="369.83"/>
-		<line id="line_174" class="line" x1="174" y1="21.83" x2="174" y2="369.83"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="500" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="Part" title="part_0" ie-base-part="true" ie-ports="left:,top:,right:acoustic-acoustic,bottom:">
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="136.02" y="203.62" width="46.82" height="98" rx="0" ry="0"/>
+		<line id="line" class="line" x1="182.84" y1="203.62" x2="293.84" y2="69.62"/>
+		<line id="line_90" class="line" x1="182.84" y1="301.62" x2="293.84" y2="417.62"/>
+		<line id="line_174" class="line" x1="293.84" y1="69.62" x2="293.84" y2="417.62"/>
+		<path id="path_412" class="path" d:options="Port:R0;" d=" M 400,250 L 293.84,250"/>
+	</g>
+	<g id="WithoutMech" title="part_0" d:visible="MechPort == 'acoustic.enum.WithMechanicalPort.noPort' || MechPort == '1'" ie-ports="left:,top:,right:acoustic-acoustic,bottom:acoustic-acoustic">
+		<path id="path" class="path" d=" M 136.02,250 L 120.45,250 L 120.45,490.66 L 200,490.66 L 200,500"/>
+	</g>
+	<g id="MechPart" title="part_0" d:visible="MechPort == 'acoustic.enum.WithMechanicalPort.withPort' || MechPort == '2'" ie-ports="left:,top:,right:acoustic-acoustic,bottom:acoustic-acoustic*simulink">
+		<path id="path_523" class="path" d:options="Port:B1;" d=" M 159.43,301.62 L 159.43,489.55 L 300,489.55 L 300,500"/>
+		<path id="path_565" class="path" d:options="Port:B0;" d=" M 100,500 L 100,250 L 136.02,250"/>
 	</g>
 </svg>

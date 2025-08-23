@@ -1,13 +1,13 @@
 component microspeaker
 % Microspeaker
 % This component models a general microspeaker used in conventional headphones or earbuds.
-% Some microspeakers do not come with a front cover, thus the acoustic elements related to the front cover are optional.
-% Once a front cover is included in the model, an acoustic compliance, mass, and resistance will be added.
+% Some microspeakers do not come with a front cover, so the acoustic elements related to the front cover are optional.
+% If a front cover is included in the model, an acoustic compliance, mass, and resistance is added.
 % Note that the radiation impedance from the diaphragm or the vents are not included.
-% If multiple sizes of front or rear vents are presented in the model microspeaker, connect the additional vent elements externally
-% at the "front" and "rear" nodes respectively. See "Tubes and Horns" sub-library for more options
+% If multiple sizes of front or rear vents are presented in the model microspeaker, additional vent elements can be connected externally
+% to the front (F) and rear (R) nodes respectively. See "Tubes and Horns" sub-library for more options.
 % 
-% Reference of the full model: 
+% References: 
 %
 % https://doi.org/10.1063/1.2837112
 %
@@ -18,16 +18,18 @@ component microspeaker
     nodes
         pa = acoustic.acoustic; % F
         na = acoustic.acoustic; % R
-        ca = acoustic.acoustic; %
 
         pe = foundation.electrical.electrical; % e+
         ne = foundation.electrical.electrical; % e-
     end
 
+    nodes (ExternalAccess=none)
+        ca = acoustic.acoustic; %
+    end
+
     annotations
         pa: Side = right;
         na: Side = right;
-        ca: Side = bottom;
         pe: Side = left;
         ne: Side = left;
     end

@@ -11,14 +11,6 @@
 			<path id="part_1" class="path" style="fill:#ffffff;" transform="matrix(0,1,-1,0,493.5769119262,156.9647140504)" d=" M 110.84,360.54 L 215.26,360.54 C 221.55,360.54 225.77,342.9 225.77,325.27 C 225.77,307.64 221.55,290 215.26,290 L 163.26,290"/>
 			<path id="path_454" class="path" style="fill:#ffffff;" visibility="hidden" transform="matrix(0,1,-1,0,456.8318710327,120.1997337341)" d=" M 200.02,253.24 L 136.61,253.24 C 142.39,253.24 147.08,269.03 147.08,288.51 C 147.08,308.01 142.38,323.78 136.6,323.78 L 147.6,323.78"/>
 		</g>
-		<g id="ElectricalReference">
-			<path id="path_9" class="path" d=" M 250,320.22 L 250,413.55"/>
-			<path id="path_18" class="path" d=" M 197.73,413.55 L 302.28,413.55"/>
-			<path id="path_28" class="path" d=" M 208.18,432.21 L 291.82,432.21"/>
-			<path id="path_42" class="path" d=" M 218.64,450.87 L 281.37,450.87"/>
-			<path id="path_57" class="path" d=" M 229.09,469.55 L 270.91,469.55"/>
-			<path id="path_65" class="path" d=" M 239.55,488.21 L 260.46,488.21"/>
-		</g>
 		<path id="path_122" class="path" d:options="Port:R0;" d=" M 362.88,217.93 L 492.42,217.93 L 492.42,125 L 500,125"/>
 		<path id="path_233" class="path" d:options="Port:R1;" d=" M 362.88,250 L 492.39,250 L 492.39,375 L 500,375"/>
 		<path id="path_261" class="path" d:options="Port:L0;" d=" M 124.38,217.93 L 9.36,217.93 L 9.36,125 L 0,125"/>

@@ -23,8 +23,11 @@ nodes
     % na as the negative node of the component block
     % ca as the common (reference) that connects to the acoustic reference
     pa = acoustic.acoustic; % +
-    na = acoustic.acoustic; % -
+end
+
+nodes (ExternalAccess=none)
     ca = acoustic.acoustic; %
+    na = acoustic.acoustic; % -
 end
 
 outputs

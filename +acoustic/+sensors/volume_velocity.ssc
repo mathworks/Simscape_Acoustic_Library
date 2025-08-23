@@ -2,7 +2,9 @@ component volume_velocity
 % Volume Velocity Sensor
 % The block represents an ideal volume velocity sensor, that is, a device
 % that converts volume velocity measured in any acoustical branch into
-% a physical signal proportional to the volume velocity.
+% a physical signal proportional to the volume velocity. Analogous to an ammeter,
+% the volume velocity sensor is always connected in series to measure the volume
+% velocity through a component.
 %
 % Connections + and - are conserving acoustical ports through which the
 % sensor is inserted into the circuit. Connection U is a physical

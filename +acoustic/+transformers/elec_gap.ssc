@@ -1,0 +1,67 @@
+component elec_gap
+% Electric Gap Capacitor
+% Electrostatic Gap component for electroacoustical devices.
+% This ccomponent is an electrical capacitor with parallel plates. One
+% of its plates is a flexible membrane in contact with an acostical medium.
+% The capacitror should be charged with a static voltage that creates a
+% force of attraction between the plates. The membrane is strethced by this
+% force, and its tension must be large enough to keep the diaphragm 
+% suspended in the gap. If the voltage beteen the capacitor plates is 
+% modulated, then an oscillating force is imposed on the diaphragm, causing
+% it to move and radiate sound.
+%
+% The component can also be used to model the percormance or condenser
+% microphones, includeing electret biased condenser microphones. In those
+% cases, acoustic pressure drives a small displacement of the diaphragm and 
+% that motion of the capacitor plate induces a small capacitor current that
+% creates the electrical loutput of the microphone. 
+% 
+% Simplifying assumption: The diaphragm moves as a flat plane. This is 
+% discussed by Allan J. Zuckerwar in "Principles of Operation of Condenser
+% MIcrophones," Chapter 3 in AIP Handbook of Condenser Microphones, ed. by 
+% G.S.K. Wong and T.F.W. Embleton.
+
+%   Copyright 2025 The MathWorks, Inc.
+
+parameters
+   x0     = {1e-4, 'm'};   % uncharged gap thickness
+   A_gap  = {1e-3, 'm^2'}; % Gap area
+end
+
+parameters(Access=private)
+    eps0 = {8.85e-12, 'F/m'};
+end
+
+nodes
+   p = foundation.electrical.electrical;                  % +:left
+   n = foundation.electrical.electrical;                  % -:right
+   R = foundation.mechanical.translational.translational; % R:left
+   C = foundation.mechanical.translational.translational; % C:right
+end
+
+variables
+    e = {0, 'V'};       % Voltage across gap
+   i = {0, 'A'};       % gap current
+   q = {0, 'C'};       % gap charge
+   f = { 0, 'N' };     % Force
+   v = { 0, 'm/s' };   % Velocity
+   x = { 0, 'm' };     % gap displacement
+   Cg = {1e-10, 'F'};   % capacitance of gap
+end
+
+branches
+   i: p.i -> n.i;
+   f: R.f -> C.f
+end
+
+equations
+   e  == p.v - n.v;
+   v  == R.v - C.v;
+   v  == x.der;
+   i  == q.der;
+   Cg == eps0 * A_gap/(x0-x);
+   f  == -Cg^2*e^2/2/eps0/A_gap;
+   q  == e * Cg;
+end
+
+end

@@ -2,7 +2,9 @@ component pressure
 % Pressure Sensor
 % The block represents an ideal pressure sensor, that is, a device that 
 % converts pressure measured between any acoustical connections into a 
-% physical signal proportional to the pressure.
+% physical signal proportional to the pressure. Analogous to a voltmeter,
+% the pressure sensor is always connected in parallel to measure the pressure
+% differential across a component.
 % 
 % Connections + and - are conserving pressure ports through which the 
 % sensor is connected to the circuit.  Connection P is a physical signal

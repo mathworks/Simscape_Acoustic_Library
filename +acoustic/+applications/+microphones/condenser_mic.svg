@@ -12,16 +12,9 @@
 				<line id="line_58" class="line" transform="matrix(0,1,-1,0,342.5099945068,-57.5099945068)" x1="242.51" y1="142.5" x2="157.51" y2="142.5"/>
 			</g>
 		</g>
-		<g id="ElectricalReference">
-			<path id="path_9" class="path" d=" M 201.64,320 L 201.64,357.42"/>
-			<path id="path_18" class="path" d=" M 165.2,357.42 L 238.08,357.42"/>
-			<path id="path_28" class="path" d=" M 172.49,364.9 L 230.79,364.9"/>
-			<path id="path_42" class="path" d=" M 179.78,372.38 L 223.5,372.38"/>
-			<path id="path_57" class="path" d=" M 187.06,379.87 L 216.21,379.87"/>
-			<path id="path_65" class="path" d=" M 194.35,387.35 L 208.93,387.35"/>
-		</g>
 		<path id="path" class="path" d:options="Port:L0;" d=" M 0,200 L 59.64,200"/>
 		<path id="path_33" class="path" d=" M 400,100 L 286.05,100"/>
-		<path id="path_66" class="path" d=" M 400,300 L 286.04,300"/>
+		<path id="path_66" class="path" d=" M 400,300 L 283.99,300"/>
+		<path id="path_32" class="path" d:options="Port:B0;" d=" M 200,400 L 201.64,320"/>
 	</g>
 </svg>

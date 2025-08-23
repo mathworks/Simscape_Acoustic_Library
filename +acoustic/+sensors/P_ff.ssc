@@ -4,6 +4,8 @@ component P_ff < acoustic.branch
 % Radiated far field pressure calculated from the volume 
 % velocity and assuming that the source is small compared to 
 % the wavelength. This version assumes radiation from an infinite baffle.
+% Analogous to the voltmeter, the far-field pressure sensor is always connected in parallel
+% to measure the pressure differential across a component.
 
 %   Copyright 2025 The MathWorks, Inc.
 

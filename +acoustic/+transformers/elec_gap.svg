@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="234"
+   height="342"
+   version="1.1"
+   id="svg32"
+   sodipodi:docname="translational_converter.svg"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:d="http://www.mathworks.com/blockgraphics">
+  <sodipodi:namedview
+     id="namedview34"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.7602339"
+     inkscape:cx="110.49788"
+     inkscape:cy="163.39195"
+     inkscape:window-width="1020"
+     inkscape:window-height="986"
+     inkscape:window-x="281"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg_17" />
+  <title
+     id="title2">Fig file converted by fig2lat</title>
+  <desc
+     id="desc4">http://dktools.sourceforge.net/fig2lat.html</desc>
+  <defs
+     id="defs8">
+    <style
+       type="text/css"
+       id="style6"><![CDATA[
+.sB {
+fill: none;
+stroke: #000000;
+stroke-width: 0.9;
+}
+.sC {
+fill: none;
+stroke: #000000;
+stroke-width: 0.9;
+stroke-miterlimit: 20;
+}
+.sA {
+fill: none;
+stroke: #000000;
+stroke-width: 0.9;
+stroke-miterlimit: 20;
+}
+.sD {
+fill: none;
+stroke: #FFFFFF;
+stroke-width: 0.9;
+stroke-miterlimit: 20;
+}
+]]></style>
+  </defs>
+  <g
+     id="g30">
+    <title
+       id="title10">Layer 1</title>
+    <rect
+       fill="black"
+       id="svg_15"
+       class="sD"
+       height="324"
+       width="216"
+       y="9"
+       x="9" />
+    <g
+       d:options="Port:L0"
+       id="svg_16">
+      <polyline
+         id="svg_3"
+         class="sA"
+         points="100.8,84.6 100.8,95.4"
+         transform="matrix(1,0,0,7.0716808,0,-545.87818)" />
+      <polyline
+         id="svg_4"
+         class="sA"
+         points="90,90 9,90"
+         transform="matrix(1.1277778,0,0,1,-1.15,0)" />
+      <polyline
+         id="svg_5"
+         class="sA"
+         points="144,90 225,90"
+         transform="matrix(1.1574074,0,0,1,-35.416667,0)" />
+      <polyline
+         id="polyline223"
+         class="sA"
+         points="100.8,84.6 100.8,95.4"
+         transform="matrix(1,0,0,7.0716808,30,-545.87818)" />
+    </g>
+    <g
+       d:options="Port:L1"
+       id="svg_17">
+      <polyline
+         id="svg_6"
+         class="sA"
+         points="79.2,252 9,252" />
+      <polyline
+         id="svg_7"
+         class="sA"
+         points="154.8,252 225,252" />
+      <polyline
+         id="svg_8"
+         class="sA"
+         points="146.7,252 117,252"
+         transform="matrix(0.69273303,0,0,1,45.076065,0)" />
+      <g
+         id="g226"
+         transform="translate(-10)">
+        <polyline
+           id="svg_12"
+           class="sA"
+           points="117,230.4 117,273.6 92.7,252 117,230.4" />
+      </g>
+      <rect
+         id="svg_14"
+         class="sC"
+         height="81"
+         width="75.6"
+         y="211.5"
+         x="79.2" />
+      <g
+         id="g342"
+         transform="translate(-2)">
+        <polyline
+           id="polyline340"
+           class="sA"
+           points="117,230.4 117,273.6 92.7,252 117,230.4" />
+      </g>
+      <g
+         id="g346"
+         transform="translate(8)">
+        <polyline
+           id="polyline344"
+           class="sA"
+           points="117,230.4 117,273.6 92.7,252 117,230.4" />
+      </g>
+    </g>
+    <g
+       d:options="Port:L0"
+       id="svg_18">
+      <polyline
+         id="svg_9"
+         class="sA"
+         points="117,127.8 117,144" />
+      <polyline
+         id="svg_10"
+         class="sA"
+         points="117,200.7 117,184.5" />
+      <polyline
+         id="svg_11"
+         class="sA"
+         points="117,157.5 117,173.7" />
+    </g>
+  </g>
+  <metadata
+     id="metadata312">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Fig file converted by fig2lat</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

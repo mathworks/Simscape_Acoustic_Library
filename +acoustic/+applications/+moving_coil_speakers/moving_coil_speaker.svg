@@ -1,8 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="400" height="350" d:options="Foreground:PortStyled;Background:Transparent;PreserveAspect:On;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
-	<g id="part" title="part_0" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:output*output*output*output*output*output,right:acoustical-acoustical,bottom:acoustical-acoustical*foundation-mechanical-translational-translational">
-		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="100" y="87.5" width="52" height="175" rx="0" ry="0"/>
-		<line id="line" class="line" x1="152" y1="125.83" x2="259" y2="0"/>
-		<line id="line_69" class="line" x1="152" y1="224.83" x2="259" y2="350"/>
-		<line id="line_124" class="line" x1="259" y1="0" x2="259" y2="350"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="700" height="700" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
+	<g id="part_1" title="part_0" ie-base-part="true" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:output*output*simulink*simulink*simulink*simulink*simulink,right:simulink,bottom:acoustical-acoustical*foundation-mechanical-translational-translational">
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="253.49" y="262.24" width="52" height="175" rx="0" ry="0"/>
+		<line id="line" class="line" x1="305.49" y1="300.57" x2="412.49" y2="174.74"/>
+		<line id="line_69" class="line" x1="305.49" y1="399.57" x2="412.49" y2="524.74"/>
+		<line id="line_124" class="line" x1="412.49" y1="174.74" x2="412.49" y2="524.74"/>
+		<path id="path" class="path" d:options="Port:R0;" d=" M 700,350 L 412.49,349.74"/>
+		<path id="path_1484" class="path" d:options="Port:L1;" d=" M 253.49,355.17 L 35,355.17 L 35,525 L 0,525"/>
+		<path id="path_1515" class="path" d:options="Port:L0;" d=" M 0,175 L 35,175 L 35,341.1 L 253.49,341.1"/>
+	</g>
+	<g id="WithoutMech" title="part_0" d:visible="MechPort == 'acoustic.enum.WithMechanicalPort.noPort' || MechPort == '1'" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:output*output*simulink*simulink*simulink*simulink*simulink,right:simulink,bottom:simulink">
+		<path id="path_1672" class="path" d:options="Port:B0;" d=" M 253.49,367.21 L 173.96,367.21 L 173.96,689.24 L 350,689.24 L 350,700"/>
+	</g>
+	<g id="WithMech" title="part_0" d:visible="MechPort == 'acoustic.enum.WithMechanicalPort.withPort' || MechPort == '2'" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:output*output*simulink*simulink*simulink*simulink*simulink,right:simulink,bottom:acoustical-acoustical*foundation-mechanical-translational-translational">
+		<path id="path_529" class="path" d:options="Port:B1;" d=" M 279.49,439.24 L 279.49,687.15 L 525,687.15 L 525,700"/>
+		<path id="path_1572" class="path" d:options="Port:B0;" d=" M 175,700 L 175,368.22 L 253.49,368.22"/>
 	</g>
 </svg>

@@ -1,20 +1,20 @@
 component condenser_mic
     % Condenser Microphone
-    % The component models a conventional condenser microphone with a back plate behind the diaphragm separated by a gap distance.
-    % When the microphone is powered, an electric field is form between the back plate and the diaphragm 
-    % as a certain amount of charges is distributed on the surface. The capacitance between the back plate and diaphragm 
-    % will depend on the effective charging area and the separation distance. The voltage between the gap is the sum of 
+    % This component models a conventional condenser microphone with a back plate behind the diaphragm that is separated by a gap distance.
+    % When the microphone is powered, an electric field is formed between the back plate and the diaphragm 
+    % due to charges being distributed on its surface. The capacitance between the back plate and diaphragm 
+    % will depend on the effective charging area and separation distance. The voltage across the gap is the sum of 
     % the supplied voltage and the varying voltage due to the external pressure.  As the microphone is being charged, 
-    % an electrical attraction force will be applied on the diaphragm. The attraction force is depended on the gap voltage
+    % an electrical attraction force is applied on the diaphragm. The attraction force depends on the gap voltage
     % and the gap distance between the diaphragm and the back plate. 
-    % It is a dynamic coupling between the mechanical force, displacement, and the output voltage.
+    % There is a dynamic coupling between the mechanical force, displacement, and the output voltage.
     % Note that the acoustic elements of the air gap are neglected in this model. The compliance in the air gap is negligible compared to
     % the compliance of the rear cavity. The air mass can be modeled as multiple "air cells" from the holes on the back plate.
     % The air resistance depends on the boundary conditions around the air gap cavity and the velocity profile of the diaphragm.
     % The boundary is in between a closed and open condition. The velocity profile of the diaphragm is not a perfect piston motion
-    % as it is fixed around the edge and more curvature towards the center. For simplicity, the model assumes the diaphragm is a piston motion.
+    % as it is fixed around the edge and curved towards the center. For simplicity, the model assumes the diaphragm motion is piston-like.
     %
-    % Reference:
+    % References:
     %
     % https://doi.org/10.1121/1.5006905
     %
@@ -49,9 +49,11 @@ component condenser_mic
 
     nodes
         pa = acoustic.acoustic;    % F
-        ca = acoustic.acoustic;    %
         pe = foundation.electrical.electrical; % e+
         ne = foundation.electrical.electrical; % e-
+    end
+     nodes
+        ca = acoustic.acoustic;   % C
     end
 
     annotations
@@ -87,7 +89,7 @@ component condenser_mic
         spring  = foundation.mechanical.translational.spring(spr_rate = Km);        % diaphragm stiffness
         damp    = foundation.mechanical.translational.damper(D = Rm);               % diaphragm mechanical damping
         fix     = foundation.mechanical.translational.reference;                    % translational motion reference
-        coup    = ee.passive.variable_gap_capacitor(A = A_bp, ModelElasticDielectric = logical(0), d = hgap);          % mechanical to electrical microphone coupler
+        coup    = acoustic.transformers.elec_gap(x0 = hgap, A_gap = A_bp);          % mechanical to electrical microphone coupler
     end
 
     connections
@@ -95,8 +97,8 @@ component condenser_mic
         connect(zrad.na, trans.pp);
         connect(trans.nn, zhole.pa);
         connect(zhole.na, Cb.pp, zvent.pa);
-        connect(Cb.nn, ca, *);
-        connect(trans.R, mass.M, spring.R, damp.R, coup.R);
+        connect(Cb.nn, ca);
+        connect(trans.R, mass. M, spring.R, damp.R, coup.R);
         connect(trans.C, spring.C, damp.C, coup.C, fix.V);
         connect(coup.p, pe);
         connect(coup.n, ne);

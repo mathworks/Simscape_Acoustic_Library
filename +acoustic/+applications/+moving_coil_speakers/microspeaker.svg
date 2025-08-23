@@ -1,26 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg" width="360" height="420" d:options="Foreground:PortStyled;Background:Transparent;StrokeScaling:PortStyled;StrokeScalingOnResize:NonScaling;LineExtension:On;Rotate:On;Resize:FitToBlock;Frame:Off;Clipping:None;PreAdjustStrokeWidth:Normalized;TextScalingOnResize:Constant;Geometric:Off;Port:Auto Majority;">
 	<g id="part_1" title="part_0" ie-ports="left:foundation-electrical-electrical*foundation-electrical-electrical,top:,right:acoustical-acoustical*acoustical-acoustical,bottom:acoustical-acoustical">
-		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="136.07" y="122.12" width="44" height="165" rx="0" ry="0"/>
-		<line id="line" class="line" x1="180.07" y1="122.12" x2="180.07" y2="57.45"/>
-		<line id="line_140" class="line" x1="180.07" y1="57.45" x2="216.07" y2="57.45"/>
-		<line id="line_141" class="line" x1="180.07" y1="351.79" x2="180.07" y2="287.12"/>
-		<line id="line_140_142" class="line" x1="180.07" y1="351.79" x2="216.07" y2="351.79"/>
-		<line id="line_140_143" class="line" x1="198.07" y1="122.12" x2="216.07" y2="122.12"/>
-		<path id="path" class="path" d=" M 216.07,57.45 Q 231.07,73.62 231.07,89.79 Q 231.07,105.96 216.07,122.12"/>
-		<line id="line_140_143_145" class="line" x1="198.07" y1="287.12" x2="216.07" y2="287.12"/>
-		<path id="path_176" class="path" d=" M 216.07,351.79 Q 231.07,335.62 231.07,319.46 Q 231.07,303.29 216.07,287.12"/>
-		<path id="path_207" class="path" d=" M 216.07,122.12 Q 231.07,163.37 231.07,204.62 Q 231.07,245.87 216.07,287.12"/>
-		<path id="path_201" class="path" d=" M 0,315 L 180,315"/>
-		<path id="path_267" class="path" d=" M 0,105 L 180,105"/>
-		<path id="path_566" class="path" d:options="Port:R1;" d=" M 180,237.2 L 259.59,237.2 L 259.59,315 L 360,315"/>
-		<path id="path_585" class="path" d:options="Port:R0;" d=" M 231.07,178.92 L 258.22,178.92 L 258.22,105 L 360,105"/>
-		<g id="ElectricalReference">
-			<path id="path_9" class="path" d=" M 180,351.79 L 180,388"/>
-			<path id="path_18" class="path" d=" M 151.03,388 L 208.97,388"/>
-			<path id="path_28" class="path" d=" M 156.82,395.24 L 203.17,395.24"/>
-			<path id="path_42" class="path" d=" M 162.62,402.49 L 197.38,402.49"/>
-			<path id="path_57" class="path" d=" M 168.41,409.73 L 191.58,409.73"/>
-			<path id="path_65" class="path" d=" M 174.2,416.97 L 185.79,416.97"/>
-		</g>
+		<rect id="rect" class="rect" d:options="ClosedShapeFill:On;" x="136.07" y="127.12" width="44" height="165" rx="0" ry="0"/>
+		<line id="line" class="line" x1="180.07" y1="127.12" x2="180.07" y2="62.45"/>
+		<line id="line_140" class="line" x1="180.07" y1="62.45" x2="216.07" y2="62.45"/>
+		<line id="line_141" class="line" x1="180.07" y1="356.79" x2="180.07" y2="292.12"/>
+		<line id="line_140_142" class="line" x1="180.07" y1="356.79" x2="216.07" y2="356.79"/>
+		<line id="line_140_143" class="line" x1="198.07" y1="127.12" x2="216.07" y2="127.12"/>
+		<path id="path" class="path" d=" M 216.07,62.45 Q 231.07,78.62 231.07,94.79 Q 231.07,110.96 216.07,127.12"/>
+		<line id="line_140_143_145" class="line" x1="198.07" y1="292.12" x2="216.07" y2="292.12"/>
+		<path id="path_176" class="path" d=" M 216.07,356.79 Q 231.07,340.62 231.07,324.46 Q 231.07,308.29 216.07,292.12"/>
+		<path id="path_207" class="path" d=" M 216.07,127.12 Q 231.07,168.37 231.07,209.62 Q 231.07,250.87 216.07,292.12"/>
+		<path id="path_424" class="path" d:options="Port:L1;" d=" M 0,315 L 7.59,315 L 7.59,215.65 L 136.07,215.65"/>
+		<path id="path_435" class="path" d:options="Port:L0;" d=" M 0,105 L 7.59,105 L 7.59,204.42 L 136.07,204.42"/>
+		<path id="path_438" class="path" d:options="Port:R0;" d=" M 360,105 L 349.37,105 L 349.37,226.23 L 231.26,226.23"/>
+		<path id="path_443" class="path" d:options="Port:R1;" d=" M 360,315 L 350.63,315 L 350.63,407.38 L 102.53,407.38 L 102.53,226.23 L 136.07,226.23"/>
 	</g>
 </svg>

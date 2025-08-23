@@ -80,11 +80,14 @@ component moving_coil_speaker
   end
 
   nodes
-    a0 = acoustic.acoustic; % front
-    a1 = acoustic.acoustic; % rear
+    a0 = acoustic.acoustic; % F
+    a1 = acoustic.acoustic; % R
     e0 = foundation.electrical.electrical; % e+
     e1 = foundation.electrical.electrical; % e-
-    M  = foundation.mechanical.translational.translational; % Mech
+  end
+ 
+  nodes
+      M  = foundation.mechanical.translational.translational; % M
   end
   annotations
     [M]  : Side = bottom;

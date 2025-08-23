@@ -1,5 +1,15 @@
 component acoustical_transformer
 % Acoustical Transformer 
+%
+% This component models an ideal power-conserving acoustical transformer, described 
+% by the following equations:
+%
+% p2 = phi*p1, and
+%
+% U2 = U1/phi,
+%
+% where p1 and p2 are input and output pressures, U1 and U2 are input and output volume velocities, 
+% and phi is the pressure ratio, which is unitless.
 
 %   Copyright 2025 The MathWorks, Inc.
 

@@ -1,12 +1,26 @@
 component passive_radiator
 % Passive Radiator
+% This component models an undriven cone, termed a drone cone, or a passive radiator, whose recent development enables more
+% compact subwoofer systems. The passive radiator has a design similar to that of a speaker, but with no
+% electrical drive coil. 
+% 
+% References: 
+%
+% H. Olson. "Acoustical Engineering" Section 6.13: Drone Cone Phase Inverter, pp. 161-162.
+%
+% R. H. Small, "Passive-Radiator Loudspeaker Systems Part I: Analysis," Journal of the Audio Engineering Society 22, ??, 1974.
+%
+% R. H. Small, "Passive-Radiator Loudspeaker Systems Part II: Synthesis," Journal of the Audio Engineering Society 22, 683, 1974.
+% 
+% S. C. Thompson. "Modeling Vibration in Speakers with Passive Radiators."
+% https://www.mathworks.com/matlabcentral/fileexchange/172825-modeling-vibration-in-speakers-with-passive-radiators?s_tid=srchtitle   
 
 %   Copyright 2025 The MathWorks, Inc.
 
 nodes
-    pa = acoustic.acoustic; % Front
-    na = acoustic.acoustic; % Back
-    M  = foundation.mechanical.translational.translational; % Mech
+    pa = acoustic.acoustic; % F
+    na = acoustic.acoustic; % R
+    M  = foundation.mechanical.translational.translational; % M
 end
 
 parameters
@@ -20,6 +34,9 @@ end
 annotations
    [pa] : Side = right;
    [na] : Side = bottom;
+end
+
+annotations
    [M]  : Side = bottom;
 end
 

@@ -1,15 +1,15 @@
  component ear_canal
 % Ear Canal with Ear Drum 
-% Simulates the average human ear canal including the ear drum. 
-% The model consists a tube shape cavity representing the concha (or outer pinna cavity),
-% followed by a another tube shape cavity with thermoviscous losses representing the ear canal,
-% and lastly the ear drum impedance which includes partial canal length. 
+% This component simulates the average human ear canal including the ear drum. 
+% The model consists of a tube shape cavity representing the concha (or outer pinna cavity),
+% followed by another tube shape cavity with thermoviscous losses representing the ear canal,
+% and lastly, the ear drum impedance which includes partial canal length. 
 % The concha cavity can be optional depending on the application.
 % The dimensions of the concha and canal are assumed to be different. 
-% Simple tube model is selected for both the concha and ear canal.
-% The ear drum impedance has three optional dampings to be added in series with L1, L3, and L5.
+% The simple tube model is selected for both the concha and ear canal.
+% The ear drum impedance has three optional dampings R1, R3, and R5, to be added in series with L1, L3, and L5.
 %
-% Schematic reference:
+% References:
 %
 % https://doi.org/10.1121/10.00249 39
 %
@@ -66,9 +66,11 @@
       % na as the negative node of the component block
       % ca as the common (reference) that connects to the acoustic reference
       pa = acoustic.acoustic; % +
-      na = acoustic.acoustic; % -
-      ca = acoustic.acoustic; % 
+  end
 
+  nodes (ExternalAccess=none)
+      ca = acoustic.acoustic; %
+      na = acoustic.acoustic; % -
   end
 
   annotations
