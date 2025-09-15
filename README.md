@@ -14,7 +14,7 @@ A valuable reference on this topic is Acoustics: Sound Fields, Transducers, and 
 
 MathWorks extends its gratitude to Dr. Steve Thompson for his contributions in developing this library, which is based on his earlier release, Acoustical Domain for Simscape, on File Exchange. 
 
-For support and inquiriess, please contact: Francis Tiong ftiong@mathworks.com
+For support and inquiries, please contact: Francis Tiong ftiong@mathworks.com
 
 ## Folder structure
 The library is organized into two main sections: Foundation and Applications. 
