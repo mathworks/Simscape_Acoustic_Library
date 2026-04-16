@@ -38,11 +38,11 @@ component earbud
     end
 
     annotations
-        [pf]: Side = right;
-        [pb]: Side = left;
-        [ca]: Side = bottom;
+        [pf]: Side = left;
         [nf]: Side = right;
-        [nb]: Side = left;
+        [ca]: Side = bottom;
+        [pb]: Side = left;
+        [nb]: Side = right;
         UILayout         = [UIGroup("Sound Tube & Ear Tip", tube_earbud, tube_l, tube_r, ...
                             tip_earbud, tip_l, tip_r)...
                             UIGroup("Front Vent", fvent_earbud, fvent_l, fvent_r, Nfv_bud) ...

@@ -1,4 +1,4 @@
-component (Hidden = true) encl_spk_mount
+component encl_spk_mount
     % Speaker Enclosure
     % Speaker mounting holes can be chosen from one to three. Optional port
     % can also be selected. If ported option is selected, an addition node
@@ -52,6 +52,9 @@ component (Hidden = true) encl_spk_mount
         annotations
             pt : ExternalAccess = none;
         end
+        connections
+            connect(pt, n1);
+        end        
     else            % port included
         connections
             connect(pt, n1);
@@ -76,6 +79,8 @@ component (Hidden = true) encl_spk_mount
         connections
             connect(pp1, MM1.pp);
             connect(MM1.nn, n1);
+            connect(pp2, MM1.pp);
+            connect(pp3, MM1.pp);
         end
 
     else if Nmount == acoustic.enum.Nmount.two            % two speaker mounted 
@@ -101,6 +106,7 @@ component (Hidden = true) encl_spk_mount
                 connect(pp2, MM2.pp);
                 connect(MM1.nn, n1);
                 connect(MM2.nn, n1);
+                connect(pp3, MM1.pp);
             end
     else            % if three speakers mounting 
 
